@@ -38,7 +38,7 @@ p {
 	margin: 0 0 1em !important;
 }
 h1, h2, h3, h4, h5, h6 {
-	font-family:36px 'Open Sans', sans-serif;
+	font-family: 36px 'Open Sans', sans-serif;
 }
 .fitImage {
 	max-width: 100%;
@@ -246,7 +246,7 @@ color:#F89F9F;
 	float: right;
 }
 .header {
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	background:transparent;
 	z-index: 50;
@@ -384,7 +384,6 @@ padding: 0px 15px;
 }
 .hero-text2 h2{
 	font-size: 28px;
-	c
 	line-height: 36px; 
 	text-align: left
 }
@@ -540,6 +539,10 @@ a.arrow-link:hover {
 .heading h2 {
 	color: #222;
 }
+
+.heading {
+	margin-top: 6%;
+}
 #contactUs .heading h2 { 
 }
 .sub-heading {
@@ -596,7 +599,7 @@ img, video, iframe, embed, object {
     -------------------------------------------------*/
 #aboutUs {
 	background: #fff;
-	padding-top: 35px;
+	padding-top: 6%;
 	padding-bottom: 25px;
 	overflow: hidden;
 }
@@ -821,10 +824,10 @@ left: 2px;
 #work {
  background:rgb(34, 34, 34);
 }
-#work h2 { 
+#work h2 {
 color:#fff;
 }
-#work p { 
+#work p {
 color:#fff;
 }
 #portfolio {
