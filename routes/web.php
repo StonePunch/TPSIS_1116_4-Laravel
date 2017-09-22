@@ -12,9 +12,11 @@
 */
 
 Route::get('/', 'PageController@home');
-Route::get('/home', 'PageController@home');
+Route::get('/courses', 'PageController@courses');
+Route::get('/news', 'PageController@news');
 Route::get('/about', 'PageController@about');
-Route::get('/contacts', 'PageController@contacts');
+Route::get('/contact', 'PageController@contacts');
+
 
 
 Auth::routes();
