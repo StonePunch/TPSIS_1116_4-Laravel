@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -62,10 +63,30 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if($data->hasFile('picture')){
+            $picture = $data->picture('picture');
+        }
+
+        $pic_dir = public_path() . '/uploads'; //everything that is supposed to be used by the browser needs to be in the public folder, as such the uploads folder is located there
+        //path to the folder where the picture will be stored
+        $pic_name = $data['name'];
+        //name that will be given to the folder
+
+        $picture->move($pic_dir,$pic_name);
+        //moving the picture to the specified
+
+        $path = $pic_dir . $pic_name;
+        //path that will be passed onto the user
+
+        //$path = $data->file('picture')->store('pictures');
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'birthDate' => $data['birthDate'],
+            'schooling' => $data['schooling'],
+            'picture' => $path
         ]);
     }
 }
