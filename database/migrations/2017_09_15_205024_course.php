@@ -13,15 +13,24 @@ class Course extends Migration
      */
     public function up()
     {
-        schema::create('course', function(Blueprint $table){
-        $table->increments('CourseID');
-        $table->string('name');
-        $table->string('description');
-        $table->string('duration');
-        $table->date('startDate');
-        $table->foreign('userID')->references('id')->on('teacher');
-        $table->foreign('gradeID')->references('id')->on('grade');
-        $table->timestamps();
+        schema::create('courses', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('name');
+            $table->string('description');
+            $table->string('duration');
+            $table->date('start_date');
+            $table->integer('teacher_id')->unsigned();
+            $table->timestamps();
+        });
+
+        schema::table('courses', function(Blueprint $table){
+            $table->foreign('teacher_id')->references('id')->on('users');
+        });
+
+        schema::table('users', function(Blueprint $table){
+            $table->foreign('user_type')->references('id')->on('user_types');
+            $table->foreign('schooling')->references('id')->on('schooling');
+            $table->foreign('course_id')->references('id')->on('courses');
         });
     }
 
@@ -32,6 +41,6 @@ class Course extends Migration
      */
     public function down()
     {
-        schema::dropIfExists('course');
+        schema::dropIfExists('courses');
     }
 }

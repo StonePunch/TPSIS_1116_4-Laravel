@@ -13,11 +13,18 @@ class Grade extends Migration
      */
     public function up()
     {
-        schema::create('course', function(Blueprint $table){
-            $table->increments('gradeID');
-            $table->foreign('courseID')->references('id')->on('courseID');
-            $table->string('name');
+        schema::create('grades', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('grade');
             $table->timestamps();
+        });
+
+        schema::table('grades', function(Blueprint $table){
+            $table->integer('course_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -28,6 +35,6 @@ class Grade extends Migration
      */
     public function down()
     {
-        schema:dropifExists('course');
+        schema::dropIfExists('grades');
     }
 }

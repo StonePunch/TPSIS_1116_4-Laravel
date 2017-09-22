@@ -13,18 +13,20 @@ class User extends Migration
      */
     public function up()
     {
-        schema::create('user', function(Blueprint $table){
-            $table->increments('userID');
+        schema::create('users', function(Blueprint $table){
+            $table->increments('id');
             $table->string('name');
-            $table->foreign('userType')->references('id')->on('typeID');
-            $table->date('birthDate');
+            $table->date('birth_date');
             $table->string('email');
             $table->string('password');
-            $table->foreign('schooling')->references('id')->on('schoolingID');
             $table->string('picture');
-            $table->foreign('course')->references('id')->on('courseID');
+            $table->integer('user_type')->unsigned();
+            $table->integer('schooling')->unsigned();
+            $table->integer('course_id')->unsigned();
             $table->timestamps();
         });
+
+
     }
 
     /**
@@ -34,6 +36,6 @@ class User extends Migration
      */
     public function down()
     {
-        schema::dropIfExists('user');
+        schema::dropIfExists('users');
     }
 }
