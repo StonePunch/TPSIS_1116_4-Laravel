@@ -47,7 +47,7 @@
                     <li><a href="/courses" class="scroll-link">Cursos</a></li>
                     <li><a href="/news" class="scroll-link">Notícias</a></li>
                     <li><a href="/about" class="scroll-link">Sobre nós</a></li>
-                    <li><a href="/contact" class="scroll-link">Contatos</a></li>
+                    <li><a href="/contacts" class="scroll-link">Contatos</a></li>
                 </ul>
             </div>
             <!--/.navbar-collapse-->

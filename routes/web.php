@@ -15,7 +15,8 @@ Route::get('/', 'PageController@home');
 Route::get('/courses', 'CoursesController@index');
 Route::get('/news', 'PageController@news');
 Route::get('/about', 'PageController@about');
-Route::get('/contact', 'PageController@contacts');
+Route::get('/contacts', 'PageController@contacts');
+
 
 Auth::routes();
 
@@ -29,3 +30,4 @@ Route::get('/register',function(){
 })->name('register');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/manage', 'PageController@manage');
