@@ -1,120 +1,126 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Register</div>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
-                        {{ csrf_field() }}
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" enctype="multipart/form-data"
+                              action="{{ route('register') }}">
+                            {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                <label for="name" class="col-md-4 control-label">Name</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <div class="col-md-6">
+                                    <input id="name" type="text" class="form-control" name="name"
+                                           value="{{ old('name') }}" required autofocus>
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
+                                    @if ($errors->has('name'))
+                                        <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('birthDate') ? ' has-error' : '' }}">
-                            <label for="birthDate" class="col-md-4 control-label">Birth Date</label>
+                            <div class="form-group{{ $errors->has('birthDate') ? ' has-error' : '' }}">
+                                <label for="birthDate" class="col-md-4 control-label">Birth Date</label>
 
-                            <div class="col-md-6">
-                                <input id="birthDate" type="date" class="form-control" name="birthDate" value="{{ old('birthDate') }}" required autofocus>
+                                <div class="col-md-6">
+                                    <input id="birthDate" type="date" class="form-control" name="birthDate"
+                                           value="{{ old('birthDate') }}" required autofocus>
 
-                                @if ($errors->has('birthDate'))
-                                    <span class="help-block">
+                                    @if ($errors->has('birthDate'))
+                                        <span class="help-block">
                                         <strong>{{ $errors->first('birthDate') }}</strong>
                                     </span>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <div class="col-md-6">
+                                    <input id="email" type="email" class="form-control" name="email"
+                                           value="{{ old('email') }}" required>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('schooling') ? ' has-error' : '' }}">
-                            <label for="schooling" class="col-md-4 control-label">Schooling</label>
+                            <div class="form-group{{ $errors->has('schooling') ? ' has-error' : '' }}">
+                                <label for="schooling" class="col-md-4 control-label">Schooling</label>
 
-                            <div class="col-md-6">
-                                <select id="schooling" class="form-control" name="schooling">
-                                    <option value="3">High School</option>
-                                    <option value="4">Technological Specialization</option>
-                                    <option value="5">Technical Degree</option>
-                                    <option value="6">Bachelor's Degree</option>
-                                    <option value="7">Master's Degree</option>
-                                    <option value="8">Phd</option>
-                                </select>
+                                <div class="col-md-6">
+                                    <select id="schooling" class="form-control" name="schooling">
+                                        <option value="3">High School</option>
+                                        <option value="4">Technological Specialization</option>
+                                        <option value="5">Technical Degree</option>
+                                        <option value="6">Bachelor's Degree</option>
+                                        <option value="7">Master's Degree</option>
+                                        <option value="8">Phd</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
-                            <label for="picture" class="col-md-4 control-label">Picture</label>
+                            <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
+                                <label for="picture" class="col-md-4 control-label">Picture</label>
 
-                            <div class="col-md-6">
-                                <input id="picture" type="file" class="form-control" name="picture" value="{{ old('picture') }}" required autofocus>
+                                <div class="col-md-6">
+                                    <input id="picture" type="file" class="form-control" name="picture"
+                                           value="{{ old('picture') }}" required autofocus>
 
-                                @if ($errors->has('picture'))
-                                    <span class="help-block">
+                                    @if ($errors->has('picture'))
+                                        <span class="help-block">
                                         <strong>{{ $errors->first('picture') }}</strong>
                                     </span>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <label for="password" class="col-md-4 control-label">Password</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <div class="col-md-6">
+                                    <input id="password" type="password" class="form-control" name="password" required>
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <div class="form-group">
+                                <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <div class="col-md-6">
+                                    <input id="password-confirm" type="password" class="form-control"
+                                           name="password_confirmation" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        Register
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
