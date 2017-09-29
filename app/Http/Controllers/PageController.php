@@ -12,10 +12,6 @@ class PageController extends Controller
         return view('home');
     }
 
-    function courses()
-    {
-        return view('courses');
-    }
 
     function news()
     {

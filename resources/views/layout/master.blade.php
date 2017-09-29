@@ -145,6 +145,8 @@
 <script src="/public/contact/contact_me.js"></script>
 <script src="/public/js/custom.js" type="text/javascript"></script>
 <script src="/public/js/owl-carousel/owl.carousel.js"></script>
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}">
+
+</script>
 </body>
 </html>
