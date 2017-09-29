@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.forms')
 
 @section('content')
 <div class="container">
@@ -58,12 +58,21 @@
 
                             <div class="col-md-6">
                                 <select id="schooling" class="form-control" name="schooling">
-                                    <option value="3">High School</option>
-                                    <option value="4">Technological Specialization</option>
-                                    <option value="5">Technical Degree</option>
-                                    <option value="6">Bachelor's Degree</option>
-                                    <option value="7">Master's Degree</option>
-                                    <option value="8">Phd</option>
+                                    @foreach($schooling as $schooling)
+                                        <option value="{{$schooling->id}}">{{$schooling->description}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('userType') ? ' has-error' : '' }}">
+                            <label for="userType" class="col-md-4 control-label">User Type</label>
+
+                            <div class="col-md-6">
+                                <select id="userType" class="form-control" name="userType">
+                                    @foreach($user_types as $user_type)
+                                        <option value="{{$user_type->id}}">{{$user_type->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -72,7 +81,7 @@
                             <label for="picture" class="col-md-4 control-label">Picture</label>
 
                             <div class="col-md-6">
-                                <input id="picture" type="file" class="form-control" name="picture" value="{{ old('picture') }}" required autofocus>
+                                <input id="picture" type="file" class="form-control" name="picture" value="{{ old('picture') }}" autofocus>
 
                                 @if ($errors->has('picture'))
                                     <span class="help-block">

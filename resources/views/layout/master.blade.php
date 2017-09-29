@@ -29,6 +29,8 @@
     <!-- Font Awesome -->
     <link href="font/css/font-awesome.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/register.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -59,7 +61,6 @@
 <!--/.header-->
 
 <!--/.footer-->
-</section>
 <footer>
     <div class="container">
         <div class="row">
@@ -144,5 +145,6 @@
 <script src="/public/contact/contact_me.js"></script>
 <script src="/public/js/custom.js" type="text/javascript"></script>
 <script src="/public/js/owl-carousel/owl.carousel.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

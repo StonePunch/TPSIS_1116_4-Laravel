@@ -17,8 +17,15 @@ Route::get('/news', 'PageController@news');
 Route::get('/about', 'PageController@about');
 Route::get('/contact', 'PageController@contacts');
 
-
-
 Auth::routes();
+
+Route::get('/register',function(){
+
+    $user_type = \App\UserType::all();
+    $schooling = \App\Schooling::all();
+
+    return view('auth.register')->with('user_types', $user_type)->with('schooling', $schooling);
+
+})->name('register');
 
 Route::get('/home', 'HomeController@index')->name('home');

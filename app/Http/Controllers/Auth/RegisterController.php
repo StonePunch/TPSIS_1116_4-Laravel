@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -51,7 +51,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:7|confirmed',
+            'birthDate' => 'required|date',
+            'schooling' => 'required'
         ]);
     }
 
@@ -63,13 +65,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if($data->hasFile('picture')){
-            $picture = $data->picture('picture');
-        }
+        $picture = $data['picture'];
+
+        $birth_date = strtotime($data['birthDate']);
 
         $pic_dir = public_path() . '/uploads'; //everything that is supposed to be used by the browser needs to be in the public folder, as such the uploads folder is located there
         //path to the folder where the picture will be stored
-        $pic_name = $data['name'];
+        $pic_name = $data['email'] . ".jpg";
         //name that will be given to the folder
 
         $picture->move($pic_dir,$pic_name);
@@ -84,9 +86,12 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'birthDate' => $data['birthDate'],
+            'birth_date' => date('Y-m-d',$birth_date),
             'schooling' => $data['schooling'],
+            'user_type' => $data['userType'],
             'picture' => $path
         ]);
+
     }
+
 }
