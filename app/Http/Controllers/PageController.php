@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Schooling;
 
 class PageController extends Controller
 {
@@ -29,5 +30,19 @@ class PageController extends Controller
     function contacts()
     {
         return view('contacts');
+    }
+
+    function admin()
+    {
+        return view('admin');
+    }
+
+    function register()
+    {
+        //$user_type = \App\UserType::all();
+        $schooling = Schooling::all();
+
+        //return view('auth.register')->with('user_types', $user_type)->with('schooling', $schooling);
+        return view('auth.register')->with(['schooling' => $schooling]);
     }
 }
