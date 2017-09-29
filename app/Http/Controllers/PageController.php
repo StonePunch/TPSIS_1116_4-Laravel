@@ -30,4 +30,9 @@ class PageController extends Controller
     {
         return view('contacts');
     }
+
+    function manage()
+    {
+        return view('manage');
+    }
 }

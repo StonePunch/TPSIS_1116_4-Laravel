@@ -13,6 +13,6 @@ class DefineCourseIdOnUserTableSeeder extends Seeder
     {
         DB::table('users')->update(
             ['course_id' => '2']
-        )->where('id')->on(2)
+        )->where('id');
     }
 }
