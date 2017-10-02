@@ -28,7 +28,6 @@ class PageController extends Controller
         return view('contacts');
     }
 
-<<<<<<< HEAD
     function admin()
     {
         return view('admin');
@@ -41,10 +40,10 @@ class PageController extends Controller
 
         //return view('auth.register')->with('user_types', $user_type)->with('schooling', $schooling);
         return view('auth.register')->with(['schooling' => $schooling]);
-=======
+    }
+
     function manage()
     {
         return view('manage');
->>>>>>> 59db19468363d56795b667e211c243a7da481d20
     }
 }

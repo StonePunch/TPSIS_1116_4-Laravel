@@ -8,6 +8,6 @@ class Course extends Model
 {
     public function getTeacher()
     {
-        return $this->hasMany('App\User');
+        return $this->hasOne('App\User');
     }
 }
