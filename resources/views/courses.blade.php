@@ -65,9 +65,34 @@
                         <li> Description: {{$course->description}} </li>
                         <li> Duration: {{$course->duration}}</li>
                         <li> Starting date: {{$course->start_date}}</li>
-                        <li> Teacher: {{$course->teacher_id }} </li>
+                        <li> Teacher: {{$course->getTeacher->name }} </li>
+                        @auth
+                        @if(Auth::User()->getUserType->name === 'Student' and Auth::User()->course_id === null)
+                        {
+                            <form action="/users/{{Auth::user()->id}}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
+
+                                <input type="hidden" name="course" value="{{$course->id}}">
+                                <input class="btn" type="submit" value="Apply now">
+                            </form>
+                        }
+                        @else
+                            @if(Auth::user()->course_id === $course->id)
+                            <form action="/users/{{Auth::user()->id}}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
+
+                                <input type="hidden" name="course" value="{{$course->id = null}}">
+                                <input class="btn" type="submit" value="Unapply">
+                            </form>
+
+                            @endif
+                        @endif
+                        @endauth
                     </ul>
             @endforeach
+
             </div>
         </div>
     </div>

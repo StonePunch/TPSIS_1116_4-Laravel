@@ -17,7 +17,7 @@ Route::get('/news', 'PageController@news');
 Route::get('/about', 'PageController@about');
 Route::get('/contacts', 'PageController@contacts');
 
-
+Route::resource('users', 'UserController', ['only' => ['update']]);
 Auth::routes();
 
 Route::get('/register',function(){
