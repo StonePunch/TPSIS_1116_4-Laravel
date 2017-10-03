@@ -22,6 +22,7 @@ class CreateUser extends Migration
             $table->date('birth_date');
             $table->string('picture');
             $table->integer('user_type')->unsigned();
+            $table->string('sex');
             $table->integer('schooling')->unsigned();
             $table->integer('course_id')->unsigned()->nullable();
             $table->rememberToken();

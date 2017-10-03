@@ -53,7 +53,8 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:7|confirmed',
             'birthDate' => 'required|date',
-            'schooling' => 'required'
+            'schooling' => 'required',
+            'sex' => 'required'
         ]);
     }
 
@@ -65,22 +66,38 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $picture = $data['picture'];
+        if ($data[picture]=null)
+        {
+            if ($data[sex]='Masculino')
+            {
+                //default male picture, for when the user does not upload a picture
+                $path = public_path() . '/uploads/default_m.jpeg';
+            }
+            else
+            {
+                //default female picture, for when the user does not upload a picture
+                $path = public_path() . '/uploads/default_f.jpeg';
+            }
+        }
+        else
+        {
+            $picture = $data['picture'];
 
-        $birth_date = strtotime($data['birthDate']);
+            $birth_date = strtotime($data['birthDate']);
 
-        $pic_dir = public_path() . '/uploads'; //everything that is supposed to be used by the browser needs to be in the public folder, as such the uploads folder is located there
-        //path to the folder where the picture will be stored
-        $pic_name = $data['email'] . ".jpg";
-        //name that will be given to the folder
+            $pic_dir = public_path() . '/uploads'; //everything that is supposed to be used by the browser needs to be in the public folder, as such the uploads folder is located there
+            //path to the folder where the picture will be stored
+            $pic_name = $data['email'] . ".jpg";
+            //name that will be given to the folder
 
-        $picture->move($pic_dir,$pic_name);
-        //moving the picture to the specified
+            $picture->move($pic_dir,$pic_name);
+            //moving the picture to the specified
 
-        $path = $pic_dir . $pic_name;
-        //path that will be passed onto the user
+            $path = $pic_dir . $pic_name;
+            //path that will be passed onto the user
 
-        //$path = $data->file('picture')->store('pictures');
+            //$path = $data->file('picture')->store('pictures');
+        }
 
         return User::create([
             'name' => $data['name'],
@@ -88,7 +105,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'birth_date' => date('Y-m-d',$birth_date),
             'schooling' => $data['schooling'],
-            'user_type' => $data['userType'],
+            'sex' => $data['sex'],
             'picture' => $path
         ]);
 

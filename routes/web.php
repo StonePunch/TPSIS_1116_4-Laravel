@@ -15,19 +15,15 @@ Route::get('/', 'PageController@home');
 Route::get('/courses', 'CoursesController@index');
 Route::get('/news', 'PageController@news');
 Route::get('/about', 'PageController@about');
+Route::get('/contact', 'PageController@contacts');
+Route::get('/admin', 'PageController@contacts');
 Route::get('/contacts', 'PageController@contacts');
 
 Route::resource('users', 'UserController', ['only' => ['update']]);
 Auth::routes();
 
-Route::get('/register',function(){
+Route::get('/register', 'PageController@register');
 
-    $user_type = \App\UserType::all();
-    $schooling = \App\Schooling::all();
-
-    return view('auth.register')->with('user_types', $user_type)->with('schooling', $schooling);
-
-})->name('register');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/manage', 'PageController@manage');

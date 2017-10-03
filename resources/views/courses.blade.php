@@ -58,14 +58,16 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+
             @foreach($courses as $course)
                 <div id="portfolio">
-                    <ul class="filters list-inline">
-                        <li> Name: {{$course->name}} </li>
-                        <li> Description: {{$course->description}} </li>
-                        <li> Duration: {{$course->duration}}</li>
-                        <li> Starting date: {{$course->start_date}}</li>
-                        <li> Teacher: {{$course->getTeacher->name }} </li>
+                    <tr>
+                        <td class="font2 body">{{$course->name}}</td>
+                        <td class="font2 body">{{$course->description}}</td>
+                        <td class="font2 body center">{{$course->duration}}</td>
+                        <td class="font2 body center">{{$course->start_date}}</td>
+                        <td class="font2 body center">{{$course->getTeacher->name }}</td>
+                    </tr>
                         @auth
                         @if(Auth::User()->getUserType->name === 'Student' and Auth::User()->course_id === null)
                         {
@@ -92,7 +94,7 @@
                         @endauth
                     </ul>
             @endforeach
-
+                </div>
             </div>
         </div>
     </div>

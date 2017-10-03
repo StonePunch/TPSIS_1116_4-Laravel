@@ -60,19 +60,18 @@
                                 <select id="schooling" class="form-control" name="schooling">
                                     @foreach($schooling as $schooling)
                                         <option value="{{$schooling->id}}">{{$schooling->description}}</option>
-                                    @endforeach
+                                    @endforeach}}
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('userType') ? ' has-error' : '' }}">
-                            <label for="userType" class="col-md-4 control-label">User Type</label>
+                        <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
+                            <label for="gender" class="col-md-4 control-label">Gender</label>
 
                             <div class="col-md-6">
-                                <select id="userType" class="form-control" name="userType">
-                                    @foreach($user_types as $user_type)
-                                        <option value="{{$user_type->id}}">{{$user_type->name}}</option>
-                                    @endforeach
+                                <select id="sex" class="form-control" name="sex">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
                                 </select>
                             </div>
                         </div>
