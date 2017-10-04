@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:7|confirmed',
             'birthDate' => 'required|date',
             'schooling' => 'required',
-            'sex' => 'required'
+            'sex' => 'required',
         ]);
     }
 
@@ -66,34 +66,38 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if ($data[picture]=null)
+        $birth_date = strtotime($data['birthDate']);
+        $pic_name = "";
+
+        if (is_null($_FILES))
         {
-            if ($data[sex]='Masculino')
+            if ($data['sex'] == 'Male')
             {
                 //default male picture, for when the user does not upload a picture
                 $path = public_path() . '/uploads/default_m.jpeg';
+                $pic_name = 'default_m.jpeg';
             }
             else
             {
                 //default female picture, for when the user does not upload a picture
                 $path = public_path() . '/uploads/default_f.jpeg';
+                $pic_name = 'default_f.jpeg';
             }
         }
         else
         {
-            $picture = $data['picture'];
-
-            $birth_date = strtotime($data['birthDate']);
+            $picture = $_FILES;
 
             $pic_dir = public_path() . '/uploads'; //everything that is supposed to be used by the browser needs to be in the public folder, as such the uploads folder is located there
             //path to the folder where the picture will be stored
             $pic_name = $data['email'] . ".jpg";
             //name that will be given to the folder
 
-            $picture->move($pic_dir,$pic_name);
+            $path = $pic_dir . $pic_name;
+
+            $picture->move($path);
             //moving the picture to the specified
 
-            $path = $pic_dir . $pic_name;
             //path that will be passed onto the user
 
             //$path = $data->file('picture')->store('pictures');
@@ -106,9 +110,8 @@ class RegisterController extends Controller
             'birth_date' => date('Y-m-d',$birth_date),
             'schooling' => $data['schooling'],
             'sex' => $data['sex'],
-            'picture' => $path
+            'user_type' => '1',
+            'picture' => $pic_name
         ]);
-
     }
-
 }

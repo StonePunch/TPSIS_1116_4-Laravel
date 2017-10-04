@@ -42,7 +42,7 @@
                         <!--/ .login starts-->
                         @guest
                             <li class="login"><a href="{{ route('login') }}">Login</a></li>
-                            <li class="login"><a href="{{ route('register') }}">Register</a></li>
+                            <li class="login"><a href="{{ route('registry') }}">Register</a></li>
                             @else
                                 <li class="dropdown login">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -90,7 +90,8 @@
                 <br>A nossa escola tem uma orgulhosa tradição que oferece excelentes oportunidades educacionais. O seu progresso académico
                     está em primeiro lugar.</br>
                     Temos formadores comprometidos em exibir entusiasmo, dedicação e habilidades de ensino de alto nível.
-                    Esforçamo-nos constantemente para criar um ambiente no qual cada aluno seja apoiado para alcançar os mais altos níveis de sucesso.  </p>
+                    Esforçamo-nos constantemente para criar um ambiente no qual cada aluno seja apoiado para alcançar os mais altos níveis de sucesso.
+                </p>
         </div>
         <div class="col-md-3">
             <a class="btn btn-apply" href="#"><i class="fa fa-play-circle"></i>Escolha um curso!</a>

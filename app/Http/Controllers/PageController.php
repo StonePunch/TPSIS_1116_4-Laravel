@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use \App\Schooling;
 
@@ -44,6 +45,8 @@ class PageController extends Controller
 
     function manage()
     {
-        return view('manage');
+        $user = User::class;
+
+        return view('manage')->with('user', $user);
     }
 }

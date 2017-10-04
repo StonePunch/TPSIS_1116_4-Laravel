@@ -2,26 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Http\Request;
 use App\User;
 use App;
 
 class UserController extends Controller
 {
-    public function update(Request $request, $id)
+    public function index()
     {
-        $user = User::find($id);
 
-        $user->course_id = $request->course;
-
-        $user->save();
-
-        return redirect('courses');
     }
 
     public function edit($id)
     {
+        $user = User::find($id);
 
+        return view('manage')->withPost($user);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, array(
+           'email' => 'unique:users',
+           'password' => 'required|string|min:7|confirmed'
+        ));
+
+        $user = User::find($id);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+
+        $user->save();
+
+        return redirect('home');
     }
 }

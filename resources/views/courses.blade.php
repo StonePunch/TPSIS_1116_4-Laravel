@@ -40,7 +40,7 @@
                                     </li>
                                 </ul>
                             </li>
-                 w       @endguest
+                       @endguest
                         <!--/ .login ends-->
                 </ul>
             </div>
@@ -58,42 +58,73 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+            <style>
+                table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                }
 
-            @foreach($courses as $course)
-                <div id="portfolio">
-                    <tr>
-                        <td class="font2 body">{{$course->name}}</td>
-                        <td class="font2 body">{{$course->description}}</td>
-                        <td class="font2 body center">{{$course->duration}}</td>
-                        <td class="font2 body center">{{$course->start_date}}</td>
-                        <td class="font2 body center">{{$course->getTeacher->name }}</td>
-                    </tr>
-                        @auth
-                        @if(Auth::User()->getUserType->name === 'Student' and Auth::User()->course_id === null)
-                        {
-                            <form action="/users/{{Auth::user()->id}}" method="post">
-                                {{ csrf_field() }}
-                                {{ method_field('PUT') }}
+                td, th {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                }
 
-                                <input type="hidden" name="course" value="{{$course->id}}">
-                                <input class="btn" type="submit" value="Apply now">
-                            </form>
-                        }
-                        @else
-                            @if(Auth::user()->course_id === $course->id)
-                            <form action="/users/{{Auth::user()->id}}" method="post">
-                                {{ csrf_field() }}
-                                {{ method_field('PUT') }}
+                tr:nth-child(even) {
+                    background-color: #e9e9e9;
+                }
+            </style>
+            <table>
+                <tr class="table">
+                    <th class="font">Name</th>
+                    <th class="font">Description</th>
+                    <th class="font">Duration</th>
+                    <th class="font">Starting Date</th>
+                    <th class="font">Teacher</th>
+                    @auth
+                    @if(Auth::User()->course_id === null)
+                    <th class="font">Join</th>
 
-                                <input type="hidden" name="course" value="{{$course->id = null}}">
-                                <input class="btn" type="submit" value="Unapply">
-                            </form>
+                    @else
+                    <th class="font">Quit</th>
+                    @endif
+                    @endauth
+                </tr>
+                @foreach($courses as $course)
+                    <div id="portfolio">
+                        <tr>
+                            <td class="font2 body">{{$course->name}}</td>
+                            <td class="font2 body">{{$course->description}}</td>
+                            <td class="font2 body center">{{$course->duration}}</td>
+                            <td class="font2 body center">{{$course->start_date}}</td>
+                            <td class="font2 body center">{{$course->getTeacher->name }}</td>
+                            @auth
+                            @if(Auth::User()->getUserType->name === 'Student' and Auth::User()->course_id === null)
+                                <form action="/users/{{Auth::user()->id}}" method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('PUT') }}
 
+                                    <input type="hidden" name="course" value="{{$course->id}}">
+                                    <td class="font2 body2"><input class="btn" type="submit" value="Apply now">
+                                </form>
+                            @else
+                                @if(Auth::user()->course_id === $course->id)
+                                    <form action="/users/{{Auth::user()->id}}" method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('PUT') }}
+
+                                        <input type="hidden" name="course" value="{{$course->id = null}}">
+                                        <td class="font2 body2"><input class="btn" type="submit" value="Unapply"></td>
+                                    </form>
+                                @endif
                             @endif
-                        @endif
-                        @endauth
-                    </ul>
-            @endforeach
+                            @endauth
+                        </tr>
+
+                @endforeach
+            </table>
+        </div>
                 </div>
             </div>
         </div>

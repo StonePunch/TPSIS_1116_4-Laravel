@@ -19,10 +19,10 @@ Route::get('/contact', 'PageController@contacts');
 Route::get('/admin', 'PageController@contacts');
 Route::get('/contacts', 'PageController@contacts');
 
-Route::resource('users', 'UserController', ['only' => ['update']]);
-Auth::routes();
+Route::resource('users', 'UserCourseController', ['only' => ['update']]);
 
-Route::get('/register', 'PageController@register');
+Auth::routes();
+Route::get('/registry', 'PageController@register')->name('registry');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
