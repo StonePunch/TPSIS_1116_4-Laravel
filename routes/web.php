@@ -24,6 +24,5 @@ Route::resource('users', 'UserCourseController', ['only' => ['update']]);
 Auth::routes();
 Route::get('/registry', 'PageController@register')->name('registry');
 
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/manage', 'PageController@manage');

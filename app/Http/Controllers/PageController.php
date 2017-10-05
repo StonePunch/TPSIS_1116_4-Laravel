@@ -10,9 +10,9 @@ class PageController extends Controller
 {
     function home()
     {
+
         return view('home');
     }
-
 
     function news()
     {

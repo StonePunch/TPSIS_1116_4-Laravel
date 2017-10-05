@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
 use App\User;
 use App\Http\Controllers\Controller;
+use Faker\Provider\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -23,14 +26,14 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    /**
+    /*
      * Where to redirect users after registration.
      *
      * @var string
      */
     protected $redirectTo = '/login';
 
-    /**
+    /*
      * Create a new controller instance.
      *
      * @return void
@@ -40,25 +43,28 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
+    /*
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
     protected function validator(array $data)
     {
+        $validator_date = Carbon::now()->subYears(18);
+
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:7|confirmed',
-            'birthDate' => 'required|date',
+            'birthDate' => 'required|date|after:1900-01-01|before:' . $validator_date,
             'schooling' => 'required',
             'sex' => 'required',
         ]);
     }
 
-    /**
+    /*
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
@@ -66,41 +72,35 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $birth_date = strtotime($data['birthDate']);
-        $pic_name = "";
 
-        if (is_null($_FILES))
+        $birth_date = strtotime($data['birthDate']);
+
+        if ($_FILES['picture']['name'] === null || empty($_FILES['picture']['name']))
         {
             if ($data['sex'] == 'Male')
             {
                 //default male picture, for when the user does not upload a picture
-                $path = public_path() . '/uploads/default_m.jpeg';
                 $pic_name = 'default_m.jpeg';
             }
             else
             {
                 //default female picture, for when the user does not upload a picture
-                $path = public_path() . '/uploads/default_f.jpeg';
                 $pic_name = 'default_f.jpeg';
             }
         }
         else
         {
-            $picture = $_FILES;
+            //attributing the picture to a variable
+            $picture = $data['picture'];
 
-            $pic_dir = public_path() . '/uploads'; //everything that is supposed to be used by the browser needs to be in the public folder, as such the uploads folder is located there
+            //name that will be given to the picture
+            $pic_name = $data['email'] . $_FILES['picture']['name'];
+
             //path to the folder where the picture will be stored
-            $pic_name = $data['email'] . ".jpg";
-            //name that will be given to the folder
+            $new_path = public_path() . '/uploads/' . $pic_name;
 
-            $path = $pic_dir . $pic_name;
-
-            $picture->move($path);
-            //moving the picture to the specified
-
-            //path that will be passed onto the user
-
-            //$path = $data->file('picture')->store('pictures');
+            //moving the picture to the specified folder
+            move_uploaded_file($picture,$new_path);
         }
 
         return User::create([

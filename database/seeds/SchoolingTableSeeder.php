@@ -1,6 +1,8 @@
 <?php
 
+use App\Schooling;
 use Illuminate\Database\Seeder;
+
 
 class SchoolingTableSeeder extends Seeder
 {
