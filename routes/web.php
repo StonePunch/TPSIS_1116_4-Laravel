@@ -19,7 +19,8 @@ Route::get('/contact', 'PageController@contacts');
 Route::get('/admin', 'PageController@contacts');
 Route::get('/contacts', 'PageController@contacts');
 
-Route::resource('users', 'UserCourseController', ['only' => ['update']]);
+Route::resource('users_courses', 'UserCourseController', ['only' => ['update']]);
+Route::resource('users', 'UserController', ['only' => ['update']]);
 
 Auth::routes();
 Route::get('/registry', 'PageController@register')->name('registry');

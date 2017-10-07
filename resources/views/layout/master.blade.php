@@ -46,6 +46,7 @@
                 <ul class="nav navbar-nav" id="mainNav">
                     <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                     <li><a href="/courses" class="scroll-link">Cursos</a></li>
+                    <li><a href="/users" class="scroll-link">Alunos</a></li>
                     <li><a href="/news" class="scroll-link">Notícias</a></li>
                     <li><a href="/about" class="scroll-link">Sobre nós</a></li>
                     <li><a href="/contacts" class="scroll-link">Contatos</a></li>

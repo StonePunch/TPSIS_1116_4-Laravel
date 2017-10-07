@@ -60,6 +60,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:7|confirmed',
             'birthDate' => 'required|date|after:1900-01-01|before:' . $validator_date,
             'schooling' => 'required',
+            'picture' => 'image|mimes:jpeg,bmp,png,jpg|max:500000',
             'sex' => 'required',
         ]);
     }
@@ -94,7 +95,7 @@ class RegisterController extends Controller
             $picture = $data['picture'];
 
             //name that will be given to the picture
-            $pic_name = $data['email'] . $_FILES['picture']['name'];
+            $pic_name = $data['email'] . '_' . $_FILES['picture']['name'];
 
             //path to the folder where the picture will be stored
             $new_path = public_path() . '/uploads/' . $pic_name;

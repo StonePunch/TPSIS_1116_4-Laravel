@@ -85,7 +85,6 @@
                     @auth
                     @if(Auth::User()->course_id === null)
                     <th class="font">Join</th>
-
                     @else
                     <th class="font">Quit</th>
                     @endif
@@ -101,7 +100,7 @@
                             <td class="font2 body center">{{$course->getTeacher->name }}</td>
                             @auth
                             @if(Auth::User()->getUserType->name === 'Student' and Auth::User()->course_id === null)
-                                <form action="/users/{{Auth::user()->id}}" method="post">
+                                <form action="/users_courses/{{Auth::user()->id}}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('PUT') }}
 
@@ -110,7 +109,7 @@
                                 </form>
                             @else
                                 @if(Auth::user()->course_id === $course->id)
-                                    <form action="/users/{{Auth::user()->id}}" method="post">
+                                    <form action="/users_courses/{{Auth::user()->id}}" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
 
@@ -121,7 +120,6 @@
                             @endif
                             @endauth
                         </tr>
-
                 @endforeach
             </table>
         </div>
