@@ -15,8 +15,7 @@ Route::get('/', 'PageController@home');
 Route::get('/courses', 'CoursesController@index');
 Route::get('/news', 'PageController@news');
 Route::get('/about', 'PageController@about');
-Route::get('/contact', 'PageController@contacts');
-Route::get('/admin', 'PageController@contacts');
+Route::get('/admin', 'PageController@admin');
 Route::get('/contacts', 'PageController@contacts');
 
 Route::resource('users_courses', 'UserCourseController', ['only' => ['update']]);

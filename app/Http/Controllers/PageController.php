@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use \App\Schooling;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
     function home()
     {
-
         return view('home');
     }
 
@@ -31,6 +33,11 @@ class PageController extends Controller
 
     function admin()
     {
+        $user_type = Auth::user()->user_type;
+        if ($user_type != 3)
+        {
+            return redirect('home');
+        }
         return view('admin');
     }
 
