@@ -83,9 +83,9 @@
                     <th class="font">Starting Date</th>
                     <th class="font">Teacher</th>
                     @auth
-                    @if(Auth::User()->course_id === null)
+                    @if(Auth::User()->course_id === null and Auth::User()->getUserType->name === 'Student')
                     <th class="font">Join</th>
-                    @else
+                    @elseif (Auth::User()->course_id !== null and Auth::User()->getUserType->name === 'Student')
                     <th class="font">Quit</th>
                     @endif
                     @endauth

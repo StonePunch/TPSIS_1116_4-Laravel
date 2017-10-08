@@ -31,4 +31,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\UserType', 'user_type');
     }
+
+    public function getSchooling()
+    {
+        return $this->belongsTo('App\Schooling', 'schooling');
+    }
+
+    public function getCourse()
+    {
+        return $this->belongsTo('App\Course', 'course_id');
+    }
 }

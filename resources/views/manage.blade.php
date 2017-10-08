@@ -15,7 +15,7 @@
                             <div class="text-center">
                                 <img src="{{('uploads/') . Auth::user()->picture}}" width="200" height="200" class="avatar img-circle" alt="avatar">
                                 <h6>Upload a different photo...</h6>
-                                <input type="file" name="picture" class="form-control">
+                                <input type="file" name="picture" value="" class="form-control">
                                 @if ($errors->has('picture'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('picture') }}</strong>
@@ -52,7 +52,7 @@
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <label class="col-md-3 control-label">Password:</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" name="password" type="text" value="" required>
+                                        <input class="form-control" name="password" type="text" value="">
                                         @if ($errors->has('password'))
                                             <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>

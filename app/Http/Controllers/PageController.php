@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
 use \App\Schooling;
+use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
@@ -48,5 +48,10 @@ class PageController extends Controller
         $user = User::class;
 
         return view('manage')->with('user', $user);
+    }
+
+    function user_no_permission_error()
+    {
+        return view('users_no_permission_error');
     }
 }

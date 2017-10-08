@@ -36,6 +36,9 @@
                     <ul class="nav navbar-nav" id="mainNav">
                         <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                         <li><a href="/courses" class="scroll-link">Cursos</a></li>
+                        @auth
+                            <li><a href="/users" class="scroll-link">Alunos</a></li>
+                        @endauth
                         <li><a href="/news" class="scroll-link">Notícias</a></li>
                         <li><a href="/about" class="scroll-link">Sobre nós</a></li>
                         <li><a href="/contacts" class="scroll-link">Contatos</a></li>
