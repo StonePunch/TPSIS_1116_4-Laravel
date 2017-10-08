@@ -1,4 +1,6 @@
-<head>
+@extends('layout.master')
+@section('content')
+{{--<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!--[if lt IE 9]>
@@ -76,7 +78,7 @@
             <!--/.navbar-->
         </div>
         <!--/.container-->
-    </header>
+    </header>--}}
     <div id="#top"></div>
     <section id="home">
 
@@ -225,6 +227,4 @@
 <script src="/public/js/custom.js" type="text/javascript"></script>
 <script src="/public/js/owl-carousel/owl.carousel.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
-</body>
-</html>
-
+@endsection

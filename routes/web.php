@@ -18,8 +18,7 @@ Route::get('/', 'PageController@home');
 Route::get('/courses', 'CoursesController@index');
 Route::get('/news', 'PageController@news');
 Route::get('/about', 'PageController@about');
-Route::get('/contact', 'PageController@contacts');
-Route::get('/admin', 'PageController@contacts');
+Route::get('/admin', 'PageController@admin');
 Route::get('/contacts', 'PageController@contacts');
 Route::get('/users_no_permission_error', 'PageController@user_no_permission_error');
 
