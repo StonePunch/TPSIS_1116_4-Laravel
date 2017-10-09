@@ -1,5 +1,5 @@
 .login {
-    position: absolute;
-    left: 108%;
+    position: fixed;
+    left: 115%;
     font-size: 16px;
 }

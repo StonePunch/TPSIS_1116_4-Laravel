@@ -31,7 +31,7 @@
             <div class="col-md-4 text-center">
                 <div class="box-item">
                     <i class="circle"><img src="images/5.png" alt="" /></i>
-                    <h3>Cursos</h3>
+                    <h3>Courses</h3>
                    <p></p>
                 </div>
             </div>
@@ -41,7 +41,7 @@
             <div class="col-md-4 text-center">
                 <div class="box-item">
                     <i class="circle"> <img src="images/1.png" alt="" /></i>
-                    <h3>Conhecimento</h3>
+                    <h3>Knowledge</h3>
                     <p></p>
                 </div>
             </div>
@@ -51,7 +51,7 @@
             <div class="col-md-4 text-center">
                 <div class="box-item">
                     <i class="circle"> <img src="images/3.png" alt="" /></i>
-                    <h3>Inovação</h3>
+                    <h3>Innovation</h3>
                     <p></p>
                 </div>
                 <!-- end:-->

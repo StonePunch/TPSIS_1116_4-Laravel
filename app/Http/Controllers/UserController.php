@@ -46,7 +46,7 @@ class UserController extends Controller
         $birth_date = strtotime($request->input('birthDate'));
         //validates all the data from the request
         $this->validate($request, array(
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:20',
             'email' => 'required|unique:users,email,'.$id,
             'password' => 'sometimes|nullable|string|min:7',
             'birthDate' => 'required|date|after:1900-01-01|before:' . $validator_date,

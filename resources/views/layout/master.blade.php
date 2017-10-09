@@ -1,8 +1,4 @@
 <!doctype html>
-<!--[if IE 7 ]><html lang="en-gb" class="isie ie7 oldie no-js"><![endif]-->
-<!--[if IE 8 ]><html lang="en-gb" class="isie ie8 oldie no-js"><![endif]-->
-<!--[if IE 9 ]><html lang="en-gb" class="isie ie9 no-js"><![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="en-gb" class="no-js">
     <head>
         <meta charset="utf-8">
@@ -31,15 +27,15 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/register.css') }}" rel="stylesheet">
-    </head>
-    <body>
-        <header class="header">
-            <div class="container">
-                <nav class="navbar navbar-inverse" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                        <a href="#" class="navbar-brand scroll-top logo  animated bounceInLeft"><b><i><img src="images/logo.png" /></i></b></a> </div>
-                    <!--/.navbar-header-->
+        </head>
+        <body>
+            <header class="header">
+                <div class="container">
+                    <nav class="navbar navbar-inverse" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                            <a href="#" class="navbar-brand scroll-top logo  animated bounceInLeft"><b><i><img src="images/logo.png" /></i></b></a> </div>
+                        <!--/.navbar-header-->
                     <div id="main-nav" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav" id="mainNav">
                             @guest
@@ -56,7 +52,9 @@
                                 {{--User logged in--}}
                                 @if(\Illuminate\Support\Facades\Auth::user()->user_type == 3)
                                     {{--Admin section--}}
-                                        <script>window.location.href = "http://localhost:8000/admin";</script>
+                                        <li class="active" id="firstLink"><a href="/admin" class="scroll-link">Admin</a></li>
+                                        <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                        <li><a href="/users" class="scroll-link">Students</a></li>
 
                                     @elseif(\Illuminate\Support\Facades\Auth::user()->user_type == 2)
                                         {{--Techer section--}}
@@ -144,7 +142,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="email...">
                                     <span class="input-group-btn">
-                                    <button class="btn" type="button">Validar</button>
+                                    <button class="btn" type="button">Validate</button>
                                 </span>
                                 </div>
                             </form>
@@ -154,25 +152,24 @@
                     <div class="col-md-3">
                         <div class="col col-social-icons">
                             <h4>Siga-nos</h4>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-flickr"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-skype"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                            <a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
+                            <a href="https://plus.google.com"><i class="fa fa-google-plus"></i></a>
+                            <a href="https://youtube.com"><i class="fa fa-youtube-play"></i></a>
+                            <a href="https://flickr.com"><i class="fa fa-flickr"></i></a>
+                            <a href="https://linkedin.com"><i class="fa fa-linkedin"></i></a>
+                            <a href="https://twitter.com"><i class="fa fa-twitter"></i></a>
+                            <a href="https://skype.com"><i class="fa fa-skype"></i></a>
+                            <a href="https://pinterest.com"><i class="fa fa-pinterest"></i></a>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="col">
-                            <h4>Últimas Notícias</h4>
+                            <h4>Latest News</h4>
                             <p>
-                                B-SCHOOL vai formar jovens para emprego com futuro na PANIKE! ÚLTIMAS VAGAS!</br>
-                                A Panike elegeu a B-SCHOOL como entidade formadora do Curso de Formação para...
-                                <br><br>
-                                <a href="#" class="btn">Mais Notícias</a>
+                                The Navigator Company elected B-School, as the main entity formation for the courses of Programming
+                                Languages...</br></br>
+                                <a href="/news" class="btn">More News!</a>
                             </p>
                         </div>
                     </div>
@@ -183,7 +180,7 @@
         <section class="copyright">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 text-center"> Copyright 2017 | Todos os Direitos Reservados - B-School </div>
+                    <div class="col-sm-12 text-center"> Copyright 2017 | All Rights Reserved - B-School </div>
                 </div>
                 <!-- / .row -->
             </div>

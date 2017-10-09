@@ -55,7 +55,7 @@ class RegisterController extends Controller
         $validator_date = Carbon::now()->subYears(18);
 
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:20',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:7|confirmed',
             'birthDate' => 'required|date|after:1900-01-01|before:' . $validator_date,
