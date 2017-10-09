@@ -25,14 +25,13 @@
         <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/login.css" />
-        {{--<link rel="stylesheet" href="css/datatable.css" />--}}
+        <link rel="stylesheet" href="css/datatable.css" />
         <!-- Font Awesome -->
         <link href="font/css/font-awesome.min.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/register.css') }}" rel="stylesheet">
     </head>
-
     <body>
         <header class="header">
             <div class="container">
@@ -43,16 +42,15 @@
                     <!--/.navbar-header-->
                     <div id="main-nav" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav" id="mainNav">
-                            <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
-                            {{--Common section --}}
-                            <li><a href="/courses" class="scroll-link">Courses</a></li>
-                            <li><a href="/news" class="scroll-link">News</a></li>
-                            <li><a href="/about" class="scroll-link">About</a></li>
-                            <li><a href="/contacts" class="scroll-link">Contacts</a></li>
                             @guest
                                 {{--User not logged in--}}
+                                <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
                                 <li class="login"><a href="{{ route('login') }}">Login</a></li>
-                                <li class="login"><a href="{{ route('register') }}">Register</a></li>
+                                <li class="login"><a href="{{ route('registry') }}">Register</a></li>
                             @endguest
                             @auth
                                 {{--User logged in--}}
@@ -60,7 +58,6 @@
                                     {{--Admin section--}}
 
                                     <li><a href="/admin" class="scroll-link">Admin</a> </li>
-
                                     {{--Common section--}}
                                     <li class="dropdown login">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -80,8 +77,14 @@
                                     </li>
                                     @elseif(\Illuminate\Support\Facades\Auth::user()->user_type == 2)
                                         {{--Techer section--}}
-
-                                        <li><a href="/courses" class="scroll-link">Teacher, not done</a> </li>
+                                    {{--Common section --}}
+                                        <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
+                                        <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                        <li><a href="/users" class="scroll-link">Students</a></li>
+                                        <li><a href="/news" class="scroll-link">News</a></li>
+                                        <li><a href="/about" class="scroll-link">About</a></li>
+                                        <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                                        {{--<li><a href="/courses" class="scroll-link">Teacher, not done</a> </li>--}}
 
                                         {{--Common section--}}
                                         <li class="dropdown login">
@@ -102,7 +105,11 @@
                                         </li>
                                         @else
                                             {{--User section--}}
-
+                                            <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
+                                            <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                            <li><a href="/news" class="scroll-link">News</a></li>
+                                            <li><a href="/about" class="scroll-link">About</a></li>
+                                            <li><a href="/contacts" class="scroll-link">Contacts</a></li>
                                             {{--Common section--}}
                                             <li class="dropdown login">
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -131,7 +138,6 @@
         @section('content')
             {{--Page content goes here--}}
         @show
-
         <footer>
             <div class="container">
                 <div class="row">

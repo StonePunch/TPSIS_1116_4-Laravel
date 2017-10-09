@@ -1,5 +1,6 @@
 @extends('layout.master');
 @section('content')
+    @auth
     <section id="aboutUs">
         <div class="container">
             <div class="heading text-center">
@@ -87,4 +88,5 @@
                 </div>
                 <hr>
     </section>
+    @endauth
 @stop

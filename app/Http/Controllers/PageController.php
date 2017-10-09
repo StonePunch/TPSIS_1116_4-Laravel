@@ -33,12 +33,17 @@ class PageController extends Controller
 
     function admin()
     {
-        $user_type = Auth::user()->user_type;
-        if ($user_type != 3)
+        if(Auth::check())
         {
-            return redirect('home');
+            $user_type = Auth::user()->user_type;
+            if ($user_type != 3)
+            {
+                return redirect('home');
+            }
+            return view('admin');
         }
-        return view('admin');
+        else
+            return redirect('users_no_permission_error');
     }
 
     function register()

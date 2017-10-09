@@ -1,0 +1,9 @@
+.btns {
+    background:none!important;
+    color:inherit;
+    border:none;
+    padding:0!important;
+    font: inherit;
+    font-size: 18px;
+    cursor: pointer;
+}

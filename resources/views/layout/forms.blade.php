@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/btn.css') }}" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">
@@ -25,26 +26,35 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
+            @if (url()->current() == 'http://localhost:8000/login')
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('Home', 'Home') }}
+                </a>
+                <a class="navbar-brand" href="{{ url('/registry') }}">
+                    {{ config('Registry', 'Register') }}
+                </a>
+            @else
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('Home', 'Home') }}
+                </a>
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                    {{ config('Login', 'Login') }}
+                </a>
+            @endif
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('Home', 'Home') }}
-            </a>
-        </div>
+</div>
+<div class="collapse navbar-collapse" id="app-navbar-collapse">
+<!-- Left Side Of Navbar -->
+<ul class="nav navbar-nav">
+    &nbsp;
+</ul>
 
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                &nbsp;
-            </ul>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
-
-            </ul>
-        </div>
-    </div>
+<!-- Right Side Of Navbar -->
+<ul class="nav navbar-nav navbar-right">
+    <!-- Authentication Links -->
+</ul>
+</div>
+</div>
 </nav>
 @yield('content')
 </body>
