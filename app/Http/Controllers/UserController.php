@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         //if user not logged in goes to error page
-        if(Auth::guest())
+        if(Auth::guest() || Auth::User()->getUserType->name === 'Student')
         {
             return view('users_no_permission_error');
         }
@@ -24,15 +24,11 @@ class UserController extends Controller
             $usersTeacher = App\User::where('course_id', '=', $userAuth)->paginate(5);
             return view('users')->with('usersTeacher', $usersTeacher);
         }
-        else if(Auth::User()->getUserType->name === 'Admin')
+        else
         {
             $usersAdmin = App\User::paginate(10);
             //return view with all the users
             return view('users')->with('usersAdmin', $usersAdmin);
-        }
-        else
-        {
-            return view('users_no_permission_error');
         }
     }
 
