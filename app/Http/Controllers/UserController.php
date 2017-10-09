@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         //if user not logged in goes to error page
-        if(Auth::guest())
+        if(Auth::guest() || Auth::User()->getUserType->name === 'Student')
         {
             return view('users_no_permission_error');
         }
