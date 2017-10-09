@@ -48,10 +48,8 @@ class PageController extends Controller
 
     function register()
     {
-        //$user_type = \App\UserType::all();
         $schooling = Schooling::all();
 
-        //return view('auth.register')->with('user_types', $user_type)->with('schooling', $schooling);
         return view('auth.register')->with(['schooling' => $schooling]);
     }
 

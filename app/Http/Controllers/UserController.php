@@ -24,11 +24,15 @@ class UserController extends Controller
             $usersTeacher = App\User::where('course_id', '=', $userAuth)->paginate(5);
             return view('users')->with('usersTeacher', $usersTeacher);
         }
-        else
+        else if(Auth::User()->getUserType->name === 'Admin')
         {
             $usersAdmin = App\User::paginate(10);
             //return view with all the users
             return view('users')->with('usersAdmin', $usersAdmin);
+        }
+        else
+        {
+            return view('users_no_permission_error');
         }
     }
 
