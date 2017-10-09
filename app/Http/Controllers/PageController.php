@@ -38,7 +38,7 @@ class PageController extends Controller
             $user_type = Auth::user()->user_type;
             if ($user_type != 3)
             {
-                return redirect('home');
+                return redirect('users_no_permission_error');
             }
             return view('admin');
         }

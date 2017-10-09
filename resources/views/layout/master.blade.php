@@ -56,25 +56,8 @@
                                 {{--User logged in--}}
                                 @if(\Illuminate\Support\Facades\Auth::user()->user_type == 3)
                                     {{--Admin section--}}
+                                        <script>window.location.href = "http://localhost:8000/admin";</script>
 
-                                    <li><a href="/admin" class="scroll-link">Admin</a> </li>
-                                    {{--Common section--}}
-                                    <li class="dropdown login">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                            {{ Auth::user()->name }} <span class="caret"></span>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="/manage" class="scroll-link">Profile</a>
-                                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                    Logout
-                                                </a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                    {{ csrf_field() }}
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </li>
                                     @elseif(\Illuminate\Support\Facades\Auth::user()->user_type == 2)
                                         {{--Techer section--}}
                                     {{--Common section --}}

@@ -31,7 +31,14 @@ Route::get('/registry', 'PageController@register')->name('registry');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/manage', 'PageController@manage');
 Route::get('/users', 'UserController@index');
+Route::get('grades', 'PageController@grades');
 Route::any('/search',function(){
+
+    //if no user is logged in goes to error page
+    if(Auth::guest())
+    {
+        return view('users_no_permission_error');
+    }
     //Checks if user is admin, if it is searches all users with the name condition in search
     if(Auth::User()->getUserType->name === 'Admin' )
     {

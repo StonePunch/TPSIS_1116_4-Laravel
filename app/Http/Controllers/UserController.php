@@ -12,17 +12,24 @@ class UserController extends Controller
 {
     public function index()
     {
+        //if user not logged in goes to error page
+        if(Auth::guest())
+        {
+            return view('users_no_permission_error');
+        }
         //checks if user is teacher to return a view with only users that are applied in the course that the logged on teacher is giving
-        if(Auth::User()->getUserType->name === 'Teacher')
+        else if(Auth::User()->getUserType->name === 'Teacher')
         {
             $userAuth = Auth::User()->getCourse->id;
             $usersTeacher = App\User::where('course_id', '=', $userAuth)->paginate(5);
             return view('users')->with('usersTeacher', $usersTeacher);
         }
-
-        $usersAdmin = App\User::paginate(10);
-        //return view with all the users
-        return view('users')->with('usersAdmin', $usersAdmin);
+        else
+        {
+            $usersAdmin = App\User::paginate(10);
+            //return view with all the users
+            return view('users')->with('usersAdmin', $usersAdmin);
+        }
     }
 
     public function edit($id)
