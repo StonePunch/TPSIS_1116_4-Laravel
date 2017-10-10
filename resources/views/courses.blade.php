@@ -4,7 +4,8 @@
         <div class="container text-center">
             <div class="heading">
                 <h2>Our Courses</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, alias enim placeat earum quo sab.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, alias enim placeat earum quo
+                    sab.</p>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -39,10 +40,6 @@
                                 @elseif (Auth::User()->course_id !== null and Auth::User()->getUserType->name === 'Student')
                                     <th class="font">Quit</th>
                                 @endif
-                                {{--Admin--}}
-                                @if(Auth::User()->user_type == 3)
-                                    <th class="font">Delete</th>
-                                @endif
                             @endauth
                         </tr>
                         @foreach($courses as $course)
@@ -61,7 +58,8 @@
                                                 {{ method_field('PUT') }}
 
                                                 <input type="hidden" name="course" value="{{$course->id}}">
-                                                <td class="font2 body2"><input class="btn" type="submit" value="Apply now">
+                                                <td class="font2 body2"><input class="btn" type="submit"
+                                                                               value="Apply now">
                                             </form>
                                         @else
                                             @if(Auth::user()->course_id === $course->id and Auth::User()->user_type === 1)
@@ -70,20 +68,23 @@
                                                     {{ method_field('PUT') }}
 
                                                     <input type="hidden" name="course" value="{{$course->id = null}}">
-                                                    <td class="font2 body2"><input class="btn" type="submit" value="Quit"></td>
+                                                    <td class="font2 body2"><input class="btn" type="submit"
+                                                                                   value="Quit"></td>
                                                 </form>
                                             @endif
                                         @endif
                                         {{--Admin--}}
                                         @if(Auth::User()->user_type == 3)
-                                            <form action="/users_courses/{{$course->id}}" method="post">
+                                            {{--Edit--}}
+                                            <form action="/courses/{{$course->id}}/edit" method="post">
                                                 {{csrf_field()}}
-                                                {{method_field('PUT')}}
+                                                {{method_field('GET')}}
 
-                                                {{--TODO: finish edit course, create course, grade system--}}
-                                                {{--https://laravel.com/docs/5.5/controllers#restful-partial-resource-routes--}}
+                                                <input type="hidden" name="course" value="{{$course->id}}">
+                                                <td class="font2 body2"><input class="btn_edit" type="submit" value="Edit"></td>
                                             </form>
-                                            <form action="/users_courses/{{$course->id}}" method="post">
+                                            {{--Delete--}}
+                                            <form action="/courses/{{$course->id}}" method="post">
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
 
@@ -94,13 +95,15 @@
                                     @endauth
                                 </tr>
                             </div>
+                            @auth
+                                @if(Auth::User()->user_type == 3)
+                                    <button type="button" class="btn_create" value="Create Course"></button>
+                                @endif
+                            @endauth
                         @endforeach
                     </table>
                 </div>
             </div>
-        </div>
-        </div>
-        </div>
         </div>
     </section>
 @stop
