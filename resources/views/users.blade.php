@@ -3,7 +3,7 @@
 <section id="work" class="page-section page">
 <div class="container text-center">
     <div class="heading">
-        <h2>Os nossos cursos</h2>
+        <h2>Our Users</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, alias enim placeat earum quos ab.</p>
     </div>
     <div class="row">
@@ -25,67 +25,60 @@
                     background-color: #e9e9e9;
                 }
             </style>
-            <div class="container">
+            {{--<div class="container">--}}
                 @if(isset($details) and Auth::User()->getUserType->name === 'Admin')
                     <p> The Search results for your query <b> {{ $query }} </b> are :</p>
                     <h2>Sample User details</h2>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Picture:</th>
-                            <th>Name:</th>
-                            <th>Email:</th>
-                            <th>Birth Date:</th>
-                            <th>Sex:</th>
-                            <th>Course:</th>
-                            <th>Schooling:</th>
-                            <th>Role:</th>
+                    <table>
+                        <tr class="table">
+                            <th class="font">Picture:</th>
+                            <th class="font">Name:</th>
+                            <th class="font">Email:</th>
+                            <th class="font">Birth Date:</th>
+                            <th class="font">Sex:</th>
+                            <th class="font">Course:</th>
+                            <th class="font">Schooling:</th>
+                            <th class="font">Role:</th>
                         </tr>
-                        </thead>
-                        <tbody>
                         @foreach($details as $usersAdmin)
-                            <tr>
-                                <td><img src="{{'uploads/' . $usersAdmin->picture}}" alt="" border=3  height=100 width=100></img></td>
-                                <td>{{$usersAdmin->name}}</td>
-                                <td>{{$usersAdmin->email}}</td>
-                                <td>{{$usersAdmin->birth_date}}</td>
-                                <td>{{$usersAdmin->sex}}</td>
-                                <td>{{$usersAdmin->getCourse['name']}}</td>
-                                <td>{{$usersAdmin->getSchooling->description}}</td>
-                                <td>{{$usersAdmin->getUserType->name}}</td>
+                            <tr class="table">
+                                <td class="font2 body"><img src="{{'uploads/' . $usersAdmin->picture}}" alt="" border=3  height=100 width=100></img></td>
+                                <td class="font2 body">{{$usersAdmin->name}}</td>
+                                <td class="font2 body">{{$usersAdmin->email}}</td>
+                                <td class="font2 body">{{$usersAdmin->birth_date}}</td>
+                                <td class="font2 body">{{$usersAdmin->sex}}</td>
+                                <td class="font2 body">{{$usersAdmin->getCourse['name']}}</td>
+                                <td class="font2 body">{{$usersAdmin->getSchooling->description}}</td>
+                                <td class="font2 body">{{$usersAdmin->getUserType->name}}</td>
                             </tr>
                         @endforeach
-                        </tbody>
                     </table>
                 @elseif(isset($details) and Auth::User()->getUserType->name === 'Teacher')
                     <p> The Search results for your query <b> {{ $query }} </b> are :</p>
                     <h2>Sample User details</h2>
                     <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Picture:</th>
-                            <th>Name:</th>
-                            <th>Email:</th>
-                            <th>Birth Date:</th>
-                            <th>Sex:</th>
-                            <th>Course:</th>
-                            <th>Schooling:</th>
-                            <th>Role:</th>
+                        <tr class="table">
+                            <th class="font">Picture:</th>
+                            <th class="font">Name:</th>
+                            <th class="font">Email:</th>
+                            <th class="font">Birth Date:</th>
+                            <th class="font">Sex:</th>
+                            <th class="font">Course:</th>
+                            <th class="font">Schooling:</th>
+                            <th class="font">Role:</th>
                         </tr>
-                        </thead>
-                        <tbody>
                         @foreach($details as $usersTeacher)
                             @if ($usersTeacher->course_id === Auth::User()->getCourse->id and $usersTeacher->user_type === 1)
                                 <div id="portfolio">
-                                    <tr>
-                                        <td><img src="{{'uploads/' . $usersTeacher->picture}}" alt="" border=3  height=100 width=100></img></td>
-                                        <td>{{$usersTeacher->name}}</td>
-                                        <td>{{$usersTeacher->email}}</td>
-                                        <td>{{$usersTeacher->birth_date}}</td>
-                                        <td>{{$usersTeacher->sex}}</td>
-                                        <td>{{$usersTeacher->getCourse['name']}}</td>
-                                        <td>{{$usersTeacher->getSchooling->description}}</td>
-                                        <td>{{$usersTeacher->getUserType->name}}</td>
+                                    <tr class="table">
+                                        <td class="font2 body"><img src="{{'uploads/' . $usersTeacher->picture}}" alt="" border=3  height=100 width=100></img></td>
+                                        <td class="font2 body">{{$usersTeacher->name}}</td>
+                                        <td class="font2 body">{{$usersTeacher->email}}</td>
+                                        <td class="font2 body">{{$usersTeacher->birth_date}}</td>
+                                        <td class="font2 body">{{$usersTeacher->sex}}</td>
+                                        <td class="font2 body">{{$usersTeacher->getCourse['name']}}</td>
+                                        <td class="font2 body">{{$usersTeacher->getSchooling->description}}</td>
+                                        <td class="font2 body">{{$usersTeacher->getUserType->name}}</td>
                                     </tr>
                                 </div>
                                 @endif
@@ -97,30 +90,30 @@
                 @elseif(!isset($details) and Auth::User()->getUserType->name === 'Admin')
                     <table>
                         <tr class="table">
-                            <th>Picture:</th>
-                            <th>Name:</th>
-                            <th>Email:</th>
-                            <th>Birth Date:</th>
-                            <th>Sex:</th>
-                            <th>Course:</th>
-                            <th>Schooling:</th>
-                            <th>Role:</th>
+                            <th class="font">Picture:</th>
+                            <th class="font">Name:</th>
+                            <th class="font">Email:</th>
+                            <th class="font">Birth Date:</th>
+                            <th class="font">Sex:</th>
+                            <th class="font">Course:</th>
+                            <th class="font">Schooling:</th>
+                            <th class="font">Role:</th>
                         </tr>
                         @foreach($usersAdmin as $user)
                             <div id="portfolio">
                                 <tr>
-                                    <td><img src="{{'uploads/' . $user->picture}}" alt="" border=3  height=100 width=100></img></td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->birth_date}}</td>
-                                    <td>{{$user->sex}}</td>
+                                    <td class="font2 body"><img class="img" src="{{'uploads/' . $user->picture}}" alt="" ></img></td>
+                                    <td class="font2 body">{{$user->name}}</td>
+                                    <td class="font2 body">{{$user->email}}</td>
+                                    <td class="font2 body">{{$user->birth_date}}</td>
+                                    <td class="font2 body">{{$user->sex}}</td>
                                     @if($user->getCourse['name'] === null)
-                                    <td>There are no courses available to show!</td>
+                                    <td class="font2 body">There are no courses available to show!</td>
                                     @else
-                                    <td>{{$user->getCourse['name']}}</td>
+                                    <td class="font2 body">{{$user->getCourse['name']}}</td>
                                     @endif
-                                    <td>{{$user->getSchooling->description}}</td>
-                                    <td>{{$user->getUserType->name}}</td>
+                                    <td class="font2 body">{{$user->getSchooling->description}}</td>
+                                    <td class="font2 body">{{$user->getUserType->name}}</td>
                                 </tr>
                             </div>
                         @endforeach
@@ -130,27 +123,27 @@
                     @elseif(!isset($details) and Auth::User()->getUserType->name === 'Teacher')
                     <table>
                         <tr class="table">
-                            <th>Picture:</th>
-                            <th>Name:</th>
-                            <th>Email:</th>
-                            <th>Birth Date:</th>
-                            <th>Sex:</th>
-                            <th>Course:</th>
-                            <th>Schooling:</th>
-                            <th>Role:</th>
+                            <th class="font">Picture:</th>
+                            <th class="font">Name:</th>
+                            <th class="font">Email:</th>
+                            <th class="font">Birth Date:</th>
+                            <th class="font">Sex:</th>
+                            <th class="font">Course:</th>
+                            <th class="font">Schooling:</th>
+                            <th class="font">Role:</th>
                         </tr>
                         @foreach($usersTeacher as $user)
                                 @if ($user->course_id === Auth::User()->getCourse->id and $user->user_type === 1)
                                     <div id="portfolio">
-                                        <tr>
-                                            <td><img src="{{'uploads/' . $user->picture}}" alt="" border=3  height=100 width=100></img></td>
-                                            <td>{{$user->name}}</td>
-                                            <td>{{$user->email}}</td>
-                                            <td>{{$user->birth_date}}</td>
-                                            <td>{{$user->sex}}</td>
-                                            <td>{{$user->getCourse['name']}}</td>
-                                            <td>{{$user->getSchooling->description}}</td>
-                                            <td>{{$user->getUserType->name}}</td>
+                                        <tr class="table">
+                                            <td class="font2 body"><img src="{{'uploads/' . $user->picture}}" alt="" border=3  height="100" width="100"></img></td>
+                                            <td class="font2 body">{{$user->name}}</td>
+                                            <td class="font2 body">{{$user->email}}</td>
+                                            <td class="font2 body">{{$user->birth_date}}</td>
+                                            <td class="font2 body">{{$user->sex}}</td>
+                                            <td class="font2 body">{{$user->getCourse['name']}}</td>
+                                            <td class="font2 body">{{$user->getSchooling->description}}</td>
+                                            <td class="font2 body">{{$user->getUserType->name}}</td>
                                         </tr>
                                     </div>
                                 @endif

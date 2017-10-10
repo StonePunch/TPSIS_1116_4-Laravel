@@ -47,7 +47,7 @@
                         </tr>
                         @foreach($courses as $course)
                             <div id="portfolio">
-                                <tr>
+                                <tr class="table">
                                     <td class="font2 body">{{$course->name}}</td>
                                     <td class="font2 body">{{$course->description}}</td>
                                     <td class="font2 body center">{{$course->duration}}</td>

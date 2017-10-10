@@ -22,6 +22,12 @@ class DefineCourseIdOnUserTableSeeder extends Seeder
         $user = User::whereEmail('Sofia@courses.pt')->first();
         $user->course_id = Course::whereName('German')->first()->id;
         $user->save();
+        $user = User::whereEmail('Susana@courses.pt')->first();
+        $user->course_id = Course::whereName('Chinese')->first()->id;
+        $user->save();
+        $user = User::whereEmail('Andreia@courses.pt')->first();
+        $user->course_id = Course::whereName('Spanish')->first()->id;
+        $user->save();
         $user = User::whereEmail('Andre@courses.pt')->first();
         $user->course_id = Course::whereName('C programming language')->first()->id;
         $user->save();
