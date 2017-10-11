@@ -20,10 +20,12 @@ Route::get('/news', 'PageController@news');
 Route::get('/about', 'PageController@about');
 Route::get('/admin', 'PageController@admin');
 Route::get('/contacts', 'PageController@contacts');
+Route::get('/course_create', 'PageController@course_create');
 Route::get('/users_no_permission_error', 'PageController@user_no_permission_error');
 
-Route::resource('users_courses', 'UserCourseController', ['only' => ['update', 'destroy']]);
+Route::resource('users_courses', 'UserCourseController', ['only' => ['update']]);
 Route::resource('users', 'UserController', ['only' => ['update']]);
+Route::resource('courses', 'CourseController', ['only' => ['create','update','edit','destroy']]);
 
 Auth::routes();
 Route::get('/registry', 'PageController@register')->name('registry');

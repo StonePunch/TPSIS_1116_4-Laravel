@@ -13,15 +13,19 @@
     <!--[if lte IE 8]>
     <script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen" />
-    <link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen"/>
+    <link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen"/>
     <link href="css/animate.css" rel="stylesheet" media="screen">
     <!-- Owl Carousel Assets -->
     <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/login.css" />
     <link rel="stylesheet" href="css/datatable.css" />
+    <link rel="stylesheet" href="css/search.css" />
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/login.css"/>
+    <link rel="stylesheet" href="css/datatable.css"/>
     <!-- Font Awesome -->
     <link href="font/css/font-awesome.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -32,10 +36,50 @@
 <header class="header">
     <div class="container">
         <nav class="navbar navbar-inverse" role="navigation">
-            <div class="navbar-header">
-                <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a href="#" class="navbar-brand scroll-top logo  animated bounceInLeft"><b><i><img src="images/logo.png" /></i></b></a> </div>
-            <!--/.navbar-header-->
+            {{--B_School Image--}}
+            @guest
+                <div class="navbar-header">
+                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                    <a href="/home" class="navbar-brand scroll-top logo  animated bounceInLeft">
+                        <b>
+                            <i><img src="images/logo.png"/></i>
+                        </b>
+                    </a>
+                </div>
+            @endguest
+            @auth
+            @if(\Illuminate\Support\Facades\Auth::user()->user_type == 3)
+                {{--Image for when the is admin logged in--}}
+                <div class="navbar-header">
+                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                    <a href="/admin" class="navbar-brand scroll-top logo  animated bounceInLeft">
+                        <b>
+                            <i><img src="images/logo.png"/></i>
+                        </b>
+                    </a>
+                </div>
+            @else
+                {{--Image for when the admin is not logged in--}}
+                <div class="navbar-header">
+                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                    <a href="/home" class="navbar-brand scroll-top logo  animated bounceInLeft">
+                        <b>
+                            <i><img src="images/logo.png"/></i>
+                        </b>
+                    </a>
+                </div>
+            @endif
+            @endauth
+            {{--Navigation Bar--}}
             <div id="main-nav" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav" id="mainNav">
                     @guest
@@ -49,12 +93,12 @@
                         <li class="login"><a href="{{ route('registry') }}">Register</a></li>
                     @endguest
                     @auth
-                            {{--User logged in--}}
-                            @if(\Illuminate\Support\Facades\Auth::user()->user_type == 3)
+                        {{--User logged in--}}
+                        @if(\Illuminate\Support\Facades\Auth::user()->user_type == 3)
                             {{--Admin section--}}
-                                <li class="active" id="firstLink"><a href="/admin" class="scroll-link">Admin</a></li>
-                                <li><a href="/courses" class="scroll-link">Courses</a></li>
-                                <li><a href="/users" class="scroll-link">Students</a></li>
+                            <li class="active" id="firstLink"><a href="/admin" class="scroll-link">Admin</a></li>
+                            <li><a href="/courses" class="scroll-link">Courses</a></li>
+                            <li><a href="/users" class="scroll-link">Students</a></li>
 
                             {{--Common section--}}
                             <li class="dropdown login">
