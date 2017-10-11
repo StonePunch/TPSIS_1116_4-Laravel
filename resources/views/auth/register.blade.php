@@ -1,5 +1,4 @@
 @extends('layout.forms')
-
 @section('content')
     <div class="container">
         <div class="row">
