@@ -24,6 +24,10 @@ class UserTableSeeder extends Seeder
                 'picture' => 'ana@courses.pt_professora2.jpg', 'user_type' => '2','sex' => 'Female', 'schooling' => '4',
                 'course_id' => null
             ],
+            ['name'=> 'Joana', 'email' => 'Joana@courses.pt', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
+                'picture' => 'default_f.jpeg', 'user_type' => '2','sex' => 'Female', 'schooling' => '5',
+                'course_id' => null
+            ],
             ['name'=> 'Sofia', 'email' => 'Sofia@courses.pt', 'password' => bcrypt('1234567'), 'birth_date' => '1960-01-01',
                 'picture' => 'sofia@courses.pt_professora3.jpg', 'user_type' => '2','sex' => 'Female', 'schooling' => '4',
                 'course_id' => null
@@ -61,7 +65,7 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Fabiana', 'email' => 'Fabiana@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'fabiana@hotmail.com_aluna2.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '4',
+                'picture' => 'fabiana@hotmail.com_aluna2.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '3',
                 'course_id' => null
             ],
             ['name'=> 'Rita', 'email' => 'Rita@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -77,11 +81,11 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Maria', 'email' => 'Maria@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'maria@hotmail.com_aluna5.png', 'user_type' => '1','sex' => 'Female', 'schooling' => '4',
+                'picture' => 'maria@hotmail.com_aluna5.png', 'user_type' => '1','sex' => 'Female', 'schooling' => '3',
                 'course_id' => null
             ],
             ['name'=> 'Sofia', 'email' => 'Sofia@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'sofia@hotmail.com_aluna6.jpeg', 'user_type' => '1','sex' => 'Female', 'schooling' => '4',
+                'picture' => 'sofia@hotmail.com_aluna6.jpeg', 'user_type' => '1','sex' => 'Female', 'schooling' => '3',
                 'course_id' => null
             ],
             ['name'=> 'Ada', 'email' => 'Ada@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -101,15 +105,15 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Amanda', 'email' => 'Amanda@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'amanda@hotmail.com_aluna10.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '4',
+                'picture' => 'amanda@hotmail.com_aluna10.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '3',
                 'course_id' => null
             ],
             ['name'=> 'Tatiana', 'email' => 'Tatiana@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'default_f.jpeg', 'user_type' => '1','sex' => 'Female', 'schooling' => '5',
+                'picture' => 'default_f.jpeg', 'user_type' => '1','sex' => 'Female', 'schooling' => '3',
                 'course_id' => null
             ],
             ['name'=> 'Angelica', 'email' => 'Angelica@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'angelica@hotmail.com_aluna11.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '4',
+                'picture' => 'angelica@hotmail.com_aluna11.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '3',
                 'course_id' => null
             ],
             ['name'=> 'Selena', 'email' => 'Selena@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -125,7 +129,7 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Augusta', 'email' => 'Augusta@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'augusta@hotmail.com_aluna15.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '4',
+                'picture' => 'augusta@hotmail.com_aluna15.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '3',
                 'course_id' => null
             ],
             ['name'=> 'Telma', 'email' => 'Telma@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -141,7 +145,7 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Carolina', 'email' => 'Carolina@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'carolina@hotmail.com_aluna18.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '4',
+                'picture' => 'carolina@hotmail.com_aluna18.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '5',
                 'course_id' => null
             ],
             ['name'=> 'Madalena', 'email' => 'Madalena@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -153,7 +157,7 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Cassandra', 'email' => 'Cassandra@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'cassandra@hotmail.com_aluna20.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '4',
+                'picture' => 'cassandra@hotmail.com_aluna20.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '3',
                 'course_id' => null
             ],
             ['name'=> 'Cristiana', 'email' => 'Cristiana@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -161,7 +165,7 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Judite', 'email' => 'Judite@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'judite@hotmail.com_aluna22.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '4',
+                'picture' => 'judite@hotmail.com_aluna22.jpg', 'user_type' => '1','sex' => 'Female', 'schooling' => '3',
                 'course_id' => null
             ],
             ['name'=> 'Mafalda', 'email' => 'Mafalda@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -177,7 +181,7 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Paulo', 'email' => 'Paulo@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'paulo@hotmail.com_aluno2.jpg', 'user_type' => '1','sex' => 'Male', 'schooling' => '5',
+                'picture' => 'paulo@hotmail.com_aluno2.jpg', 'user_type' => '1','sex' => 'Male', 'schooling' => '8',
                 'course_id' => null
             ],
             ['name'=> 'Daniel', 'email' => 'Daniel@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -185,7 +189,7 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Gonçalo', 'email' => 'Gonçalo@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'gonçalo@hotmail.com_aluno4.jpg', 'user_type' => '1','sex' => 'Male', 'schooling' => '5',
+                'picture' => 'gonçalo@hotmail.com_aluno4.jpg', 'user_type' => '1','sex' => 'Male', 'schooling' => '6',
                 'course_id' => null
             ],
             ['name'=> 'Joao', 'email' => 'Joao@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -205,7 +209,7 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Antonio', 'email' => 'Antonio@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'antonio@hotmail.com_aluno8.jpg', 'user_type' => '1','sex' => 'Male', 'schooling' => '5',
+                'picture' => 'antonio@hotmail.com_aluno8.jpg', 'user_type' => '1','sex' => 'Male', 'schooling' => '6',
                 'course_id' => null
             ],
             ['name'=> 'Micael', 'email' => 'Micael@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -213,7 +217,7 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Carlos', 'email' => 'Carlos@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'carlos@hotmail.com_aluno10.jpg', 'user_type' => '1','sex' => 'Male', 'schooling' => '5',
+                'picture' => 'carlos@hotmail.com_aluno10.jpg', 'user_type' => '1','sex' => 'Male', 'schooling' => '6',
                 'course_id' => null
             ],
             ['name'=> 'Alexandre', 'email' => 'Alexandre@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -225,7 +229,7 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Rui', 'email' => 'Rui@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'rui@hotmail.com_aluno12.jpg', 'user_type' => '1','sex' => 'Male', 'schooling' => '5',
+                'picture' => 'rui@hotmail.com_aluno12.jpg', 'user_type' => '1','sex' => 'Male', 'schooling' => '7',
                 'course_id' => null
             ],
             ['name'=> 'Claudio', 'email' => 'Claudio@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -237,7 +241,7 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Leandro', 'email' => 'Leandro@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'leandro@hotmail.com_aluno14.jpeg', 'user_type' => '1','sex' => 'Male', 'schooling' => '5',
+                'picture' => 'leandro@hotmail.com_aluno14.jpeg', 'user_type' => '1','sex' => 'Male', 'schooling' => '6',
                 'course_id' => null
             ],
             ['name'=> 'Lorenzo', 'email' => 'Lorenzo@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
@@ -253,7 +257,7 @@ class UserTableSeeder extends Seeder
                 'course_id' => null
             ],
             ['name'=> 'Andre', 'email' => 'Andre@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
-                'picture' => 'andre@hotmail.com_aluno17.jpg', 'user_type' => '1','sex' => 'Male', 'schooling' => '5',
+                'picture' => 'andre@hotmail.com_aluno17.jpg', 'user_type' => '1','sex' => 'Male', 'schooling' => '6',
                 'course_id' => null
             ],
             ['name'=> 'Ricardo', 'email' => 'Ricardo@hotmail.com', 'password' => bcrypt('1234567'), 'birth_date' => '1997-01-01',
