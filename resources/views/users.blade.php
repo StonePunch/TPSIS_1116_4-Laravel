@@ -90,9 +90,7 @@
                             @endforeach
                         </table>
                     @elseif(isset($details) and Auth::User()->getUserType->name === 'Teacher')
-                        <p> The Search results for your query <b> {{ $query }} </b> are :</p>
-                        <h2>Sample User details</h2>
-                        <table class="table table-striped">
+                        <table>
                             <tr class="table">
                                 <th class="font">Pic</th>
                                 <th class="font">Name</th>
@@ -169,17 +167,20 @@
                             <p>User doesn't exist!</p>
                         @endif
                     @elseif(!isset($details) and Auth::User()->getUserType->name === 'Teacher')
-                        <table>
-                            <tr class="table">
-                                <th class="font">Pic</th>
-                                <th class="font">Name</th>
-                                <th class="font">Email</th>
-                                <th class="font">Birth Date</th>
-                                <th class="font">Sex</th>
-                                <th class="font">Course</th>
-                                <th class="font">Schooling</th>
-                                <th class="font">Role</th>
-                            </tr>
+                            @if($usersTeacher->count() > 0)
+                                <table>
+                                    <tr class="table">
+                                        <th class="font">Pic</th>
+                                        <th class="font">Name</th>
+                                        <th class="font">Email</th>
+                                        <th class="font">Birth Date</th>
+                                        <th class="font">Sex</th>
+                                        <th class="font">Course</th>
+                                        <th class="font">Schooling</th>
+                                        <th class="font">Role</th>
+                                        <th class="font">Grade</th>
+                                    </tr>
+                                    @endif
                             @foreach($usersTeacher as $user)
                                 @if ($user->course_id === Auth::User()->getCourse->id and $user->user_type === 1)
                                     <div id="portfolio">
@@ -197,19 +198,30 @@
                                             @endif
                                             <td class="font2 body">{{$user->getSchooling->description}}</td>
                                             <td class="font2 body">{{$user->getUserType->name}}</td>
+                                            @if($user->grade === null)
+                                                <td class="font2 body">N/A</td>
+                                            @else
+                                                <td class="font2 body">{{$user->grade}}</td>
+                                            @endif
+                                            <td class="font2 body2">
+                                                <input class="btn" type="submit" value="Grade">
+                                            </td>
                                         </tr>
                                     </div>
                                 @endif
                             @endforeach
                         </table>
                         <br>
-                        <div>{{ $usersTeacher->links() }}</div>
+                            @if($usersTeacher->count() > 0)
+                                <div>{{ $usersTeacher->links() }}</div>
+                            @else
+                                <p>User doesn't exist!</p>
+                            @endif
                     @elseif(!isset($details) and Auth::User()->getUserType->name === 'Student')
                         <script>window.location.href = "http://localhost:8000/users_no_permission_error";</script>
                 </div>
                 @endif
             </div>
-        </div>
         </div>
     </section>
 @stop

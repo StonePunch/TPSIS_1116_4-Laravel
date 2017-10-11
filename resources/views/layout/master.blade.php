@@ -125,7 +125,7 @@
 
                             <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                             <li><a href="/courses" class="scroll-link">Courses</a></li>
-                            <li><a href="/users" class="scroll-link">Students</a></li>
+                            <li><a href="/users" class="scroll-link">Users</a></li>
                             <li><a href="/news" class="scroll-link">News</a></li>
                             <li><a href="/about" class="scroll-link">About</a></li>
                             <li><a href="/contacts" class="scroll-link">Contacts</a></li>
@@ -219,7 +219,6 @@
                     </form>
                 </div>
             </div>
-
                     <div class="col-md-3">
                         <div class="col col-social-icons">
                             <h4>Siga-nos</h4>

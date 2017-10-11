@@ -72,7 +72,7 @@ Route::any('/search',function(){
         {
             return view('users')->withDetails($usersTeacher)->withQuery ( $search );
         }
-        else return view ('users_not_found_error');
+        else return view ('users')->with('usersTeacher', $usersTeacher);
     }
-    else return view ('users_no_permission_error');
+    else return view ('users');
 });

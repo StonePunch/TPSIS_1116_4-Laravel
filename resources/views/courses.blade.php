@@ -3,9 +3,15 @@
     <section id="work" class="page-section page">
         <div class="container text-center">
             <div class="heading">
+                @guest
+                    <h2>Our Courses</h2>
+                @endguest
+
+                @auth
+                @if(Auth::User()->getUserType->name !== 'Admin')
                 <h2>Our Courses</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, alias enim placeat earum quo
-                    sab.</p>
+                @endif
+                @endauth
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -17,13 +23,48 @@
                         }
 
                         td, th {
-                            border: 1px solid #dddddd;
+                            border: 1px solid black;
                             text-align: left;
                             padding: 8px;
                         }
 
                         tr:nth-child(even) {
                             background-color: #e9e9e9;
+                        }
+
+                        .mytd{
+                            border: none;
+                        }
+                        .button {
+                            display: inline-block;
+                            text-align: center;
+                            vertical-align: middle;
+                            padding: 7px 20px;
+                            border: 1px solid #000000;
+                            border-radius: 8px;
+                            background: #ffdd00;
+                            background: -webkit-gradient(linear, left top, left bottom, from(#ffdd00), to(#ffdd00));
+                            background: -moz-linear-gradient(top, #ffdd00, #ffdd00);
+                            background: linear-gradient(to bottom, #ffdd00, #ffdd00);
+                            font: normal normal normal 18px arial;
+                            color: #000000;
+                            text-decoration: none;
+                            margin-bottom: 2%;
+                        }
+                        .button:hover,
+                        .button:focus {
+                            background: #ffff00;
+                            background: -webkit-gradient(linear, left top, left bottom, from(#ffff00), to(#ffff00));
+                            background: -moz-linear-gradient(top, #ffff00, #ffff00);
+                            background: linear-gradient(to bottom, #ffff00, #ffff00);
+                            color: #000000;
+                            text-decoration: none;
+                        }
+                        .button:active {
+                            background: #998500;
+                            background: -webkit-gradient(linear, left top, left bottom, from(#998500), to(#ffdd00));
+                            background: -moz-linear-gradient(top, #998500, #ffdd00);
+                            background: linear-gradient(to bottom, #998500, #ffdd00);
                         }
                     </style>
                     <table>
@@ -46,7 +87,7 @@
                             <div id="portfolio">
                                 <tr class="table">
                                     <td class="font2 body">{{$course->name}}</td>
-                                    <td class="font2 body">{{$course->description}}</td>
+                                    <td class="font2 body center">{{$course->description}}</td>
                                     <td class="font2 body center">{{$course->duration}}</td>
                                     <td class="font2 body center">{{$course->start_date}}</td>
                                     <td class="font2 body center">{{$course->getTeacher['name'] }}</td>
@@ -61,6 +102,7 @@
                                                 <input type="hidden" name="course" value="{{$course->id}}">
                                                 <td class="font2 body2">
                                                     <input class="btn" type="submit" value="Apply now">
+                                                </td>
                                             </form>
                                         @else
                                             @if(Auth::user()->course_id === $course->id and Auth::User()->user_type === 1)
@@ -71,7 +113,8 @@
 
                                                     <input type="hidden" name="course" value="{{$course->id = null}}">
                                                     <td class="font2 body2">
-                                                        <input class="btn" type="submit" value="Quit"></td>
+                                                        <input class="btn" type="submit" value="Quit">
+                                                    </td>
                                                 </form>
                                             @endif
                                         @endif
@@ -83,8 +126,8 @@
                                                 {{method_field('GET')}}
 
                                                 <input type="hidden" name="course" value="{{$course->id}}">
-                                                <td class="font2 body2">
-                                                    <input class="btn_edit" type="submit" value="Edit"></td>
+                                                <td class="font2 body2 mytd">
+                                                    <input class="btn" type="submit" value="Edit"></td>
                                             </form>
                                             {{--Delete--}}
                                             <form action="/courses/{{$course->id}}" method="post">
@@ -92,8 +135,8 @@
                                                 {{method_field('DELETE')}}
 
                                                 <input type="hidden" name="course" value="{{$course->id}}">
-                                                <td class="font2 body2">
-                                                    <input class="btn_delete" type="submit" value="Delete"></td>
+                                                <td class="font2 body2 mytd">
+                                                    <input class="btn" type="submit" value="Delete"></td>
                                             </form>
                                         @endif
                                     @endauth
@@ -104,7 +147,7 @@
                             @if(Auth::User()->user_type == 3)
                                 {{--Create Course--}}
                                 <form action="/course_create" method="get"> {{--TODO: Better way of doing this, using the create resource, maybe--}}
-                                    <button type="submit" class="btn_create">Create Course</button>
+                                    <button type="submit" class="btn button">Create Course</button>
                                 </form>
                             @endif
                         @endauth
@@ -113,4 +156,5 @@
             </div>
         </div>
     </section>
+
 @stop
