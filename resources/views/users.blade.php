@@ -88,7 +88,7 @@
                                     <td class="font2 body">{{$usersAdmin->getUserType->name}}</td>
                                 </tr>
                                 @auth
-                                    @if(Auth::User()->user_type == 3)
+                                    @if(Auth::User()->user_type == 3) {{--TODO: finish me--}}
                                         <form action="/users/{{$usersAdmin->id}}" method="post">
                                             {{csrf_field()}}
                                             {{method_field('DELETE')}}
