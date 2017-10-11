@@ -35,9 +35,9 @@
                             <th class="font">Teacher</th>
                             @auth
                                 {{--Student--}}
-                                @if(Auth::User()->course_id === null and Auth::User()->getUserType->name === 'Student')
+                                @if(Auth::User()->course_id === null and Auth::User()->user_type === 1)
                                     <th class="font">Join</th>
-                                @elseif (Auth::User()->course_id !== null and Auth::User()->getUserType->name === 'Student')
+                                @elseif (Auth::User()->course_id !== null and Auth::User()->user_type === 1)
                                     <th class="font">Quit</th>
                                 @endif
                             @endauth
@@ -52,7 +52,7 @@
                                     <td class="font2 body center">{{$course->getTeacher['name'] }}</td>
                                     @auth
                                         {{--Student--}}
-                                        @if(Auth::User()->getUserType->name === 'Student' and Auth::User()->course_id === null)
+                                        @if(Auth::User()->user_type === 1 and Auth::User()->course_id === null)
                                             {{--Join Course--}}
                                             <form action="/users_courses/{{Auth::user()->id}}" method="post">
                                                 {{ csrf_field() }}
@@ -61,6 +61,7 @@
                                                 <input type="hidden" name="course" value="{{$course->id}}">
                                                 <td class="font2 body2">
                                                     <input class="btn" type="submit" value="Apply now">
+                                                </td>
                                             </form>
                                         @else
                                             @if(Auth::user()->course_id === $course->id and Auth::User()->user_type === 1)
@@ -71,7 +72,8 @@
 
                                                     <input type="hidden" name="course" value="{{$course->id = null}}">
                                                     <td class="font2 body2">
-                                                        <input class="btn" type="submit" value="Quit"></td>
+                                                        <input class="btn" type="submit" value="Quit">
+                                                    </td>
                                                 </form>
                                             @endif
                                         @endif
@@ -84,7 +86,8 @@
 
                                                 <input type="hidden" name="course" value="{{$course->id}}">
                                                 <td class="font2 body2">
-                                                    <input class="btn_edit" type="submit" value="Edit"></td>
+                                                    <input class="btn_edit" type="submit" value="Edit">
+                                                </td>
                                             </form>
                                             {{--Delete--}}
                                             <form action="/courses/{{$course->id}}" method="post">
@@ -93,7 +96,8 @@
 
                                                 <input type="hidden" name="course" value="{{$course->id}}">
                                                 <td class="font2 body2">
-                                                    <input class="btn_delete" type="submit" value="Delete"></td>
+                                                    <input class="btn_delete" type="submit" value="Delete">
+                                                </td>
                                             </form>
                                         @endif
                                     @endauth
@@ -103,7 +107,10 @@
                         @auth
                             @if(Auth::User()->user_type == 3)
                                 {{--Create Course--}}
-                                <form action="/course_create" method="get"> {{--TODO: Better way of doing this, using the create resource, maybe--}}
+                                <form action="/courses/create" method="post">
+                                    {{csrf_field()}}
+                                    {{method_field('GET')}}
+
                                     <button type="submit" class="btn_create">Create Course</button>
                                 </form>
                             @endif

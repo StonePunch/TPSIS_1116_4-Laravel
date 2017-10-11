@@ -15,17 +15,15 @@ use Illuminate\Support\Facades\Input;
 */
 
 Route::get('/', 'PageController@home');
-Route::get('/courses', 'CoursesController@index');
 Route::get('/news', 'PageController@news');
 Route::get('/about', 'PageController@about');
 Route::get('/admin', 'PageController@admin');
 Route::get('/contacts', 'PageController@contacts');
-Route::get('/course_create', 'PageController@course_create');
 Route::get('/users_no_permission_error', 'PageController@user_no_permission_error');
 
 Route::resource('users_courses', 'UserCourseController', ['only' => ['update']]);
-Route::resource('users', 'UserController', ['only' => ['update']]);
-Route::resource('courses', 'CourseController', ['only' => ['create','update','edit','destroy']]);
+Route::resource('users', 'UserController', ['only' => ['update','destroy']]);
+Route::resource('courses', 'CourseController', ['only' => ['index','create','store','update','edit','destroy']]);
 
 Auth::routes();
 Route::get('/registry', 'PageController@register')->name('registry');

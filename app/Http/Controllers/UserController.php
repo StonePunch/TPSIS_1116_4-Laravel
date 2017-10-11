@@ -39,12 +39,11 @@ class UserController extends Controller
         return view('manage')->withPost($user);
     }
 
-
     public function update(Request $request, $id)
     {
         $validator_date = Carbon::now()->subYears(18);
         $birth_date = strtotime($request->input('birthDate'));
-        //validates all the data from the request
+        /*Validates all the data from the request*/
         $this->validate($request, array(
             'name' => 'required|string|max:20',
             'email' => 'required|unique:users,email,'.$id,
@@ -53,58 +52,58 @@ class UserController extends Controller
             'picture' => 'image|mimes:jpeg,bmp,png,jpg|max:50000'
         ));
 
-        //In case user didn't upload any file
+        /*In case user didn't upload any file*/
         if ($request['picture'] === null || empty($request['picture']))
         {
-            //In case user didn't upload a file and also has the default picture
+            /*In case user didn't upload a file and also has the default picture*/
             if(Auth::user()->picture === "default_f.jpeg" || Auth::user()->picture === "default_m.jpeg")
             {
-                //In case user has male picture
+                /*In case user has male picture*/
                 if (Auth::user()->sex == 'Male')
                 {
-                    //default male picture, for when the user does not upload a picture
+                    /*default male picture, for when the user does not upload a picture*/
                     $pic_name = 'default_m.jpeg';
                 }
-                //In case user has female picture
+                /*In case user has female picture*/
                 else
                 {
-                    //default female picture, for when the user does not upload a picture
+                    /*default female picture, for when the user does not upload a picture*/
                     $pic_name = 'default_f.jpeg';
                 }
             }
-            //In case user didn't upload a file and also doesn't have the default picture
+            /*In case user didn't upload a file and also doesn't have the default picture*/
             else
             {
                 $pic_name = Auth::user()->picture;
             }
         }
-        //In case user uploaded a file but his picture is the default we don't remove the file
+        /*In case user uploaded a file but his picture is the default we don't remove the file*/
         else if (Auth::user()->picture === "default_f.jpeg" || Auth::user()->picture === "default_m.jpeg")
         {
             $picture = $request['picture'];
 
-            //name that will be given to the picture
+            /*Name that will be given to the picture*/
             $pic_name = $request->input('email') . '_' . $request->picture->getClientOriginalName();
 
-            //path to the folder where the picture will be stored
+            /*Path to the folder where the picture will be stored*/
             $new_path = public_path() . '/uploads/' . $pic_name;
 
-            //moving the picture to the specified folder
+            /*Moving the picture to the specified folder*/
             move_uploaded_file($picture,$new_path);
         }
-        //In case user uploaded a file but his picture isn't default we remove the older file
+        /*In case user uploaded a file but his picture isn't default we remove the older file*/
         else
         {
             $picture = $request['picture'];
             $old_file_path = public_path() . '/uploads/' . Auth::user()->picture;
 
-            //name that will be given to the picture
+            /*Name that will be given to the picture*/
             $pic_name = $request->input('email') . '_' . $request->picture->getClientOriginalName();
 
-            //path to the folder where the picture will be stored
+            /*Path to the folder where the picture will be stored*/
             $new_path = public_path() . '/uploads/' . $pic_name;
 
-            //moving the picture to the specified folder
+            /*Moving the picture to the specified folder*/
             move_uploaded_file($picture,$new_path);
 
             unlink($old_file_path);
@@ -112,7 +111,7 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-        //checks if the request password is null or empty, if yes the password will keep the same, if not the password will change to the typed password
+        /*Checks if the request password is null or empty, if yes the password will keep the same, if not the password will change to the typed password*/
         if($request->input('password') === null || empty($request->input('password')))
         {
             $user->password = Auth::user()->password;
@@ -129,5 +128,10 @@ class UserController extends Controller
         $user->save();
 
         return redirect('manage');
+    }
+
+    public function destroy($id)
+    {
+        
     }
 }

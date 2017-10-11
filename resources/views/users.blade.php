@@ -87,6 +87,19 @@
                                     <td class="font2 body">{{$usersAdmin->getSchooling->description}}</td>
                                     <td class="font2 body">{{$usersAdmin->getUserType->name}}</td>
                                 </tr>
+                                @auth
+                                    @if(Auth::User()->user_type == 3)
+                                        <form action="/users/{{$usersAdmin->id}}" method="post">
+                                            {{csrf_field()}}
+                                            {{method_field('DELETE')}}
+
+                                            <input type="hidden" name="users" value="{{$usersAdmin->id}}">
+                                            <td class="font2 body2">
+                                                <input class="btn_delete" type="submit" value="Delete">
+                                            </td>
+                                        </form>
+                                    @endif
+                                @endauth
                             @endforeach
                         </table>
                     @elseif(isset($details) and Auth::User()->getUserType->name === 'Teacher')
@@ -141,51 +154,13 @@
                                     <th class="font">Schooling</th>
                                     <th class="font">Role</th>
                                 </tr>
-                        @endif
-                            @foreach($usersAdmin as $user)
-                                <div id="portfolio">
-                                    <tr>
-                                        <td class="font2 body"><img class="img" src="{{'uploads/' . $user->picture}}"
-                                                                    alt=""></img></td>
-                                        <td class="font2 body">{{$user->name}}</td>
-                                        <td class="font2 body">{{$user->email}}</td>
-                                        <td class="font2 body">{{$user->birth_date}}</td>
-                                        <td class="font2 body">{{$user->sex}}</td>
-                                        @if($user->getCourse['name'] === null)
-                                            <td class="font2 body">N/A</td>
-                                        @else
-                                            <td class="font2 body">{{$user->getCourse['name']}}</td>
-                                        @endif
-                                        <td class="font2 body">{{$user->getSchooling->description}}</td>
-                                        <td class="font2 body">{{$user->getUserType->name}}</td>
-                                    </tr>
-                                </div>
-                            @endforeach
-                        </table>
-                        <br>
-                        @if($usersAdmin->count() > 0)
-                            <div>{{ $usersAdmin->links() }}</div>
-                        @else
-                            <p>User doesn't exist!</p>
-                        @endif
-                    @elseif(!isset($details) and Auth::User()->getUserType->name === 'Teacher')
-                        <table>
-                            <tr class="table">
-                                <th class="font">Pic</th>
-                                <th class="font">Name</th>
-                                <th class="font">Email</th>
-                                <th class="font">Birth Date</th>
-                                <th class="font">Sex</th>
-                                <th class="font">Course</th>
-                                <th class="font">Schooling</th>
-                                <th class="font">Role</th>
-                            </tr>
-                            @foreach($usersTeacher as $user)
-                                @if ($user->course_id === Auth::User()->getCourse->id and $user->user_type === 1)
+                                @endif
+                                @foreach($usersAdmin as $user)
                                     <div id="portfolio">
-                                        <tr class="table">
-                                            <td class="font2 body"><img src="{{'uploads/' . $user->picture}}" alt=""
-                                                                        border=3 height="100" width="100"></img></td>
+                                        <tr>
+                                            <td class="font2 body"><img class="img"
+                                                                        src="{{'uploads/' . $user->picture}}"
+                                                                        alt=""></img></td>
                                             <td class="font2 body">{{$user->name}}</td>
                                             <td class="font2 body">{{$user->email}}</td>
                                             <td class="font2 body">{{$user->birth_date}}</td>
@@ -199,13 +174,53 @@
                                             <td class="font2 body">{{$user->getUserType->name}}</td>
                                         </tr>
                                     </div>
-                                @endif
-                            @endforeach
-                        </table>
-                        <br>
-                        <div>{{ $usersTeacher->links() }}</div>
-                    @elseif(!isset($details) and Auth::User()->getUserType->name === 'Student')
-                        <script>window.location.href = "http://localhost:8000/users_no_permission_error";</script>
+                                @endforeach
+                            </table>
+                            <br>
+                            @if($usersAdmin->count() > 0)
+                                <div>{{ $usersAdmin->links() }}</div>
+                            @else
+                                <p>User doesn't exist!</p>
+                            @endif
+                        @elseif(!isset($details) and Auth::User()->getUserType->name === 'Teacher')
+                            <table>
+                                <tr class="table">
+                                    <th class="font">Pic</th>
+                                    <th class="font">Name</th>
+                                    <th class="font">Email</th>
+                                    <th class="font">Birth Date</th>
+                                    <th class="font">Sex</th>
+                                    <th class="font">Course</th>
+                                    <th class="font">Schooling</th>
+                                    <th class="font">Role</th>
+                                </tr>
+                                @foreach($usersTeacher as $user)
+                                    @if ($user->course_id === Auth::User()->getCourse->id and $user->user_type === 1)
+                                        <div id="portfolio">
+                                            <tr class="table">
+                                                <td class="font2 body"><img src="{{'uploads/' . $user->picture}}" alt=""
+                                                                            border=3 height="100" width="100"></img>
+                                                </td>
+                                                <td class="font2 body">{{$user->name}}</td>
+                                                <td class="font2 body">{{$user->email}}</td>
+                                                <td class="font2 body">{{$user->birth_date}}</td>
+                                                <td class="font2 body">{{$user->sex}}</td>
+                                                @if($user->getCourse['name'] === null)
+                                                    <td class="font2 body">N/A</td>
+                                                @else
+                                                    <td class="font2 body">{{$user->getCourse['name']}}</td>
+                                                @endif
+                                                <td class="font2 body">{{$user->getSchooling->description}}</td>
+                                                <td class="font2 body">{{$user->getUserType->name}}</td>
+                                            </tr>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </table>
+                            <br>
+                            <div>{{ $usersTeacher->links() }}</div>
+                        @elseif(!isset($details) and Auth::User()->getUserType->name === 'Student')
+                            <script>window.location.href = "http://localhost:8000/users_no_permission_error";</script>
                 </div>
                 @endif
             </div>
