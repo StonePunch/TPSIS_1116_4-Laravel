@@ -53,23 +53,25 @@
                                     @auth
                                         {{--Student--}}
                                         @if(Auth::User()->getUserType->name === 'Student' and Auth::User()->course_id === null)
+                                            {{--Join Course--}}
                                             <form action="/users_courses/{{Auth::user()->id}}" method="post">
                                                 {{ csrf_field() }}
                                                 {{ method_field('PUT') }}
 
                                                 <input type="hidden" name="course" value="{{$course->id}}">
-                                                <td class="font2 body2"><input class="btn" type="submit"
-                                                                               value="Apply now">
+                                                <td class="font2 body2">
+                                                    <input class="btn" type="submit" value="Apply now">
                                             </form>
                                         @else
                                             @if(Auth::user()->course_id === $course->id and Auth::User()->user_type === 1)
+                                                {{--Leave Course--}}
                                                 <form action="/users_courses/{{Auth::user()->id}}" method="post">
                                                     {{ csrf_field() }}
                                                     {{ method_field('PUT') }}
 
                                                     <input type="hidden" name="course" value="{{$course->id = null}}">
-                                                    <td class="font2 body2"><input class="btn" type="submit"
-                                                                                   value="Quit"></td>
+                                                    <td class="font2 body2">
+                                                        <input class="btn" type="submit" value="Quit"></td>
                                                 </form>
                                             @endif
                                         @endif
@@ -81,7 +83,8 @@
                                                 {{method_field('GET')}}
 
                                                 <input type="hidden" name="course" value="{{$course->id}}">
-                                                <td class="font2 body2"><input class="btn_edit" type="submit" value="Edit"></td>
+                                                <td class="font2 body2">
+                                                    <input class="btn_edit" type="submit" value="Edit"></td>
                                             </form>
                                             {{--Delete--}}
                                             <form action="/courses/{{$course->id}}" method="post">
@@ -89,18 +92,22 @@
                                                 {{method_field('DELETE')}}
 
                                                 <input type="hidden" name="course" value="{{$course->id}}">
-                                                <td class="font2 body2"><input class="btn_delete" type="submit" value="Delete"></td>
+                                                <td class="font2 body2">
+                                                    <input class="btn_delete" type="submit" value="Delete"></td>
                                             </form>
                                         @endif
                                     @endauth
                                 </tr>
                             </div>
-                            @auth
-                                @if(Auth::User()->user_type == 3)
-                                    <button type="button" class="btn_create" value="Create Course"></button>
-                                @endif
-                            @endauth
                         @endforeach
+                        @auth
+                            @if(Auth::User()->user_type == 3)
+                                {{--Create Course--}}
+                                <form action="/course_create" method="get"> {{--TODO: Better way of doing this, using the create resource, maybe--}}
+                                    <button type="submit" class="btn_create">Create Course</button>
+                                </form>
+                            @endif
+                        @endauth
                     </table>
                 </div>
             </div>

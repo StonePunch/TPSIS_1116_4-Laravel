@@ -9,7 +9,8 @@
             <div class="container">
                 <div class="heading text-center">
                     <div class="container">
-                        @if(isset($course))
+                        @if(isset($course)) {{--Checks if the variable "course" exists or not, enters if it exists--}}
+                            {{--"course" exists, ence this is an edit to an already existing course--}}
                             <h1>Edit Course</h1>
                             <form class="form-horizontal" enctype="multipart/form-data" role="form" action="/courses/{{$course->id}}" method="post">
                                 {{ csrf_field() }}
@@ -38,6 +39,7 @@
                                 <input class="btn_submit" type="submit" value="Update">
                             </form>
                         @else
+                            {{--"course" does not exist, ence this is a creation of a new course--}}
                             <h1>Create Course</h1>
                             <form class="form-horizontal" enctype="multipart/form-data" role="form" action="/courses/create" method="post">
                                 {{ csrf_field() }}
@@ -58,12 +60,12 @@
                                 <label for="teacher">Teacher</label>
                                 <div>
                                     <select id="teacher" name="teacher">
-                                        @foreach(User::where(['user_type','=','2'],['course_id','=',null]) as $teacher)
+                                        @foreach($teachers as $teacher)
                                             <option value="{{$teacher->id}}">{{$teacher->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <input class="btn_submit" type="submit" value="Update">
+                                <input class="btn_submit" type="submit" value="Create">
                             </form>
                         @endif
                     </div>
