@@ -72,5 +72,5 @@ Route::any('/search',function(){
         }
         else return view ('users');
     }
-    else return view ('users_no_permission_error');
+    else return view ('users');
 });
