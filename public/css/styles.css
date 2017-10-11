@@ -24,6 +24,24 @@ body {
 	-moz-transition: all 0.3s linear;
 	-o-transition: all 0.3s linear;
 }
+
+.error{
+	position: absolute;
+	margin-top: 1.5%;
+	margin-left: 19%;
+	width: 1080px;
+	height: 708px;
+	z-index: -1;
+}
+
+.redirect{
+	position: absolute;
+	margin-top: 29%;
+	margin-left: 43%;
+	color: red;
+	font-size: 15px;
+}
+
 ::selection {
 	color: #fff;
 	background: #FFDF00;

@@ -49,7 +49,7 @@ Route::any('/search',function(){
         {
             return view('users')->withDetails($usersAdmin)->withQuery ( $search );
         }
-        else return view ('users_not_found_error');
+        else return view ('users')->with('usersAdmin',$usersAdmin);
 
     }
     //Checks if user is teacher, if it is searches all users with the name condition in search and if the users are applied to the course the specific teacher is teaching

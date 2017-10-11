@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/login.css" />
     <link rel="stylesheet" href="css/datatable.css" />
+    <link rel="stylesheet" href="css/search.css" />
     <!-- Font Awesome -->
     <link href="font/css/font-awesome.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
