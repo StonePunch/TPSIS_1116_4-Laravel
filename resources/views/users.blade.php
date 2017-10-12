@@ -80,19 +80,20 @@
                             </tr>
                             @foreach($details as $usersAdmin)
                                 <tr class="table">
-                                    <td class="font2 body"><img src="{{'uploads/' . $usersAdmin->picture}}" alt=""
+                                    <td class="font2 body center"><img src="{{'uploads/' . $usersAdmin->picture}}" alt=""
                                                                 border=3 height=100 width=100></img></td>
-                                    <td class="font2 body">{{$usersAdmin->name}}</td>
-                                    <td class="font2 body">{{$usersAdmin->email}}</td>
-                                    <td class="font2 body">{{$usersAdmin->birth_date}}</td>
-                                    <td class="font2 body">{{$usersAdmin->sex}}</td>
+                                    <td class="font2 body center">{{$usersAdmin->name}}</td>
+                                    <td class="font2 body center">{{$usersAdmin->email}}</td>
+                                    <td class="font2 body center">{{$usersAdmin->birth_date}}</td>
+                                    <td class="font2 body center">{{$usersAdmin->sex}}</td>
                                     @if($usersAdmin->getCourse['name'] === null)
-                                        <td class="font2 body">N/A</td>
+                                        <td class="font2 body center">N/A</td>
                                     @else
-                                        <td class="font2 body">{{$usersAdmin->getCourse['name']}}</td>
+                                        <td class="font2 body center">{{$usersAdmin->getCourse['name']}}</td>
                                     @endif
-                                    <td class="font2 body">{{$usersAdmin->getSchooling->description}}</td>
-                                    <td class="font2 body">{{$usersAdmin->getUserType->name}}</td>
+                                    <td class="font2 body center">{{$usersAdmin->getSchooling->description}}</td>
+                                    <td class="font2 body center">{{$usersAdmin->getUserType->name}}</td>
+                                    <td class="font2 body center">{{$usersAdmin->getUserType->name}}</td>
                                 </tr>
                                 @auth
                                     @if(Auth::User()->user_type == 3) {{--TODO: finish me--}}
@@ -101,7 +102,7 @@
                                             {{method_field('DELETE')}}
 
                                             <input type="hidden" name="users" value="{{$usersAdmin->id}}">
-                                            <td class="font2 body2">
+                                            <td class="font2 body2 center">
                                                 <input class="btn_delete" type="submit" value="Delete">
                                             </td>
                                         </form>
@@ -125,19 +126,19 @@
                                 @if ($usersTeacher->course_id === Auth::User()->getCourse->id and $usersTeacher->user_type === 1)
                                     <div id="portfolio">
                                         <tr class="table">
-                                            <td class="font2 body"><img src="{{'uploads/' . $usersTeacher->picture}}"
+                                            <td class="font2 body center"><img src="{{'uploads/' . $usersTeacher->picture}}"
                                                                         alt="" border=3 height=100 width=100></img></td>
-                                            <td class="font2 body">{{$usersTeacher->name}}</td>
-                                            <td class="font2 body">{{$usersTeacher->email}}</td>
-                                            <td class="font2 body">{{$usersTeacher->birth_date}}</td>
-                                            <td class="font2 body">{{$usersTeacher->sex}}</td>
+                                            <td class="font2 body center">{{$usersTeacher->name}}</td>
+                                            <td class="font2 body center">{{$usersTeacher->email}}</td>
+                                            <td class="font2 body center">{{$usersTeacher->birth_date}}</td>
+                                            <td class="font2 body center">{{$usersTeacher->sex}}</td>
                                             @if($usersTeacher->getCourse['name'] === null)
-                                                <td class="font2 body">N/A</td>
+                                                <td class="font2 body center">N/A</td>
                                             @else
-                                                <td class="font2 body">{{$usersTeacher->getCourse['name']}}</td>
+                                                <td class="font2 body center">{{$usersTeacher->getCourse['name']}}</td>
                                             @endif
-                                            <td class="font2 body">{{$usersTeacher->getSchooling->description}}</td>
-                                            <td class="font2 body">{{$usersTeacher->getUserType->name}}</td>
+                                            <td class="font2 body center">{{$usersTeacher->getSchooling->description}}</td>
+                                            <td class="font2 body center">{{$usersTeacher->getUserType->name}}</td>
                                         </tr>
                                     </div>
                                     @endif
@@ -163,20 +164,20 @@
                                 @foreach($usersAdmin as $user)
                                     <div id="portfolio">
                                         <tr>
-                                            <td class="font2 body"><img class="img"
+                                            <td class="font2 body center"><img class="img"
                                                                         src="{{'uploads/' . $user->picture}}"
                                                                         alt=""></img></td>
-                                            <td class="font2 body">{{$user->name}}</td>
-                                            <td class="font2 body">{{$user->email}}</td>
-                                            <td class="font2 body">{{$user->birth_date}}</td>
-                                            <td class="font2 body">{{$user->sex}}</td>
+                                            <td class="font2 body center">{{$user->name}}</td>
+                                            <td class="font2 body center">{{$user->email}}</td>
+                                            <td class="font2 body center">{{$user->birth_date}}</td>
+                                            <td class="font2 body center">{{$user->sex}}</td>
                                             @if($user->getCourse['name'] === null)
-                                                <td class="font2 body">N/A</td>
+                                                <td class="font2 body center">N/A</td>
                                             @else
-                                                <td class="font2 body">{{$user->getCourse['name']}}</td>
+                                                <td class="font2 body center">{{$user->getCourse['name']}}</td>
                                             @endif
-                                            <td class="font2 body">{{$user->getSchooling->description}}</td>
-                                            <td class="font2 body">{{$user->getUserType->name}}</td>
+                                            <td class="font2 body center">{{$user->getSchooling->description}}</td>
+                                            <td class="font2 body center">{{$user->getUserType->name}}</td>
                                         </tr>
                                     </div>
                                 @endforeach
@@ -206,35 +207,35 @@
                                     @if ($user->course_id === Auth::User()->getCourse->id and $user->user_type === 1)
                                         <div id="portfolio">
                                             <tr class="table">
-                                                <td class="font2 body"><img src="{{'uploads/' . $user->picture}}" alt=""
+                                                <td class="font2 body center"><img src="{{'uploads/' . $user->picture}}" alt=""
                                                                             border=3 height="100" width="100"></img>
                                                 </td>
-                                                <td class="font2 body">{{$user->name}}</td>
-                                                <td class="font2 body">{{$user->email}}</td>
-                                                <td class="font2 body">{{$user->birth_date}}</td>
-                                                <td class="font2 body">{{$user->sex}}</td>
+                                                <td class="font2 body center">{{$user->name}}</td>
+                                                <td class="font2 body center">{{$user->email}}</td>
+                                                <td class="font2 body center">{{$user->birth_date}}</td>
+                                                <td class="font2 body center">{{$user->sex}}</td>
                                                 @if($user->getCourse['name'] === null)
                                                     <td class="font2 body">N/A</td>
                                                 @else
-                                                    <td class="font2 body">{{$user->getCourse['name']}}</td>
+                                                    <td class="font2 body center">{{$user->getCourse['name']}}</td>
                                                 @endif
-                                                <td class="font2 body">{{$user->getSchooling->description}}</td>
-                                                <td class="font2 body">{{$user->getUserType->name}}</td>
+                                                <td class="font2 body center">{{$user->getSchooling->description}}</td>
+                                                <td class="font2 body center">{{$user->getUserType->name}}</td>
                                                 @if($user->getGrade['grade'] === null)
-                                                    <td class="font2 body">N/A</td>
+                                                    <td class="font2 body center">N/A</td>
                                                     <div class="input-group">
                                                     <form action="/grades/{{$user->id}}" method="post">
                                                         {{ csrf_field() }}
                                                         {{ method_field('PUT') }}
                                                         <input type="hidden" name="user_id" value="{{$user->id}}">
-                                                        <td class="font2 body2">
-                                                            <input style="color: black;" type="number" name="grade" min="0" max="20">
+                                                        <td class="font2 body2 center">
+                                                            <input class="grades" style="text-align: center; color: black;" type="number" name="grade" min="1" max="20" value="1">
                                                             <input class="btn" type="submit" value="Evaluate">
                                                         </td>
                                                     </form>
                                                     </div>
                                                 @else
-                                                    <td class="font2 body">{{$user->getGrade['grade']}}</td>
+                                                    <td class="font2 body center">{{$user->getGrade['grade']}}</td>
                                                 @endif
                                             </tr>
                                         </div>

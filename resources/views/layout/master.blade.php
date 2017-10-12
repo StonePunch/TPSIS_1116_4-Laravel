@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="css/styles.css"/>
     <link rel="stylesheet" href="css/login.css"/>
     <link rel="stylesheet" href="css/datatable.css"/>
+    <link rel="stylesheet" href="css/number.css"/>
     <!-- Font Awesome -->
     <link href="font/css/font-awesome.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -96,7 +97,7 @@
                         {{--User logged in--}}
                         @if(\Illuminate\Support\Facades\Auth::user()->user_type == 3)
                             {{--Admin section--}}
-                            <li class="active" id="firstLink"><a href="/admin" class="scroll-link">Admin</a></li>
+                            <li class="active" id="firstLink"><a href="" class="scroll-link">Admin</a></li>
                             <li><a href="/courses" class="scroll-link">Courses</a></li>
                             <li><a href="/users" class="scroll-link">Users</a></li>
 
@@ -272,6 +273,7 @@
 <script src="/public/contact/contact_me.js"></script>
 <script src="/public/js/custom.js" type="text/javascript"></script>
 <script src="/public/js/owl-carousel/owl.carousel.js"></script>
+<script src="/public/js/number.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

@@ -13,9 +13,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/btn.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="css/register.css"/>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top mynav">
     <div class="container">
         <div class="navbar-header">
 
@@ -27,17 +28,17 @@
                 <span class="icon-bar"></span>
             </button>
             @if (url()->current() == 'http://localhost:8000/login')
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a style="color: white" class="navbar-brand" href="{{ url('/') }}">
                     {{ config('Home', 'Home') }}
                 </a>
-                <a class="navbar-brand" href="{{ url('/registry') }}">
+                <a style="color: white" class="navbar-brand" href="{{ url('/registry') }}">
                     {{ config('Registry', 'Register') }}
                 </a>
             @else
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a style="color: white" class="navbar-brand" href="{{ url('/') }}">
                     {{ config('Home', 'Home') }}
                 </a>
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a style="color: white" class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('Login', 'Login') }}
                 </a>
             @endif
