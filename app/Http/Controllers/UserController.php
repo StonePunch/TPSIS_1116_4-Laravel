@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Course;
+use App\Schooling;
 use App;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Grade;
 
 class UserController extends Controller
@@ -33,6 +35,90 @@ class UserController extends Controller
             //return view with all the users
             return view('users')->with('usersAdmin', $usersAdmin);
         }
+    }
+
+    public function create()
+    {
+        /*Check if there is a logged user and if he is an admin*/
+        if(Auth::guest() || Auth::User()->user_type !== 3)
+        {
+            return view('users_no_permission_error');
+        }
+
+        /*gets all data from schooling to fill the input*/
+        $schoolings = Schooling::where('id','>',2)->get();
+
+        /*Returns a view with the information of the selected course already displayed*/
+        return view('auth.register',compact('schoolings'));
+    }
+
+    public function store(request $request)
+    {
+        /*Check if there is a logged user and if he is an admin*/
+        if(Auth::guest() || Auth::User()->user_type !== 3)
+        {
+            return view('users_no_permission_error');
+        }
+
+        /*Create a variable with a date equal to the current date minus 20 years*/
+        $validator_date = Carbon::now()->subYears(20);
+
+        /*Validates all data from inputs*/
+        $this->validate($request, array(
+            'name' => 'required|string|max:20',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:7|confirmed',
+            'birthDate' => 'required|date|after:1900-01-01|before:' . $validator_date,
+            'schooling' => 'required',
+            'picture' => 'image|mimes:jpeg,bmp,png,jpg|max:500000',
+            'sex' => 'required',
+        ));
+
+        /*Check if a picture was uploaded*/
+        if ($_FILES['picture']['name'] === null || empty($_FILES['picture']['name']))
+        {
+            if ($request->sex == 'Male')
+            {
+                /*Default male picture, for when the user does not upload a picture*/
+                $pic_name = 'default_m.jpeg';
+            }
+            else
+            {
+                /*Default female picture, for when the user does not upload a picture*/
+                $pic_name = 'default_f.jpeg';
+            }
+        }
+        else
+        {
+            /*Associating the picture with a variable*/
+            $picture = $request->picture;
+
+            /*Creating the name that will be attributed to the picture*/
+            $pic_name = $request->email . '_' . $_FILES['picture']['name'];
+
+            /*Creating the path to the folder where the picture will be stored*/
+            $new_path = public_path() . '/uploads/' . $pic_name;
+
+            /*Moving the picture to the folder specified by the path*/
+            move_uploaded_file($picture,$new_path);
+        }
+
+        /*Creates a new teacher with all data from the request and saves it in database*/
+        $teacher = new User();
+
+        $teacher->name = $request->name;
+        $teacher->email = $request->email;
+        $teacher->password = bcrypt($request->password);
+        $teacher->birth_date = date('Y-m-d',strtotime($request->birthDate));
+        $teacher->schooling = $request->schooling;
+        $teacher->sex = $request->sex;
+        $teacher->user_type = '2';
+        $teacher->picture = $pic_name;
+
+        $teacher->save();
+
+
+        return redirect('users');
     }
 
     public function edit($id)
@@ -133,11 +219,32 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        //if user not logged in or user is different than admin goes to error page
-        if (Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 2) {
+        /*Check if there is a logged user and if he is an admin*/
+        if(Auth::guest() || Auth::User()->user_type !== 3)
+        {
             return view('users_no_permission_error');
         }
 
-        /*TODO: destroy user system*/
+        if (User::find($id)->user_type == 2)
+        {
+            /*Dissociating the teacher and the course*/
+            Course::where('teacher_id', '=', $id)->update(['teacher_id' => null]);
+
+            /*Deleting the user*/
+            DB::table('users')->where('id','=',$id)->delete();
+
+            return redirect('users');
+        }
+        if (User::find($id)->user_type == 1)
+        {
+            /*Deleting grades pertaining to the student*/
+            DB::table('grades')->where('user_id','=', $id)->delete();
+
+            /*Deleting the user*/
+            DB::table('users')->where('id','=',$id)->delete();
+
+            return redirect('users');
+        }
+
     }
 }

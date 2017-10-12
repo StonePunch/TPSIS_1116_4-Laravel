@@ -13,9 +13,6 @@
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
 
-                            {{--<label for="name">Name</label>
-                            <input id="name" type="text" name="name" value="{{$course->name}}">--}}
-
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">Name</label>
 
@@ -30,9 +27,6 @@
                                     @endif
                                 </div>
                             </div>
-
-                            {{--<label for="description">Description</label>
-                            <input id="description" type="text" name="description" value="{{$course->description}}">--}}
 
                             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                                 <label for="description" class="col-md-4 control-label">Description</label>
@@ -49,14 +43,11 @@
                                 </div>
                             </div>
 
-                            {{--<label for="duration">Duration</label>
-                            <input id="duration" type="number" name="duration" value="{{$course->duration}}">--}}
-
                             <div class="form-group{{ $errors->has('duration') ? ' has-error' : '' }}">
                                 <label for="duration" class="col-md-4 control-label">Duration</label>
 
                                 <div class="col-md-6">
-                                    <input id="duration" type="text" class="form-control" name="duration" {{--TODO: change when duration is changed to number--}}
+                                    <input id="duration" type="number" class="form-control" name="duration"
                                            value="{{$course->duration}}">
 
                                     @if ($errors->has('duration'))
@@ -66,9 +57,6 @@
                                     @endif
                                 </div>
                             </div>
-
-                            {{--<label for="start_date">Starting Date</label>
-                            <input id="start_date" type="date" name="start_date" value="{{$course->start_date}}">--}}
 
                             <div class="form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
                                 <label for="start_date" class="col-md-4 control-label">Duration</label>
@@ -84,15 +72,6 @@
                                     @endif
                                 </div>
                             </div>
-
-                            {{--<label for="teacher">Teacher</label>
-                            <div>
-                                <select id="teacher" name="teacher">
-                                    @foreach($teachers as $teacher)
-                                        <option value="{{$teacher->id}}">{{$teacher->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>--}}
 
                             <div class="form-group{{ $errors->has('teacher') ? ' has-error' : '' }}">
                                 <label for="teacher" class="col-md-4 control-label">Teacher</label>
@@ -153,7 +132,7 @@
                                     <label for="duration" class="col-md-4 control-label">Duration</label>
 
                                     <div class="col-md-6">
-                                        <input id="duration" type="text" class="form-control" name="duration">
+                                        <input id="duration" type="number" class="form-control" name="duration">
 
                                         @if ($errors->has('duration'))
                                             <span class="help-block">

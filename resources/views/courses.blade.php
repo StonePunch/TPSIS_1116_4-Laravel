@@ -55,7 +55,12 @@
                                     <td class="font2 body center">{{$course->description}}</td>
                                     <td class="font2 body center">{{$course->duration . ' hours'}}</td>
                                     <td class="font2 body center">{{$course->start_date}}</td>
-                                    <td class="font2 body center">{{$course->getTeacher['name'] }}</td>
+                                    <td class="font2 body center">
+                                        @if($course->teacher_id == null)
+                                            N/A
+                                        @else
+                                            {{$course->getTeacher['name']}}
+                                        @endif
                                     @auth
                                     {{--Student--}}
                                     @if(Auth::User()->user_type === 1 and Auth::User()->course_id === null)
