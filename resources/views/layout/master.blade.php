@@ -220,7 +220,6 @@
                     </form>
                 </div>
             </div>
-
                     <div class="col-md-3">
                         <div class="col col-social-icons">
                             <h4>Siga-nos</h4>

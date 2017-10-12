@@ -95,7 +95,7 @@
                                     <td class="font2 body">{{$usersAdmin->getUserType->name}}</td>
                                 </tr>
                                 @auth
-                                    @if(Auth::User()->user_type == 3)
+                                    @if(Auth::User()->user_type == 3) {{--TODO: finish me--}}
                                         <form action="/users/{{$usersAdmin->id}}" method="post">
                                             {{csrf_field()}}
                                             {{method_field('DELETE')}}
@@ -223,7 +223,7 @@
                                                 @if($user->getGrade['grade'] === null)
                                                     <td class="font2 body">N/A</td>
                                                     <div class="input-group">
-                                                    <form action="/users_grades/{{$user->id}}" method="post">
+                                                    <form action="/grades/{{$user->id}}" method="post">
                                                         {{ csrf_field() }}
                                                         {{ method_field('PUT') }}
                                                         <input type="hidden" name="user_id" value="{{$user->id}}">

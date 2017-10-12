@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App;
 use App\Course;
+use App;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Grade;
@@ -31,6 +31,14 @@ class UserController extends Controller
             $usersTeacher = App\User::where('course_id', '=', $userAuthCourseId)->where('id', '!=', $teacher_id)->paginate(10);
 
             return view('users')->with('usersTeacher', $usersTeacher)->with('grades',$grades);
+
+            $userAuth = Auth::User()->getCourse->id;
+            $course = Course::where('teacher_id','=',Auth::User()->id)->get();
+            $teacher_id = $course[0]['teacher_id']; //TODO: inquire as to the reason for this
+
+            $usersTeacher = App\User::where('course_id', '=', $userAuth)->where('id', '!=', $teacher_id)->paginate(10);
+
+            return view('users')->with('usersTeacher', $usersTeacher);
         }
         else
         {
