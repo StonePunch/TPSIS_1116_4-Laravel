@@ -52,7 +52,7 @@ class RegisterController extends Controller
 
     protected function validator(array $data)
     {
-        /*sets a variable to actual data less 18 years*/
+        /*Create a variable with a date equal to the current date minus 18 years*/
         $validator_date = Carbon::now()->subYears(18);
 
         /*Validates all data from inputs*/
@@ -78,7 +78,7 @@ class RegisterController extends Controller
         /*sets to a variable the data from the input to a date type*/
         $birth_date = strtotime($data['birthDate']);
 
-        /*checks if picture from data is null or empty*/
+        /*Check if a picture was uploaded*/
         if ($_FILES['picture']['name'] === null || empty($_FILES['picture']['name']))
         {
             if ($data['sex'] == 'Male')
