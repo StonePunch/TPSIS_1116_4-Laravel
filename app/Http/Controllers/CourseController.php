@@ -14,18 +14,19 @@ class CourseController extends Controller
 {
     public function index()
     {
-        /*gets all data from courses and sends it to a view*/
+        /*Retrieves all the courses and sends in to a view*/
         $courses = Course::all();
         return view('courses', compact('courses'));
     }
 
     public function create()
     {
-        //if user not logged in or user is different than admin goes to error page
-        if(Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 2)
+        /*Check if there is a logged user and if he is an admin*/
+        if(Auth::guest() || Auth::User()->user_type !== 3)
         {
             return view('users_no_permission_error');
         }
+
         /*Gets a list of teachers that are not teaching any course*/
         $teachers = DB::table('users')->where('user_type', '=', 2)->whereNull('course_id')->get();
 
@@ -35,8 +36,8 @@ class CourseController extends Controller
 
     public function store(request $request)
     {
-        //if user not logged in or user is different than admin goes to error page
-        if(Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 2)
+        /*Check if there is a logged user and if he is an admin*/
+        if(Auth::guest() || Auth::User()->user_type !== 3)
         {
             return view('users_no_permission_error');
         }
@@ -69,24 +70,35 @@ class CourseController extends Controller
 
     public function update(request $request, $id)
     {
-        //if user not logged in or user is different than admin goes to error page
-        if(Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 2)
+        /*Check if there is a logged user and if he is an admin*/
+        if(Auth::guest() || Auth::User()->user_type !== 3)
         {
             return view('users_no_permission_error');
         }
 
         /*Validates all data from inputs*/
-        $validator_date = Carbon::now();
+        $course = Course::find($id);
+
+        $validator_date_min = Carbon::now();
+        $old_start_date = $course->start_date;
+
+        if ($old_start_date != $request->start_date)
+        {
+            $validator_date_unique = '|unique:courses';
+        }
+        else
+        {
+            $validator_date_unique = '';
+        }
 
         $this->validate($request, array(
             'name' => 'required|string|max:50',
             'description' => 'required|max:400',
             'duration' => 'required|numeric|between:10,999',
-            'start_date' => 'required|date|unique:courses|after:' . $validator_date . '|before:' . $validator_date->addYear(2),
+            'start_date' => 'required|date' . $validator_date_unique . '|after:' . $validator_date_min . '|before:' . $validator_date_min->addYear(2),
             'teacher' => 'required'
         ));
 
-        $course = Course::find($id);
         $old_teacher_id = $course->teacher_id;
 
         $course->name = $request->name;
@@ -118,8 +130,8 @@ class CourseController extends Controller
 
     public function edit($id)
     {
-        //if user not logged in or user is different than admin goes to error page
-        if(Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 2)
+        /*Check if there is a logged user and if he is an admin*/
+        if(Auth::guest() || Auth::User()->user_type !== 3)
         {
             return view('users_no_permission_error');
         }
@@ -139,8 +151,8 @@ class CourseController extends Controller
 
     public function destroy($id)
     {
-        //if user not logged in or user is different than admin goes to error page
-        if(Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 2)
+        /*Check if there is a logged user and if he is an admin*/
+        if(Auth::guest() || Auth::User()->user_type !== 3)
         {
             return view('users_no_permission_error');
         }
