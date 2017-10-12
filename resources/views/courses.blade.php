@@ -3,9 +3,15 @@
     <section id="work" class="page-section page">
         <div class="container text-center">
             <div class="heading">
+                @guest
                 <h2>Our Courses</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, alias enim placeat earum quo
-                    sab.</p>
+                @endguest
+
+                @auth
+                @if(Auth::User()->user_type !== 3)
+                <h2>Our Courses</h2>
+                @endif
+                @endauth
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -17,7 +23,7 @@
                         }
 
                         td, th {
-                            border: 1px solid #dddddd;
+                            border: 1px solid black;
                             text-align: left;
                             padding: 8px;
                         }
@@ -46,8 +52,8 @@
                             <div id="portfolio">
                                 <tr class="table">
                                     <td class="font2 body">{{$course->name}}</td>
-                                    <td class="font2 body">{{$course->description}}</td>
-                                    <td class="font2 body center">{{$course->duration}}</td>
+                                    <td class="font2 body center">{{$course->description}}</td>
+                                    <td class="font2 body center">{{$course->duration . ' hours'}}</td>
                                     <td class="font2 body center">{{$course->start_date}}</td>
                                     <td class="font2 body center">{{$course->getTeacher['name'] }}</td>
                                     @auth
@@ -85,8 +91,8 @@
                                                 {{method_field('GET')}}
 
                                                 <input type="hidden" name="course" value="{{$course->id}}">
-                                                <td class="font2 body2">
-                                                    <input class="btn_edit" type="submit" value="Edit">
+                                                <td class="font2 body2 mytd">
+                                                    <input class="btn" type="submit" value="Edit">
                                                 </td>
                                             </form>
                                             {{--Delete--}}
@@ -95,8 +101,8 @@
                                                 {{method_field('DELETE')}}
 
                                                 <input type="hidden" name="course" value="{{$course->id}}">
-                                                <td class="font2 body2">
-                                                    <input class="btn_delete" type="submit" value="Delete">
+                                                <td class="font2 body2 mytd">
+                                                    <input class="btn button" type="submit" value="Delete">
                                                 </td>
                                             </form>
                                         @endif

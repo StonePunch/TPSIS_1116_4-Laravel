@@ -121,26 +121,79 @@
                                 {{ csrf_field() }}
                                 {{ method_field('POST') }}
 
-                                <label for="name">Name</label>
-                                <input id="name" type="text" name="name">
+                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                    <label for="name" class="col-md-4 control-label">Name</label>
 
-                                <label for="description">Description</label>
-                                <input id="description" type="text" name="description">
+                                    <div class="col-md-6">
+                                        <input id="name" type="text" class="form-control" name="name">
 
-                                <label for="duration">Duration</label>
-                                <input id="duration" type="number" name="duration">
-
-                                <label for="start_date">Starting Date</label>
-                                <input id="start_date" type="date" name="start_date">
-
-                                <label for="teacher">Teacher</label>
-                                <div>
-                                    <select id="teacher" name="teacher">
-                                        @foreach($teachers as $teacher)
-                                            <option value="{{$teacher->id}}">{{$teacher->name}}</option>
-                                        @endforeach
-                                    </select>
+                                        @if ($errors->has('name'))
+                                            <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
                                 </div>
+
+                                <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                                    <label for="description" class="col-md-4 control-label">Description</label>
+
+                                    <div class="col-md-6">
+                                        <input id="description" type="text" class="form-control" name="description">
+
+                                        @if ($errors->has('description'))
+                                            <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('duration') ? ' has-error' : '' }}">
+                                    <label for="duration" class="col-md-4 control-label">Duration</label>
+
+                                    <div class="col-md-6">
+                                        <input id="duration" type="text" class="form-control" name="duration">
+
+                                        @if ($errors->has('duration'))
+                                            <span class="help-block">
+                                        <strong>{{ $errors->first('duration') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
+                                    <label for="start_date" class="col-md-4 control-label">Duration</label>
+
+                                    <div class="col-md-6">
+                                        <input id="start_date" type="date" class="form-control" name="start_date">
+
+                                        @if ($errors->has('start_date'))
+                                            <span class="help-block">
+                                        <strong>{{ $errors->first('start_date') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('teacher') ? ' has-error' : '' }}">
+                                    <label for="teacher" class="col-md-4 control-label">Teacher</label>
+
+                                    <div class="col-md-6">
+                                        <select id="teacher" class="form-control" name="teacher">
+                                            @foreach($teachers as $teacher)
+                                                <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                                            @endforeach}}
+                                        </select>
+                                        @if ($errors->has('teacher'))
+                                            <span class="help-block">
+                                        <strong>{{ $errors->first('teacher') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <input class="btn_submit" type="submit" value="Create">
                             </form>
                         @endif

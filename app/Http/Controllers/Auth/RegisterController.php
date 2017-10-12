@@ -52,8 +52,10 @@ class RegisterController extends Controller
 
     protected function validator(array $data)
     {
+        /*sets a variable to actual data less 18 years*/
         $validator_date = Carbon::now()->subYears(18);
 
+        /*Validates all data from inputs*/
         return Validator::make($data, [
             'name' => 'required|string|max:20',
             'email' => 'required|string|email|max:255|unique:users',
@@ -73,9 +75,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
+        /*sets to a variable the data from the input to a date type*/
         $birth_date = strtotime($data['birthDate']);
 
+        /*checks if picture from data is null or empty*/
         if ($_FILES['picture']['name'] === null || empty($_FILES['picture']['name']))
         {
             if ($data['sex'] == 'Male')
@@ -104,6 +107,7 @@ class RegisterController extends Controller
             move_uploaded_file($picture,$new_path);
         }
 
+        /*returns a new user created with all the data from the inputs*/
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

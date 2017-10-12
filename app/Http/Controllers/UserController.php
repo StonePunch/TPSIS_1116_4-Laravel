@@ -5,24 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App;
+use App\Course;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Grade;
 
 class UserController extends Controller
 {
     public function index()
     {
         //if user not logged in goes to error page
-        if(Auth::guest() || Auth::User()->getUserType->name === 'Student')
+        if(Auth::guest() || Auth::User()->user_type === 1)
         {
             return view('users_no_permission_error');
         }
-        //checks if user is teacher to return a view with only users that are applied in the course that the logged on teacher is giving
-        else if(Auth::User()->getUserType->name === 'Teacher')
+        //checks if user is teacher to return a view with only users that are applied in the course that the logged on teacher is teaching
+        else if(Auth::User()->user_type === 2)
         {
-            $userAuth = Auth::User()->getCourse->id;
-            $usersTeacher = App\User::where('course_id', '=', $userAuth)->paginate(5);
-            return view('users')->with('usersTeacher', $usersTeacher);
+            $userAuthCourseId = Auth::User()->getCourse->id;
+            $course = Course::where('teacher_id','=',Auth::User()->id)->get();
+            $teacher_id = $course[0]['teacher_id']; //TODO: inquire as to the reason for this
+
+            $grades = Grade::where('course_id', '=', $userAuthCourseId)->get();
+
+            $usersTeacher = App\User::where('course_id', '=', $userAuthCourseId)->where('id', '!=', $teacher_id)->paginate(10);
+
+            return view('users')->with('usersTeacher', $usersTeacher)->with('grades',$grades);
         }
         else
         {
@@ -34,6 +42,12 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        //if user not logged in goes to error page
+        if(Auth::guest())
+        {
+            return view('users_no_permission_error');
+        }
+
         $user = User::find($id);
         //return a view with data from the specific user logged in
         return view('manage')->withPost($user);
@@ -41,6 +55,12 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        //if user not logged in goes to error page
+        if(Auth::guest())
+        {
+            return view('users_no_permission_error');
+        }
+
         $validator_date = Carbon::now()->subYears(18);
         $birth_date = strtotime($request->input('birthDate'));
         /*Validates all the data from the request*/
@@ -95,6 +115,7 @@ class UserController extends Controller
         else
         {
             $picture = $request['picture'];
+            /*path from the old picture so we can delete her*/
             $old_file_path = public_path() . '/uploads/' . Auth::user()->picture;
 
             /*Name that will be given to the picture*/
@@ -106,6 +127,7 @@ class UserController extends Controller
             /*Moving the picture to the specified folder*/
             move_uploaded_file($picture,$new_path);
 
+            /*removing the old picture*/
             unlink($old_file_path);
         }
 
@@ -132,6 +154,12 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        
+        //if user not logged in or user is different than admin goes to error page
+        if(Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 2)
+        {
+            return view('users_no_permission_error');
+        }
+
+        /*TODO: destroy user system*/
     }
 }

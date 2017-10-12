@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Course', 'course_id');
     }
+
+    public function getGrade()
+    {
+        return $this->hasOne('App\Grade');
+    }
 }

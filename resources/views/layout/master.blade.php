@@ -43,7 +43,7 @@
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                     </button>
-                    <a href="/home" class="navbar-brand scroll-top logo  animated bounceInLeft">
+                    <a href="/home" class="navbar-brand scroll-top logo animated bounceInLeft">
                         <b>
                             <i><img src="images/logo.png"/></i>
                         </b>
@@ -58,7 +58,7 @@
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                     </button>
-                    <a href="/admin" class="navbar-brand scroll-top logo  animated bounceInLeft">
+                    <a href="/admin" class="navbar-brand scroll-top logo animated bounceInLeft">
                         <b>
                             <i><img src="images/logo.png"/></i>
                         </b>
@@ -71,7 +71,7 @@
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                     </button>
-                    <a href="/home" class="navbar-brand scroll-top logo  animated bounceInLeft">
+                    <a href="/home" class="navbar-brand scroll-top logo animated bounceInLeft">
                         <b>
                             <i><img src="images/logo.png"/></i>
                         </b>
@@ -98,7 +98,7 @@
                             {{--Admin section--}}
                             <li class="active" id="firstLink"><a href="/admin" class="scroll-link">Admin</a></li>
                             <li><a href="/courses" class="scroll-link">Courses</a></li>
-                            <li><a href="/users" class="scroll-link">Students</a></li>
+                            <li><a href="/users" class="scroll-link">Users</a></li>
 
                             {{--Common section--}}
                             <li class="dropdown login">
@@ -125,7 +125,7 @@
 
                             <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                             <li><a href="/courses" class="scroll-link">Courses</a></li>
-                            <li><a href="/users" class="scroll-link">Students</a></li>
+                            <li><a href="/users" class="scroll-link">Users</a></li>
                             <li><a href="/news" class="scroll-link">News</a></li>
                             <li><a href="/about" class="scroll-link">About</a></li>
                             <li><a href="/contacts" class="scroll-link">Contacts</a></li>
@@ -155,6 +155,7 @@
 
                             <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                             <li><a href="/courses" class="scroll-link">Courses</a></li>
+                            <li><a href="/grades" class="scroll-link">Evaluation</a></li>
                             <li><a href="/news" class="scroll-link">News</a></li>
                             <li><a href="/about" class="scroll-link">About</a></li>
                             <li><a href="/contacts" class="scroll-link">Contacts</a></li>

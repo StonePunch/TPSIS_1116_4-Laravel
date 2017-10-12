@@ -10,4 +10,9 @@ class Course extends Model
     {
         return $this->hasOne('App\User');
     }
+
+    public function getGrade()
+    {
+        return $this->hasMany('App\Grade');
+    }
 }

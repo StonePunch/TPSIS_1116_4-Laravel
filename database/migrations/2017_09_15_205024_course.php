@@ -17,7 +17,7 @@ class Course extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->string('duration');
+            $table->integer('duration');
             $table->date('start_date');
             $table->integer('teacher_id')->unsigned()->nullable();
             $table->timestamps();

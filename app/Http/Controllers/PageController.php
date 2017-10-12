@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Schooling;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use App;
 
 class PageController extends Controller
@@ -52,6 +49,7 @@ class PageController extends Controller
 
     function register()
     {
+        /*gets all data from schooling to fill the input*/
         $schooling = Schooling::all();
 
         return view('auth.register')->with(['schooling' => $schooling]);
@@ -59,6 +57,12 @@ class PageController extends Controller
 
     function manage()
     {
+        //if user not logged in goes to error page
+        if(Auth::guest())
+        {
+            return view('users_no_permission_error');
+        }
+
         $user = User::class;
 
         return view('manage')->with('user', $user);

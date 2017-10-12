@@ -8,17 +8,24 @@ use App;
 use App\Course;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
     public function index()
     {
+        /*gets all data from courses and sends it to a view*/
         $courses = Course::all();
         return view('courses', compact('courses'));
     }
 
     public function create()
     {
+        //if user not logged in or user is different than admin goes to error page
+        if(Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 2)
+        {
+            return view('users_no_permission_error');
+        }
         /*Gets a list of teachers that are not teaching any course*/
         $teachers = DB::table('users')->where('user_type', '=', 2)->whereNull('course_id')->get();
 
@@ -28,16 +35,22 @@ class CourseController extends Controller
 
     public function store(request $request)
     {
-        /*Validations*/
+        //if user not logged in or user is different than admin goes to error page
+        if(Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 2)
+        {
+            return view('users_no_permission_error');
+        }
+
+        /*Validates all data from inputs*/
         $validator_date = Carbon::now();
         $this->validate($request, array(
             'name' => 'required|string|max:50',
             'description' => 'required|max:400',
-            'duration' => 'required|string|max:3', //TODO: when changed to a number, replace string
+            'duration' => 'required|numeric|between:10,999',
             'start_date' => 'required|date|unique:courses|after:' . $validator_date . '|before:' . $validator_date->addYear(2),
-            'teacher' => 'required'
         ));
 
+        /*Creates a new course with all data from the request and saves it in database*/
         $course = new Course();
 
         $course->name = $request->name;
@@ -56,12 +69,19 @@ class CourseController extends Controller
 
     public function update(request $request, $id)
     {
-        /*Validations*/
+        //if user not logged in or user is different than admin goes to error page
+        if(Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 2)
+        {
+            return view('users_no_permission_error');
+        }
+
+        /*Validates all data from inputs*/
         $validator_date = Carbon::now();
+
         $this->validate($request, array(
             'name' => 'required|string|max:50',
             'description' => 'required|max:400',
-            'duration' => 'required|string|max:3', //TODO: when changed to a number, replace string
+            'duration' => 'required|numeric|between:10,999',
             'start_date' => 'required|date|unique:courses|after:' . $validator_date . '|before:' . $validator_date->addYear(2),
             'teacher' => 'required'
         ));
@@ -90,7 +110,7 @@ class CourseController extends Controller
             $course->teacher_id = $request->teacher;
         }
 
-        /*Saving all changed to the database*/
+        /*Saving all changes to the database*/
         $course->save();
 
         return redirect('courses');
@@ -98,6 +118,12 @@ class CourseController extends Controller
 
     public function edit($id)
     {
+        //if user not logged in or user is different than admin goes to error page
+        if(Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 2)
+        {
+            return view('users_no_permission_error');
+        }
+
         /*Gets the course associated with the passed id*/
         $course = Course::find($id);
 
@@ -113,6 +139,12 @@ class CourseController extends Controller
 
     public function destroy($id)
     {
+        //if user not logged in or user is different than admin goes to error page
+        if(Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 2)
+        {
+            return view('users_no_permission_error');
+        }
+
         /*Dissociating the teacher and the course*/
         User::where('id', '=', Course::find($id)->teacher_id)->update(['course_id' => null]);
 
