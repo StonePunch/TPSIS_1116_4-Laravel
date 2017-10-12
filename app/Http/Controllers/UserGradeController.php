@@ -17,10 +17,11 @@ class UserGradeController extends Controller
             return view('users_no_permission_error');
         }
 
-        $userLogged = Auth::User()->id;
+        $Loggeduser = Auth::User()->id;
 
-        $grades = Grade::where('user_id','=',$userLogged)->get();
-        //return view with all the grades
+        $grades = Grade::where('user_id','=',$Loggeduser)->get();
+
+        //return view with all the grades from the logged user
         return view('grades')->with('grades',$grades);
     }
 
