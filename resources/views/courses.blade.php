@@ -148,12 +148,12 @@
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
 
-                                                <input type="hidden" name="course" value="{{$course->id}}">
-                                                <td class="font2 body2 mytd">
-                                                    <input class="btn button" type="submit" value="Delete">
-                                                </td>
-                                            </form>
-                                        @endif
+                                            <input type="hidden" name="course" value="{{$course->id}}">
+                                            <td class="font2 body2 mytd">
+                                                <input class="btn" type="submit" value="Delete">
+                                            </td>
+                                        </form>
+                                    @endif
                                     @endauth
                                 </tr>
                             </div>

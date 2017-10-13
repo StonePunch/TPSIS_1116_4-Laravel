@@ -3,9 +3,9 @@
     <body background="images/banner-bg3.jpg">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 registry">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Register</div>
+                    <div style="font-size: 18px" class="panel-heading">Register</div>
                     <div class="panel-body">
                         {{--Create a teacher as a admin--}}
                         @auth
@@ -137,7 +137,7 @@
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Name</label>
+                                <label style="color: black" for="name" class="col-md-4 control-label">Name</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name"
@@ -152,7 +152,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('birthDate') ? ' has-error' : '' }}">
-                                <label for="birthDate" class="col-md-4 control-label">Birth Date</label>
+                                <label style="color: black" for="birthDate" class="col-md-4 control-label">Birth Date</label>
 
                                 <div class="col-md-6">
                                     <input id="birthDate" type="date" class="form-control" name="birthDate"
@@ -167,7 +167,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                                <label style="color: black" for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control" name="email"
@@ -182,7 +182,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('schooling') ? ' has-error' : '' }}">
-                                <label for="schooling" class="col-md-4 control-label">Schooling</label>
+                                <label style="color: black" for="schooling" class="col-md-4 control-label">Schooling</label>
 
                                 <div class="col-md-6">
                                     <select id="schooling" class="form-control" name="schooling">
@@ -194,7 +194,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
-                                <label for="gender" class="col-md-4 control-label">Gender</label>
+                                <label style="color: black" for="gender" class="col-md-4 control-label">Gender</label>
 
                                 <div class="col-md-6">
                                     <select id="sex" class="form-control" name="sex">
@@ -205,7 +205,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
-                                <label for="picture" class="col-md-4 control-label">Picture</label>
+                                <label style="color: black" for="picture" class="col-md-4 control-label">Picture</label>
 
                                 <div class="col-md-6">
                                     <input id="picture" type="file" class="form-control" name="picture" autofocus>
@@ -219,7 +219,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Password</label>
+                                <label style="color: black" for="password" class="col-md-4 control-label">Password</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="password" required>
@@ -233,7 +233,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                                <label style="color: black" for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"

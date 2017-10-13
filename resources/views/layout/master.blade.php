@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="css/search.css"/>
     <link rel="stylesheet" href="css/styles.css"/>
     <link rel="stylesheet" href="css/login.css"/>
-    <link rel="stylesheet" href="css/datatable.css"/>
     <link rel="stylesheet" href="css/number.css"/>
     <!-- Font Awesome -->
     <link href="font/css/font-awesome.min.css" rel="stylesheet">
@@ -201,19 +200,19 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="col">
-                        <h4>Contact us!</h4>
-                        <ul>
+                        <h4 style="color: white">Contact us!</h4>
+                        <ul style="color: white">
                             <li>Address: Avenida da Liberdade, São João da Madeira</li>
                             <li>Telephone: 910 452 345 | Fax: 910 452 356</li>
-                            <li>Email: <a href="mailto:info@example.com" title="Email">bschool@edu.bschool.com</a></li>
-                            <li>Skype: <a href="skype:my.test?call" title="Skype">b-school</a></li>
+                            <li style="text-decoration: underline">Email: <a href="mailto:info@example.com" title="Email">bschool@edu.bschool.com</a></li>
+                            <li style="text-decoration: underline">Skype: <a href="skype:my.test?call" title="Skype">b-school</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="col">
-                        <h4>Newsletter</h4>
-                        <p>Subscreva à nossa newsletter para ficar a par das nossas novidades!</p>
+                        <h4 style="color: white">Newsletter</h4>
+                        <p style="color: white">Subscreva à nossa newsletter para ficar a par das nossas novidades!</p>
                         <form class="form-inline">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="email...">
@@ -226,7 +225,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="col col-social-icons">
-                        <h4>Siga-nos</h4>
+                        <h4 style="color: white">Siga-nos</h4>
                         <a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
                         <a href="https://plus.google.com"><i class="fa fa-google-plus"></i></a>
                         <a href="https://youtube.com"><i class="fa fa-youtube-play"></i></a>
@@ -240,8 +239,8 @@
 
                 <div class="col-md-3">
                     <div class="col">
-                        <h4>Latest News</h4>
-                        <p>
+                        <h4 style="color: white">Latest News</h4>
+                        <p style="color: white">
                             The Navigator Company elected B-School, as the main entity formation for the courses of
                             Programming
                             Languages...</br></br>

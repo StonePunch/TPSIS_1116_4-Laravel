@@ -2,8 +2,8 @@
 @section('content')
     <section id="work" class="page-section page">
         <div class="container text-center">
-            <div class="heading">
-                <h2>NEWS</h2>
+            <div  class="heading">
+                <h2 style="margin-top: 6.5%">NEWS</h2>
                 <p>Check B-School Latest News!</p>
             </div>
             <div class="row">
