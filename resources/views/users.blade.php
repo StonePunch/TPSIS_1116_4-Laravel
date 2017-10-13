@@ -2,9 +2,7 @@
 @section('content')
     <section id="work" class="page-section page">
         <div class="container text-center">
-            <br/><br/><br/>
-            <h2>Users</h2>
-            <br/>
+            <br/><br/><br/><br/>
         {{--<label for="grade" class="col-lg-3 control-label">grade</label>
         <div class="col-lg-8">
             <input id="grade" type="number"  name="grade"
@@ -70,6 +68,40 @@
                         tr:nth-child(even) {
                             background-color: #e9e9e9;
                         }
+                        .mytd{
+                            border: none;
+                        }
+                        .button {
+                            display: inline-block;
+                            text-align: center;
+                            vertical-align: middle;
+                            padding: 7px 20px;
+                            border: 1px solid #000000;
+                            border-radius: 8px;
+                            background: #ffdd00;
+                            background: -webkit-gradient(linear, left top, left bottom, from(#ffdd00), to(#ffdd00));
+                            background: -moz-linear-gradient(top, #ffdd00, #ffdd00);
+                            background: linear-gradient(to bottom, #ffdd00, #ffdd00);
+                            font: normal normal normal 18px arial;
+                            color: #000000;
+                            text-decoration: none;
+                            margin-bottom: 2%;
+                        }
+                        .button:hover,
+                        .button:focus {
+                            background: #ffff00;
+                            background: -webkit-gradient(linear, left top, left bottom, from(#ffff00), to(#ffff00));
+                            background: -moz-linear-gradient(top, #ffff00, #ffff00);
+                            background: linear-gradient(to bottom, #ffff00, #ffff00);
+                            color: #000000;
+                            text-decoration: none;
+                        }
+                        .button:active {
+                            background: #998500;
+                            background: -webkit-gradient(linear, left top, left bottom, from(#998500), to(#ffdd00));
+                            background: -moz-linear-gradient(top, #998500, #ffdd00);
+                            background: linear-gradient(to bottom, #998500, #ffdd00);
+                        }
                     </style>
                     {{--<div class="container">--}}
                     @if(isset($details) and Auth::User()->user_type === 3)
@@ -78,18 +110,18 @@
                             {{csrf_field()}}
                             {{method_field('GET')}}
 
-                            <button type="submit" class="btn_create">Create Teacher</button>
+                            <button type="submit" class="btn button">Create Teacher</button>
                         </form>
                         <table>
-                            <tr class="table">
-                                <th class="font">Pic</th>
-                                <th class="font">Name</th>
-                                <th class="font">Email</th>
-                                <th class="font">Birth Date</th>
-                                <th class="font">Sex</th>
-                                <th class="font">Course</th>
-                                <th class="font">Schooling</th>
-                                <th class="font">Role</th>
+                            <tr class="table font">
+                                <th>Pic</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Birth Date</th>
+                                <th>Sex</th>
+                                <th>Course</th>
+                                <th>Schooling</th>
+                                <th>Role</th>
                             </tr>
                             @foreach($details as $usersAdmin)
                                 <div id="portfolio">
@@ -115,7 +147,7 @@
 
                                                 <input type="hidden" name="users" value="{{$usersAdmin->id}}">
                                                 <td class="font2 body2 mytd">
-                                                    <input class="btn button" type="submit" value="Delete">
+                                                    <input class="btn" type="submit" value="Delete">
                                                 </td>
                                             </form>
                                         @endif
@@ -166,7 +198,7 @@
                                 {{csrf_field()}}
                                 {{method_field('GET')}}
 
-                                <button type="submit" class="btn_create">Create Teacher</button>
+                                <button type="submit" class="btn button">Create Teacher</button>
                             </form>
                             <table>
                                 <tr class="table">
@@ -204,8 +236,8 @@
                                                     {{method_field('DELETE')}}
 
                                                     <input type="hidden" name="users" value="{{$user->id}}">
-                                                    <td class="font2 body2 mytd">
-                                                        <input class="btn button" type="submit" value="Delete">
+                                                    <td class="font2 body2">
+                                                        <input class="btn" type="submit" value="Delete">
                                                     </td>
                                                 </form>
                                             @endif
@@ -238,7 +270,7 @@
                                     @if ($user->course_id === Auth::User()->getCourse->id and $user->user_type === 1)
                                         <div id="portfolio">
                                             <tr class="table">
-                                                <td class="font2 body"><img src="{{'uploads/' . $user->picture}}"
+                                                <td class="font2 body center"><img src="{{'uploads/' . $user->picture}}"
                                                                             alt=""
                                                                             border=3 height="100" width="100"></img>
                                                 </td>
@@ -268,9 +300,9 @@
                                                             <input type="hidden" name="user_id"
                                                                    value="{{$user->id}}">
                                                             <td class="font2 body2">
-                                                                <input style="color: black;" type="number"
+                                                                <input style="color: black; width: 80%" type="number"
                                                                        name="grade" min="0" max="20">
-                                                                <input class="btn" type="submit"
+                                                                <input style="margin-top: 15%" class="btn" type="submit"
                                                                        value="Evaluate">
                                                             </td>
                                                         </form>

@@ -139,6 +139,10 @@ h6{
 	color:#444 !important;
 	background:#E0C400;
 }
+.mybox{
+    color: white;
+    font-family: "Montserrat Light";
+}
 a:hover {
 
 	color:#E0C400 !important;

@@ -12,15 +12,15 @@
 
     <div class="container hero-text2">
         <div class="col-md-9">
-            <h2>Porquê Nós?</h2>
-                <br>A nossa escola tem uma orgulhosa tradição que oferece excelentes oportunidades educacionais. O seu progresso académico
+            <h2 style="color: white; font-family: Montserrat">Porquê Nós?</h2>
+                <p style="color: white"><br>A nossa escola tem uma orgulhosa tradição que oferece excelentes oportunidades educacionais. O seu progresso académico
                     está em primeiro lugar.</br>
                     Temos formadores comprometidos em exibir entusiasmo, dedicação e habilidades de ensino de alto nível.
                     Esforçamo-nos constantemente para criar um ambiente no qual cada aluno seja apoiado para alcançar os mais altos níveis de sucesso.
                 </p>
         </div>
         <div class="col-md-3">
-            <a class="btn btn-apply" href="#"><i class="fa fa-play-circle"></i>Escolha um curso!</a>
+            <a style="margin-top: 26%" class="btn btn-apply" href="#"><i class="fa fa-play-circle"></i>Escolha um curso!</a>
         </div>
     </div>
 </section>

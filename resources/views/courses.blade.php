@@ -141,7 +141,7 @@
 
                                             <input type="hidden" name="course" value="{{$course->id}}">
                                             <td class="font2 body2 mytd">
-                                                <input class="btn button" type="submit" value="Delete">
+                                                <input class="btn" type="submit" value="Delete">
                                             </td>
                                         </form>
                                     @endif

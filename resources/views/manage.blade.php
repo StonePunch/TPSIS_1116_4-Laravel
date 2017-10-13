@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="heading text-center">
                     <div class="container">
-                        <h1>Edit Profile</h1>
+                        <h1 class="mybox">Edit Profile</h1>
                         <hr>
                         <form class="form-horizontal" enctype="multipart/form-data" role="form"
                               action="/users/{{Auth::user()->id}}" method="post">
@@ -17,7 +17,7 @@
                                     <div class="text-center">
                                         <img src="{{('uploads/') . Auth::user()->picture}}" width="200" height="200"
                                              class="avatar img-circle" alt="avatar">
-                                        <h6>Upload a different photo...</h6>
+                                        <h6 style="color: white">Upload a different photo!</h6>
                                         <input type="file" name="picture" value="" class="form-control">
                                         @if ($errors->has('picture'))
                                             <span class="help-block">
@@ -30,7 +30,7 @@
                                 <div class="col-md-9 personal-info">
 
                                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                        <label for="name" class="col-lg-3 control-label">Name</label>
+                                        <label for="name" class="col-lg-3 control-label mybox">Name</label>
                                         <div class="col-lg-8">
                                             <input id="name" type="text" class="form-control" name="name"
                                                    value="{{ auth::User()->name }}" required autofocus>
@@ -42,7 +42,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                        <label class="col-lg-3 control-label">Email:</label>
+                                        <label class="col-lg-3 control-label mybox">Email:</label>
                                         <div class="col-lg-8">
                                             <input class="form-control" name="email" type="text"
                                                    value="{{ auth::User()->email }}" required>
@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                        <label class="col-md-3 control-label">Password:</label>
+                                        <label class="col-md-3 control-label mybox">Password:</label>
                                         <div class="col-md-8">
                                             <input class="form-control" name="password" type="text" value="">
                                             @if ($errors->has('password'))
@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group{{ $errors->has('birthDate') ? ' has-error' : '' }}">
-                                        <label for="birthDate" class="col-lg-3 control-label">Birth Date</label>
+                                        <label for="birthDate" class="col-lg-3 control-label mybox">Birth Date</label>
                                         <div class="col-md-8">
                                             <input id="birthDate" type="date" class="form-control" name="birthDate"
                                                    value="{{auth::User()->birth_date}}" required autofocus>
@@ -80,7 +80,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label"></label>
                                         <div class="col-md-8">
-                                            <input type="submit" class="btn btn-primary" value="Save Changes">
+                                            <input style="background-color: gold; color: black" type="submit" class="btn btn-primary" value="Save Changes">
                                             <span></span>
                                             <input type="reset" class="btn btn-default" value="Cancel">
                                         </div>
