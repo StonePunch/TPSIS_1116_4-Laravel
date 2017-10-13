@@ -12,9 +12,14 @@ class UserGradeController extends Controller
     public function index()
     {
         //if user not logged or user is not a student goes to error page
-        if(Auth::guest() || Auth::User()->user_type === 2 || Auth::User()->user_type === 3)
+        if(Auth::guest() || Auth::User()->user_type === 2)
         {
             return view('users_no_permission_error');
+        }
+        else if(Auth::User()->user_type === 3)
+        {
+            $grades = Grade::all();
+            return view('comments')->with('grades', $grades);
         }
 
         $Loggeduser = Auth::User()->id;
@@ -67,5 +72,36 @@ class UserGradeController extends Controller
         $grade->save();
 
         return redirect('grades');
+    }
+
+    public function destroy($id)
+    {
+        /*Check if there is a logged user and if he is an admin*/
+        if(Auth::guest() || Auth::User()->user_type !== 3)
+        {
+            return view('users_no_permission_error');
+        }
+
+        if (User::find($id)->user_type == 2)
+        {
+            /*Dissociating the teacher and the course*/
+            Course::where('teacher_id', '=', $id)->update(['teacher_id' => null]);
+
+            /*Deleting the user*/
+            DB::table('users')->where('id','=',$id)->delete();
+
+            return redirect('users');
+        }
+        if (User::find($id)->user_type == 1)
+        {
+            /*Deleting grades pertaining to the student*/
+            DB::table('grades')->where('user_id','=', $id)->delete();
+
+            /*Deleting the user*/
+            DB::table('users')->where('id','=',$id)->delete();
+
+            return redirect('users');
+        }
+
     }
 }

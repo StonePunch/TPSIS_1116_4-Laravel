@@ -103,6 +103,7 @@
                             <li class="active" id="firstLink"><a href="" class="scroll-link">Admin</a></li>
                             <li><a href="/courses" class="scroll-link">Courses</a></li>
                             <li><a href="/users" class="scroll-link">Users</a></li>
+                            <li><a href="/grades" class="scroll-link">Comments</a></li>
 
                         {{--Common section--}}
                         <li class="dropdown login">
