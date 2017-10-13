@@ -239,8 +239,8 @@
                                             <div id="portfolio">
                                                 <tr class="table">
                                                     <td class="font2 body"><img src="{{'uploads/' . $user->picture}}"
-                                                                                alt="" border=3 height="100"
-                                                                                width="100">
+                                                                                alt=""
+                                                                                border=3 height="100" width="100"></img>
                                                     </td>
                                                     <td class="font2 body">{{$user->name}}</td>
                                                     <td class="font2 body">{{$user->email}}</td>
@@ -253,7 +253,13 @@
                                                     @endif
                                                     <td class="font2 body">{{$user->getSchooling->description}}</td>
                                                     <td class="font2 body">{{$user->getUserType->name}}</td>
-                                                    @if($user->getGrade['grade'] === null)
+                                                    @php($count = 0)
+                                                    @foreach($user->getGrade as $grade)
+                                                        @if($grade->course_id == Auth::User()->getCourse->id)
+                                                            @php($count = 1)
+                                                        @endif
+                                                    @endforeach
+                                                    @if($count == 0)
                                                         <td class="font2 body">N/A</td>
                                                         <div class="input-group">
                                                             <form action="/grades/{{$user->id}}" method="post">
@@ -264,12 +270,13 @@
                                                                 <td class="font2 body2">
                                                                     <input style="color: black;" type="number"
                                                                            name="grade" min="0" max="20">
-                                                                    <input class="btn" type="submit" value="Evaluate">
+                                                                    <input class="btn" type="submit"
+                                                                           value="Evaluate">
                                                                 </td>
                                                             </form>
                                                         </div>
                                                     @else
-                                                        <td class="font2 body">{{$user->getGrade['grade']}}</td>
+                                                        <td class="font2 body">{{$grade->grade}}</td>
                                                     @endif
                                                 </tr>
                                             </div>
