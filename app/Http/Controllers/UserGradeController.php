@@ -11,8 +11,8 @@ class UserGradeController extends Controller
 {
     public function index()
     {
-        //if user not logged in goes to error page
-        if(Auth::guest()    )
+        //if user not logged or user is not a student goes to error page
+        if(Auth::guest() || Auth::User()->user_type === 2 || Auth::User()->user_type === 3)
         {
             return view('users_no_permission_error');
         }
@@ -25,10 +25,10 @@ class UserGradeController extends Controller
         return view('grades')->with('grades',$grades);
     }
 
-    public function update(Request $request, $id)
+    public function store(Request $request)
     {
-        //if user not logged in or user is different than admin or teacher goes to error page
-        if(Auth::guest() || Auth::User()->user_type === 1)
+        //if user not logged in or user is different than teacher goes to error page
+        if(Auth::guest() || Auth::User()->user_type === 1 || Auth::User()->user_type === 3)
         {
             return view('users_no_permission_error');
         }
@@ -38,7 +38,8 @@ class UserGradeController extends Controller
             'grade' => 'required|numeric|between:0,20',
         ));
 
-        $user = User::find($id);
+        /*Finds the student that the teacher attributed the grade*/
+        $user = User::find($request->get('user_id'));
 
         $grade = new Grade();
 
@@ -46,7 +47,25 @@ class UserGradeController extends Controller
         $grade->user_id = $user->id;
         $grade->course_id = $user->course_id;
 
+        /*Creates a new record of grade for the student with the course and the teacher associated*/
         $grade->save();
         return redirect('users');
+    }
+
+    public function update(Request $request, $id)
+    {
+        //if user not logged in or user is different than teacher goes to error page
+        if(Auth::guest() || Auth::User()->user_type === 2 || Auth::User()->user_type === 3)
+        {
+            return view('users_no_permission_error');
+        }
+
+        $grade = Grade::find($request->get('grade_id'));
+        $grade->comment = $request->get('comment');
+
+        /*Creates a new record of grade for the student with the course and the teacher associated*/
+        $grade->save();
+
+        return redirect('grades');
     }
 }

@@ -29,6 +29,7 @@
                             background-color: #e9e9e9;
                         }
                     </style>
+
                     @if(count($grades) > 0)
                         <table>
                             <tr class="table">
@@ -37,22 +38,39 @@
                                 <th class="font">Starting Date</th>
                                 <th class="font">Teacher</th>
                                 <th class="font">Grade</th>
+                                <th class="font">Comment</th>
                             </tr>
-                            @foreach($grades as $grade)
-                                <div id="portfolio">
-                                    <tr class="table">
-                                        <td class="font2 body">{{$grade->getCourse->name}}</td>
-                                        <td class="font2 body center">{{$grade->getCourse->duration . ' hours'}}</td>
-                                        <td class="font2 body center">{{$grade->getCourse->start_date}}</td>
-                                        <td class="font2 body center">{{$grade->getCourse->getTeacher->name}}</td>
-                                        <td class="font2 body center">{{$grade->grade}}</td>
-                                    </tr>
-                                </div>
-                            @endforeach
-                            @else
-                                There are no grades to show!
-                            @endif
-                        </table>
+                        @foreach($grades as $grade)
+                            <div id="portfolio">
+                                <tr class="table">
+                                    <td class="font2 body center">{{$grade->getCourse->name}}</td>
+                                    <td class="font2 body center">{{$grade->getCourse->duration . ' hours'}}</td>
+                                    <td class="font2 body center">{{$grade->getCourse->start_date}}</td>
+                                    <td class="font2 body center">{{$grade->getCourse->getTeacher->name}}</td>
+                                    <td class="font2 body center">{{$grade->grade}}</td>
+                                    @if($grade->comment === null)
+                                    {{-- Comment Grade --}}
+                                    <form action="/grades/{{Auth::user()->id}}" method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('PUT') }}
+
+                                        <input type="hidden" name="grade_id" value="{{$grade->id}}">
+                                        <input type="hidden" name="course_id" value="{{$grade->getCourse->id}}">
+                                        <td class="font2 body2 center">
+                                            <input style="color: black;" type="text" name="comment" value="">
+                                            <input class="btn" type="submit" value="comment">
+                                        </td>
+                                    </form>
+                                    @else
+                                        <td class="font2 body center">{{$grade->comment}}</td>
+                                    @endif
+                                </tr>
+                            </div>
+                        @endforeach
+                    @else
+                         There are no grades to show!
+                    @endif
+                    </table>
                 </div>
             </div>
         </div>
