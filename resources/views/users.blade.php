@@ -183,9 +183,7 @@
                                 @foreach($usersAdmin as $user)
                                     <div id="portfolio">
                                         <tr>
-                                            <td class="font2 body center"><img class="img"
-                                                                        src="{{'uploads/' . $user->picture}}"
-                                                                        alt=""></img></td>
+                                            <td class="font2 body center"><img class="img" src="{{'uploads/' . $user->picture}}" alt=""></td>
                                             <td class="font2 body center">{{$user->name}}</td>
                                             <td class="font2 body center">{{$user->email}}</td>
                                             <td class="font2 body center">{{$user->birth_date}}</td>
@@ -197,6 +195,9 @@
                                             @endif
                                             <td class="font2 body center">{{$user->getSchooling->description}}</td>
                                             <td class="font2 body center">{{$user->getUserType->name}}</td>
+                                            @if($user->user_type == 1 && Count(\App\Grade::where([['user_id','=',$user->id],['','!=',null]])->get()) == 0)
+                                                {{--TODO: finish this, edit grade--}}
+                                            @endif
                                             @if($user->user_type == 1 || $user->user_type == 2)
                                                 {{--Delete--}}
                                                 <form action="/users/{{$user->id}}" method="post">
