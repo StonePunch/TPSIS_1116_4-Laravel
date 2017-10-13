@@ -16,6 +16,7 @@ class Grade extends Migration
         schema::create('grades', function(Blueprint $table){
             $table->increments('id');
             $table->integer('grade');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
 

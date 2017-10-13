@@ -22,7 +22,7 @@ Route::get('/contacts', 'PageController@contacts');
 Route::get('/users_no_permission_error', 'PageController@user_no_permission_error');
 
 Route::resource('users_courses', 'UserCourseController', ['only' => ['update','edit']]);
-Route::resource('grades', 'UserGradeController', ['only' => ['index','update']]);
+Route::resource('grades', 'UserGradeController', ['only' => ['index','store','update']]);
 Route::resource('users', 'UserController', ['only' => ['index','create','store','update','edit','destroy']]);
 Route::resource('courses', 'CourseController', ['only' => ['index','create','store','update','edit','destroy']]);
 

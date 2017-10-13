@@ -194,10 +194,6 @@
 @section('content')
     {{--Page content goes here--}}
 @show
-{{--checks which blade.php I'm in the moment--}}
-@if (Request::path() == 'grades')
-
-@else
     <footer>
         <div class="container">
             <div class="row">
@@ -264,7 +260,6 @@
         </div>
     </section>
     <a href="#top" class="topHome"><i class="fa fa-chevron-up fa-2x"></i></a>
-    @endif
 <!--[if lte IE 8]>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><![endif]-->
 <script src="/public/js/modernizr-latest.js"></script>

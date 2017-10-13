@@ -15,7 +15,7 @@ class CourseController extends Controller
     public function index()
     {
         /*Retrieves all the courses and sends in to a view*/
-        $courses = Course::all();
+        $courses = Course::orderBy('start_date','asc')->get();
         return view('courses', compact('courses'));
     }
 
