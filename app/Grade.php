@@ -8,11 +8,11 @@ class Grade extends Model
 {
     public function getUser()
     {
-        return $this->belongsTo('App\User','id','id');
+        return $this->belongsTo('App\User');
     }
 
     public function getCourse()
     {
-        return $this->belongsTo('App\Course','id','id');
+        return $this->hasOne('App\Course', 'id', 'course_id');
     }
 }

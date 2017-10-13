@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Grade;
 
 class User extends Authenticatable
 {
@@ -44,6 +45,6 @@ class User extends Authenticatable
 
     public function getGrade()
     {
-        return $this->hasOne('App\Grade');
+        return $this->hasMany('App\Grade', 'user_id','id');
     }
 }

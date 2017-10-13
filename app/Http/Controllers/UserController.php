@@ -17,33 +17,20 @@ class UserController extends Controller
     public function index()
     {
         //if user not logged in goes to error page
-        if(Auth::guest() || Auth::User()->user_type === 1)
-        {
+        if (Auth::guest() || Auth::User()->user_type === 1) {
             return view('users_no_permission_error');
-        }
-        //checks if user is teacher to return a view with only users that are applied in the course that the logged on teacher is teaching
-        else if(Auth::User()->user_type === 2)
-        {
+        } //checks if user is teacher to return a view with only users that are applied in the course that the logged on teacher is teaching
+        else if (Auth::User()->user_type === 2) {
             $userAuthCourseId = Auth::User()->getCourse->id;
-            $course = Course::where('teacher_id','=',Auth::User()->id)->get();
-            $teacher_id = $course[0]['teacher_id']; //TODO: inquire as to the reason for this
+            $course = Course::where('teacher_id', '=', Auth::User()->id)->get();
+            $teacher_id = $course[0]['teacher_id'];
 
             $grades = Grade::where('course_id', '=', $userAuthCourseId)->get();
+            /*Returns all the users that are related to this course, except for the teacher*/
+            $usersTeacher = User::where('course_id', '=', $userAuthCourseId)->where('id', '!=', $teacher_id)->paginate(10);
 
-            $usersTeacher = App\User::where('course_id', '=', $userAuthCourseId)->where('id', '!=', $teacher_id)->paginate(10);
-
-            return view('users')->with('usersTeacher', $usersTeacher)->with('grades',$grades);
-
-            $userAuth = Auth::User()->getCourse->id;
-            $course = Course::where('teacher_id','=',Auth::User()->id)->get();
-            $teacher_id = $course[0]['teacher_id']; //TODO: inquire as to the reason for this
-
-            $usersTeacher = App\User::where('course_id', '=', $userAuth)->where('id', '!=', $teacher_id)->paginate(10);
-
-            return view('users')->with('usersTeacher', $usersTeacher);
-        }
-        else
-        {
+            return view('users')->with('usersTeacher', $usersTeacher)->with('grades', $grades);
+        } else {
             $usersAdmin = App\User::paginate(10);
             //return view with all the users
             return view('users')->with('usersAdmin', $usersAdmin);
@@ -137,8 +124,7 @@ class UserController extends Controller
     public function edit($id)
     {
         //if user not logged in goes to error page
-        if(Auth::guest())
-        {
+        if (Auth::guest()) {
             return view('users_no_permission_error');
         }
 
@@ -150,8 +136,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //if user not logged in goes to error page
-        if(Auth::guest())
-        {
+        if (Auth::guest()) {
             return view('users_no_permission_error');
         }
 
@@ -160,40 +145,31 @@ class UserController extends Controller
         /*Validates all the data from the request*/
         $this->validate($request, array(
             'name' => 'required|string|max:20',
-            'email' => 'required|unique:users,email,'.$id,
+            'email' => 'required|unique:users,email,' . $id,
             'password' => 'sometimes|nullable|string|min:7',
             'birthDate' => 'required|date|after:1900-01-01|before:' . $validator_date,
             'picture' => 'image|mimes:jpeg,bmp,png,jpg|max:50000'
         ));
 
         /*In case user didn't upload any file*/
-        if ($request['picture'] === null || empty($request['picture']))
-        {
+        if ($request['picture'] === null || empty($request['picture'])) {
             /*In case user didn't upload a file and also has the default picture*/
-            if(Auth::user()->picture === "default_f.jpeg" || Auth::user()->picture === "default_m.jpeg")
-            {
+            if (Auth::user()->picture === "default_f.jpeg" || Auth::user()->picture === "default_m.jpeg") {
                 /*In case user has male picture*/
-                if (Auth::user()->sex == 'Male')
-                {
+                if (Auth::user()->sex == 'Male') {
                     /*default male picture, for when the user does not upload a picture*/
                     $pic_name = 'default_m.jpeg';
-                }
-                /*In case user has female picture*/
-                else
-                {
+                } /*In case user has female picture*/
+                else {
                     /*default female picture, for when the user does not upload a picture*/
                     $pic_name = 'default_f.jpeg';
                 }
-            }
-            /*In case user didn't upload a file and also doesn't have the default picture*/
-            else
-            {
+            } /*In case user didn't upload a file and also doesn't have the default picture*/
+            else {
                 $pic_name = Auth::user()->picture;
             }
-        }
-        /*In case user uploaded a file but his picture is the default we don't remove the file*/
-        else if (Auth::user()->picture === "default_f.jpeg" || Auth::user()->picture === "default_m.jpeg")
-        {
+        } /*In case user uploaded a file but his picture is the default we don't remove the file*/
+        else if (Auth::user()->picture === "default_f.jpeg" || Auth::user()->picture === "default_m.jpeg") {
             $picture = $request['picture'];
 
             /*Name that will be given to the picture*/
@@ -203,11 +179,9 @@ class UserController extends Controller
             $new_path = public_path() . '/uploads/' . $pic_name;
 
             /*Moving the picture to the specified folder*/
-            move_uploaded_file($picture,$new_path);
-        }
-        /*In case user uploaded a file but his picture isn't default we remove the older file*/
-        else
-        {
+            move_uploaded_file($picture, $new_path);
+        } /*In case user uploaded a file but his picture isn't default we remove the older file*/
+        else {
             $picture = $request['picture'];
             /*path from the old picture so we can delete her*/
             $old_file_path = public_path() . '/uploads/' . Auth::user()->picture;
@@ -219,7 +193,7 @@ class UserController extends Controller
             $new_path = public_path() . '/uploads/' . $pic_name;
 
             /*Moving the picture to the specified folder*/
-            move_uploaded_file($picture,$new_path);
+            move_uploaded_file($picture, $new_path);
 
             /*removing the old picture*/
             unlink($old_file_path);
@@ -228,18 +202,15 @@ class UserController extends Controller
         $user = User::find($id);
 
         /*Checks if the request password is null or empty, if yes the password will keep the same, if not the password will change to the typed password*/
-        if($request->input('password') === null || empty($request->input('password')))
-        {
+        if ($request->input('password') === null || empty($request->input('password'))) {
             $user->password = Auth::user()->password;
-        }
-        else
-        {
+        } else {
             $user->password = bcrypt($request->input('password'));
         }
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->picture = $pic_name;
-        $user->birth_date = date('Y-m-d',$birth_date);
+        $user->birth_date = date('Y-m-d', $birth_date);
 
         $user->save();
 
