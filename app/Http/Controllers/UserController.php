@@ -17,21 +17,25 @@ class UserController extends Controller
     public function index()
     {
         //if user not logged in goes to error page
-        if (Auth::guest() || Auth::User()->user_type === 1) {
+        if (Auth::guest() || Auth::User()->user_type === 1)
+        {
             return view('users_no_permission_error');
         } //checks if user is teacher to return a view with only users that are applied in the course that the logged on teacher is teaching
-        else if (Auth::User()->user_type === 2) {
+        else if (Auth::User()->user_type === 2)
+        {
             $userAuthCourseId = Auth::User()->getCourse->id;
             $course = Course::where('teacher_id', '=', Auth::User()->id)->get();
             $teacher_id = $course[0]['teacher_id'];
 
             $grades = Grade::where('course_id', '=', $userAuthCourseId)->get();
             /*Returns all the users that are related to this course, except for the teacher*/
-            $usersTeacher = User::where('course_id', '=', $userAuthCourseId)->where('id', '!=', $teacher_id)->paginate(10);
+            $usersTeacher = User::where('course_id', '=', $userAuthCourseId)->where('id', '!=', $teacher_id)->orderBy('name','asc')->paginate(10);
 
             return view('users')->with('usersTeacher', $usersTeacher)->with('grades', $grades);
-        } else {
-            $usersAdmin = App\User::paginate(10);
+        }
+        else
+        {
+            $usersAdmin = App\User::orderBy('user_type','desc')->orderBy('name','asc')->paginate(10);
             //return view with all the users
             return view('users')->with('usersAdmin', $usersAdmin);
         }
