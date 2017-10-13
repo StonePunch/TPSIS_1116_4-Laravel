@@ -209,6 +209,14 @@ a:hover {
 .btn-primary {
 	background: #FFDF00;
 }
+.grades{
+	margin-bottom: 6px;
+	border: 2px solid black;
+	padding: 1px;
+}
+.mynav{
+	background-color: black;
+}
 .form-control {
 	border-radius: 0px;
 }

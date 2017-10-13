@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="css/styles.css"/>
     <link rel="stylesheet" href="css/login.css"/>
     <link rel="stylesheet" href="css/datatable.css"/>
+    <link rel="stylesheet" href="css/number.css"/>
     <!-- Font Awesome -->
     <link href="font/css/font-awesome.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -96,12 +97,12 @@
                     <li class="login"><a href="{{ route('registry') }}">Register</a></li>
                     @endguest
                     @auth
-                    {{--User logged in--}}
-                    @if(\Illuminate\Support\Facades\Auth::user()->user_type == 3)
-                        {{--Admin section--}}
-                        <li class="active" id="firstLink"><a href="/admin" class="scroll-link">Admin</a></li>
-                        <li><a href="/courses" class="scroll-link">Courses</a></li>
-                        <li><a href="/users" class="scroll-link">Users</a></li>
+                        {{--User logged in--}}
+                        @if(\Illuminate\Support\Facades\Auth::user()->user_type == 3)
+                            {{--Admin section--}}
+                            <li class="active" id="firstLink"><a href="" class="scroll-link">Admin</a></li>
+                            <li><a href="/courses" class="scroll-link">Courses</a></li>
+                            <li><a href="/users" class="scroll-link">Users</a></li>
 
                         {{--Common section--}}
                         <li class="dropdown login">
@@ -163,27 +164,27 @@
                         <li><a href="/about" class="scroll-link">About</a></li>
                         <li><a href="/contacts" class="scroll-link">Contacts</a></li>
 
-                        {{--Common section--}}
-                        <li class="dropdown login">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="/manage" class="scroll-link">Profile</a>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                          style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
+                            {{--Common section--}}
+                            <li class="dropdown login">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="/manage" class="scroll-link">Profile</a>
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                              style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                     @endauth
                 </ul>
             </div>
@@ -266,19 +267,20 @@
     <a href="#top" class="topHome"><i class="fa fa-chevron-up fa-2x"></i></a>
     @endif
 <!--[if lte IE 8]>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><![endif]-->
-    <script src="/public/js/modernizr-latest.js"></script>
-    <script src="/public/js/jquery-1.8.2.min.js" type="text/javascript"></script>
-    <script src="/public/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="/public/js/jquery.isotope.min.js" type="text/javascript"></script>
-    <script src="/public/js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
-    <script src="/public/js/jquery.nav.js" type="text/javascript"></script>
-    <script src="/public/js/jquery.fittext.js"></script>
-    <script src="/public/js/waypoints.js"></script>
-    <script src="/public/contact/jqBootstrapValidation.js"></script>
-    <script src="/public/contact/contact_me.js"></script>
-    <script src="/public/js/custom.js" type="text/javascript"></script>
-    <script src="/public/js/owl-carousel/owl.carousel.js"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><![endif]-->
+<script src="/public/js/modernizr-latest.js"></script>
+<script src="/public/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script src="/public/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/public/js/jquery.isotope.min.js" type="text/javascript"></script>
+<script src="/public/js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script src="/public/js/jquery.nav.js" type="text/javascript"></script>
+<script src="/public/js/jquery.fittext.js"></script>
+<script src="/public/js/waypoints.js"></script>
+<script src="/public/contact/jqBootstrapValidation.js"></script>
+<script src="/public/contact/contact_me.js"></script>
+<script src="/public/js/custom.js" type="text/javascript"></script>
+<script src="/public/js/owl-carousel/owl.carousel.js"></script>
+<script src="/public/js/number.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

@@ -140,7 +140,7 @@
                                     <div id="portfolio">
                                         <tr class="table">
                                             <td class="font2 body"><img src="{{'uploads/' . $usersTeacher->picture}}"
-                                                                        alt="" border=3 height=100 width=100></td>
+                                                                        alt="" border=3 height=100 width=100></img></td>
                                             <td class="font2 body">{{$usersTeacher->name}}</td>
                                             <td class="font2 body">{{$usersTeacher->email}}</td>
                                             <td class="font2 body">{{$usersTeacher->birth_date}}</td>
@@ -148,10 +148,10 @@
                                             @if($usersTeacher->getCourse['name'] === null)
                                                 <td class="font2 body">N/A</td>
                                             @else
-                                                <td class="font2 body">{{$usersTeacher->getCourse['name']}}</td>
+                                                <td class="font2 body center">{{$usersTeacher->getCourse['name']}}</td>
                                             @endif
-                                            <td class="font2 body">{{$usersTeacher->getSchooling->description}}</td>
-                                            <td class="font2 body">{{$usersTeacher->getUserType->name}}</td>
+                                            <td class="font2 body center">{{$usersTeacher->getSchooling->description}}</td>
+                                            <td class="font2 body center">{{$usersTeacher->getUserType->name}}</td>
                                         </tr>
                                     </div>
                                 @endif
@@ -183,20 +183,20 @@
                                 @foreach($usersAdmin as $user)
                                     <div id="portfolio">
                                         <tr>
-                                            <td class="font2 body"><img class="img"
-                                                                        src="{{'uploads/' . $user->picture}}" alt="">
-                                            </td>
-                                            <td class="font2 body">{{$user->name}}</td>
-                                            <td class="font2 body">{{$user->email}}</td>
-                                            <td class="font2 body">{{$user->birth_date}}</td>
-                                            <td class="font2 body">{{$user->sex}}</td>
+                                            <td class="font2 body center"><img class="img"
+                                                                        src="{{'uploads/' . $user->picture}}"
+                                                                        alt=""></img></td>
+                                            <td class="font2 body center">{{$user->name}}</td>
+                                            <td class="font2 body center">{{$user->email}}</td>
+                                            <td class="font2 body center">{{$user->birth_date}}</td>
+                                            <td class="font2 body center">{{$user->sex}}</td>
                                             @if($user->getCourse['name'] === null)
-                                                <td class="font2 body">N/A</td>
+                                                <td class="font2 body center">N/A</td>
                                             @else
-                                                <td class="font2 body">{{$user->getCourse['name']}}</td>
+                                                <td class="font2 body center">{{$user->getCourse['name']}}</td>
                                             @endif
-                                            <td class="font2 body">{{$user->getSchooling->description}}</td>
-                                            <td class="font2 body">{{$user->getUserType->name}}</td>
+                                            <td class="font2 body center">{{$user->getSchooling->description}}</td>
+                                            <td class="font2 body center">{{$user->getUserType->name}}</td>
                                             @if($user->user_type == 1 || $user->user_type == 2)
                                                 {{--Delete--}}
                                                 <form action="/users/{{$user->id}}" method="post">
@@ -221,68 +221,68 @@
                             @endif
                         @elseif(!isset($details) and Auth::User()->getUserType->name === 'Teacher')
                             @if($usersTeacher->count() > 0)
-                                <table>
-                                    <tr class="table">
-                                        <th class="font">Pic</th>
-                                        <th class="font">Name</th>
-                                        <th class="font">Email</th>
-                                        <th class="font">Birth Date</th>
-                                        <th class="font">Sex</th>
-                                        <th class="font">Course</th>
-                                        <th class="font">Schooling</th>
-                                        <th class="font">Role</th>
-                                        <th class="font">Grade</th>
-                                    </tr>
+                            <table>
+                                <tr class="table">
+                                    <th class="font">Pic</th>
+                                    <th class="font">Name</th>
+                                    <th class="font">Email</th>
+                                    <th class="font">Birth Date</th>
+                                    <th class="font">Sex</th>
+                                    <th class="font">Course</th>
+                                    <th class="font">Schooling</th>
+                                    <th class="font">Role</th>
+                                    <th class="font">Grade</th>
+                                </tr>
+                            @endif
+                                @foreach($usersTeacher as $user)
+                                    @if ($user->course_id === Auth::User()->getCourse->id and $user->user_type === 1)
+                                        <div id="portfolio">
+                                            <tr class="table">
+                                                <td class="font2 body"><img src="{{'uploads/' . $user->picture}}"
+                                                                            alt=""
+                                                                            border=3 height="100" width="100"></img>
+                                                </td>
+                                                <td class="font2 body">{{$user->name}}</td>
+                                                <td class="font2 body">{{$user->email}}</td>
+                                                <td class="font2 body">{{$user->birth_date}}</td>
+                                                <td class="font2 body">{{$user->sex}}</td>
+                                                @if($user->getCourse['name'] === null)
+                                                    <td class="font2 body">N/A</td>
+                                                @else
+                                                    <td class="font2 body">{{$user->getCourse['name']}}</td>
+                                                @endif
+                                                <td class="font2 body">{{$user->getSchooling->description}}</td>
+                                                <td class="font2 body">{{$user->getUserType->name}}</td>
+                                                @php($count = 0)
+                                                @foreach($user->getGrade as $grade)
+                                                    @if($grade->course_id == Auth::User()->getCourse->id)
+                                                        @php($count = 1)
+                                                    @endif
+                                                @endforeach
+                                                @if($count == 0)
+                                                    <td class="font2 body">N/A</td>
+                                                    <div class="input-group">
+                                                        <form action="/grades/{{$user->id}}" method="post">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('PUT') }}
+                                                            <input type="hidden" name="user_id"
+                                                                   value="{{$user->id}}">
+                                                            <td class="font2 body2">
+                                                                <input style="color: black;" type="number"
+                                                                       name="grade" min="0" max="20">
+                                                                <input class="btn" type="submit"
+                                                                       value="Evaluate">
+                                                            </td>
+                                                        </form>
+                                                    </div>
+                                                @else
+                                                    <td class="font2 body">{{$grade->grade}}</td>
+                                                @endif
+                                            </tr>
+                                        </div>
                                     @endif
-                                    @foreach($usersTeacher as $user)
-                                        @if ($user->course_id === Auth::User()->getCourse->id and $user->user_type === 1)
-                                            <div id="portfolio">
-                                                <tr class="table">
-                                                    <td class="font2 body"><img src="{{'uploads/' . $user->picture}}"
-                                                                                alt=""
-                                                                                border=3 height="100" width="100"></img>
-                                                    </td>
-                                                    <td class="font2 body">{{$user->name}}</td>
-                                                    <td class="font2 body">{{$user->email}}</td>
-                                                    <td class="font2 body">{{$user->birth_date}}</td>
-                                                    <td class="font2 body">{{$user->sex}}</td>
-                                                    @if($user->getCourse['name'] === null)
-                                                        <td class="font2 body">N/A</td>
-                                                    @else
-                                                        <td class="font2 body">{{$user->getCourse['name']}}</td>
-                                                    @endif
-                                                    <td class="font2 body">{{$user->getSchooling->description}}</td>
-                                                    <td class="font2 body">{{$user->getUserType->name}}</td>
-                                                    @php($count = 0)
-                                                    @foreach($user->getGrade as $grade)
-                                                        @if($grade->course_id == Auth::User()->getCourse->id)
-                                                            @php($count = 1)
-                                                        @endif
-                                                    @endforeach
-                                                    @if($count == 0)
-                                                        <td class="font2 body">N/A</td>
-                                                        <div class="input-group">
-                                                            <form action="/grades/{{$user->id}}" method="post">
-                                                                {{ csrf_field() }}
-                                                                {{ method_field('PUT') }}
-                                                                <input type="hidden" name="user_id"
-                                                                       value="{{$user->id}}">
-                                                                <td class="font2 body2">
-                                                                    <input style="color: black;" type="number"
-                                                                           name="grade" min="0" max="20">
-                                                                    <input class="btn" type="submit"
-                                                                           value="Evaluate">
-                                                                </td>
-                                                            </form>
-                                                        </div>
-                                                    @else
-                                                        <td class="font2 body">{{$grade->grade}}</td>
-                                                    @endif
-                                                </tr>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </table>
+                                @endforeach
+                            </table>
                                 <br>
                                 @if($usersTeacher->count() > 0)
                                     <div>{{ $usersTeacher->links() }}</div>
