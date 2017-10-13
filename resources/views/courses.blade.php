@@ -91,7 +91,7 @@
                                     <td class="font2 body center">{{$course->start_date}}</td>
                                     <td class="font2 body center">
                                         @if($course->teacher_id == null)
-                                            N/A
+                                            <td class="font2 body">N/A</td>
                                         @else
                                             {{$course->getTeacher['name']}}
                                         @endif
