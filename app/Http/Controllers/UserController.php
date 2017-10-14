@@ -121,7 +121,6 @@ class UserController extends Controller
 
         $teacher->save();
 
-
         return redirect('users');
     }
 
@@ -140,12 +139,15 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //if user not logged in goes to error page
-        if (Auth::guest()) {
+        if (Auth::guest())
+        {
             return view('users_no_permission_error');
         }
 
+        /*Create a variable with a date equal to the current date minus 18 years*/
         $validator_date = Carbon::now()->subYears(18);
         $birth_date = strtotime($request->input('birthDate'));
+
         /*Validates all the data from the request*/
         $this->validate($request, array(
             'name' => 'required|string|max:20',
@@ -156,24 +158,29 @@ class UserController extends Controller
         ));
 
         /*In case user didn't upload any file*/
-        if ($request['picture'] === null || empty($request['picture'])) {
-            /*In case user didn't upload a file and also has the default picture*/
-            if (Auth::user()->picture === "default_f.jpeg" || Auth::user()->picture === "default_m.jpeg") {
+        if ($request['picture'] === null || empty($request['picture']))
+        {   /*In case user didn't upload a file and also has the default picture*/
+            if (Auth::user()->picture === "default_f.jpeg" || Auth::user()->picture === "default_m.jpeg")
+            {
                 /*In case user has male picture*/
-                if (Auth::user()->sex == 'Male') {
+                if (Auth::user()->sex == 'Male')
+                {
                     /*default male picture, for when the user does not upload a picture*/
                     $pic_name = 'default_m.jpeg';
                 } /*In case user has female picture*/
-                else {
+                else
+                {
                     /*default female picture, for when the user does not upload a picture*/
                     $pic_name = 'default_f.jpeg';
                 }
             } /*In case user didn't upload a file and also doesn't have the default picture*/
-            else {
+            else
+            {
                 $pic_name = Auth::user()->picture;
             }
         } /*In case user uploaded a file but his picture is the default we don't remove the file*/
-        else if (Auth::user()->picture === "default_f.jpeg" || Auth::user()->picture === "default_m.jpeg") {
+        else if (Auth::user()->picture === "default_f.jpeg" || Auth::user()->picture === "default_m.jpeg")
+        {
             $picture = $request['picture'];
 
             /*Name that will be given to the picture*/
@@ -185,7 +192,8 @@ class UserController extends Controller
             /*Moving the picture to the specified folder*/
             move_uploaded_file($picture, $new_path);
         } /*In case user uploaded a file but his picture isn't default we remove the older file*/
-        else {
+        else
+        {
             $picture = $request['picture'];
             /*path from the old picture so we can delete her*/
             $old_file_path = public_path() . '/uploads/' . Auth::user()->picture;
@@ -206,9 +214,12 @@ class UserController extends Controller
         $user = User::find($id);
 
         /*Checks if the request password is null or empty, if yes the password will keep the same, if not the password will change to the typed password*/
-        if ($request->input('password') === null || empty($request->input('password'))) {
+        if ($request->input('password') === null || empty($request->input('password')))
+        {
             $user->password = Auth::user()->password;
-        } else {
+        }
+        else
+        {
             $user->password = bcrypt($request->input('password'));
         }
         $user->name = $request->input('name');
@@ -216,6 +227,7 @@ class UserController extends Controller
         $user->picture = $pic_name;
         $user->birth_date = date('Y-m-d', $birth_date);
 
+        /*saves the user with all the input data*/
         $user->save();
 
         return redirect('manage');
@@ -239,7 +251,7 @@ class UserController extends Controller
 
             return redirect('users');
         }
-        if (User::find($id)->user_type == 1)
+        else if (User::find($id)->user_type == 1)
         {
             /*Deleting grades pertaining to the student*/
             DB::table('grades')->where('user_id','=', $id)->delete();
@@ -249,6 +261,5 @@ class UserController extends Controller
 
             return redirect('users');
         }
-
     }
 }

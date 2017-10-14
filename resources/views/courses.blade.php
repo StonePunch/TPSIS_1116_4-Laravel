@@ -95,7 +95,7 @@
                                     <td class="font2 body center">{{$course->start_date}}</td>
                                     <td class="font2 body center">
                                     @if($course->teacher_id == null)
-                                        <td class="font2 body">N/A</td>
+                                        <td class="font2 body center">N/A</td>
                                     @else
                                         {{$course->getTeacher['name']}}
                                     @endif
@@ -108,14 +108,13 @@
                                                     {{ csrf_field() }}
                                                     {{ method_field('PUT') }}
 
-                                                    <input
-                                                            type="hidden" name="course" value="{{$course->id}}">
+                                                    <input type="hidden" name="course" value="{{$course->id}}">
                                                     <td class="font2 body2">
                                                         <input class="btn" type="submit" value="Apply now">
                                                     </td>
                                                 </form>
                                             @else
-                                                <td class="font2 body">N/A</td>
+                                                <td class="font2 body center">N/A</td>
                                             @endif
                                         @else
                                             @if(Auth::user()->course_id === $course->id and Auth::User()->user_type === 1)
@@ -148,12 +147,12 @@
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
 
-                                            <input type="hidden" name="course" value="{{$course->id}}">
-                                            <td class="font2 body2 mytd">
-                                                <input class="btn" type="submit" value="Delete">
-                                            </td>
-                                        </form>
-                                    @endif
+                                                <input type="hidden" name="course" value="{{$course->id}}">
+                                                <td class="font2 body2 mytd">
+                                                    <input class="btn" type="submit" value="Delete">
+                                                </td>
+                                            </form>
+                                        @endif
                                     @endauth
                                 </tr>
                             </div>

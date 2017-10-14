@@ -31,7 +31,7 @@ class PageController extends Controller
 
     function admin()
     {
-        /*Check is user logged in*/
+        /*Check if user is logged in*/
         if(Auth::check())
         {
             /*Check if logged user is admin*/
@@ -39,7 +39,7 @@ class PageController extends Controller
             {
                 return redirect('users_no_permission_error');
             }
-            return view('admin');
+            return redirect('courses');
         }
         else
         {
@@ -49,6 +49,12 @@ class PageController extends Controller
 
     function register()
     {
+        /*Check if user is logged in*/
+        if(Auth::check())
+        {
+            return redirect('users_no_permission_error');
+        }
+
         /*gets all data from schooling to fill the input*/
         $schooling = Schooling::all();
 

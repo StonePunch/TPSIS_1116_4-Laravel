@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App;
 use App\Course;
+use App\Grade;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -162,6 +163,9 @@ class CourseController extends Controller
 
         /*Dissociating the students and the course*/
         User::where('course_id', '=', $id)->update(['course_id' => null]);
+
+        /*Dissociating grades on that course*/
+        Grade::where('course_id', '=', $id)->delete();
 
         /*Deleting the course*/
         DB::table('courses')->where('id', '=', $id)->delete();

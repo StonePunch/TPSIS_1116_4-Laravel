@@ -13,24 +13,27 @@ use Illuminate\Support\Facades\Input;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*Routes created by laravel*/
+Auth::routes();
 
+/*PageController routes*/
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'PageController@home');
 Route::get('/news', 'PageController@news');
 Route::get('/about', 'PageController@about');
 Route::get('/admin', 'PageController@admin');
 Route::get('/contacts', 'PageController@contacts');
+Route::get('/registry', 'PageController@register')->name('registry');
+Route::get('/manage', 'PageController@manage');
 Route::get('/users_no_permission_error', 'PageController@user_no_permission_error');
 
+/*Resource routes for list/create/update/delete*/
 Route::resource('users_courses', 'UserCourseController', ['only' => ['update','edit']]);
 Route::resource('grades', 'UserGradeController', ['only' => ['index','store','update','destroy']]);
 Route::resource('users', 'UserController', ['only' => ['index','create','store','update','edit','destroy']]);
 Route::resource('courses', 'CourseController', ['only' => ['index','create','store','update','edit','destroy']]);
 
-Auth::routes();
-
-Route::get('/registry', 'PageController@register')->name('registry');
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/manage', 'PageController@manage');
+/*Route for searching functionality*/
 Route::any('/search',function(){
 
     //if no user is logged in goes to error page

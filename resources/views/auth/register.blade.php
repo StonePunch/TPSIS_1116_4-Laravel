@@ -9,7 +9,7 @@
                     <div class="panel-body">
                         {{--Create a teacher as a admin--}}
                         @auth
-                            @if(Auth::User()->user_type )
+                            @if(Auth::User()->user_type === 3)
                             <form class="form-horizontal" method="POST" enctype="multipart/form-data"
                                   action="/users">
                                 {{ csrf_field() }}

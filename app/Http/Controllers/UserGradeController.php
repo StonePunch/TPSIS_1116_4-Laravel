@@ -18,12 +18,13 @@ class UserGradeController extends Controller
         }
         else if(Auth::User()->user_type === 3)
         {
-            $grades = Grade::all();
+            /*gets all grades that have comment*/
+            $grades = Grade::where('comment','<>','null')->get();
             return view('comments')->with('grades', $grades);
         }
 
         $Loggeduser = Auth::User()->id;
-
+        /*gets all grades from the logged student*/
         $grades = Grade::where('user_id','=',$Loggeduser)->get();
 
         //return view with all the grades from the logged user
@@ -43,7 +44,7 @@ class UserGradeController extends Controller
             'grade' => 'required|numeric|between:0,20',
         ));
 
-        /*Finds the student that the teacher attributed the grade*/
+        /*Finds the student that the teacher gave the grade*/
         $user = User::find($request->get('user_id'));
 
         $grade = new Grade();
@@ -64,11 +65,11 @@ class UserGradeController extends Controller
         {
             return view('users_no_permission_error');
         }
-
+        /*fins the grade the user wants to comment*/
         $grade = Grade::find($request->get('grade_id'));
         $grade->comment = $request->get('comment');
 
-        /*Creates a new record of grade for the student with the course and the teacher associated*/
+        /*Creates a new comment in a specific grade*/
         $grade->save();
 
         return redirect('grades');
@@ -81,27 +82,13 @@ class UserGradeController extends Controller
         {
             return view('users_no_permission_error');
         }
+        /*gets the grade where the comment must be deleted*/
+        $grade = Grade::find($id);
 
-        if (User::find($id)->user_type == 2)
-        {
-            /*Dissociating the teacher and the course*/
-            Course::where('teacher_id', '=', $id)->update(['teacher_id' => null]);
+        /*Deleting the comment*/
+        $grade->comment = null;
+        $grade->save();
 
-            /*Deleting the user*/
-            DB::table('users')->where('id','=',$id)->delete();
-
-            return redirect('users');
-        }
-        if (User::find($id)->user_type == 1)
-        {
-            /*Deleting grades pertaining to the student*/
-            DB::table('grades')->where('user_id','=', $id)->delete();
-
-            /*Deleting the user*/
-            DB::table('users')->where('id','=',$id)->delete();
-
-            return redirect('users');
-        }
-
+        return redirect('grades');
     }
 }

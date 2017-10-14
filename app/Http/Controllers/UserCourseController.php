@@ -18,7 +18,6 @@ class UserCourseController extends Controller
         }
 
         $user = User::find($id);
-
         $user->course_id = $request->course;
 
         $user->save();
