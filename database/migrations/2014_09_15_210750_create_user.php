@@ -25,6 +25,7 @@ class CreateUser extends Migration
             $table->string('sex');
             $table->integer('schooling')->unsigned();
             $table->integer('course_id')->unsigned()->nullable();
+            $table->boolean('status');
             $table->rememberToken();
             $table->timestamps();
         });

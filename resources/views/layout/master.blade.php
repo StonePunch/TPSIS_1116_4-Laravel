@@ -20,11 +20,9 @@
     <!-- Owl Carousel Assets -->
     <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css"/>
-    <link rel="stylesheet" href="css/login.css"/>
     <link rel="stylesheet" href="css/datatable.css"/>
     <link rel="stylesheet" href="css/search.css"/>
     <link rel="stylesheet" href="css/styles.css"/>
-    <link rel="stylesheet" href="css/login.css"/>
     <link rel="stylesheet" href="css/number.css"/>
     <!-- Font Awesome -->
     <link href="font/css/font-awesome.min.css" rel="stylesheet">
@@ -99,9 +97,9 @@
                         {{--User logged in--}}
                         @if(\Illuminate\Support\Facades\Auth::user()->user_type == 3)
                             {{--Admin section--}}
-                            <li class="active" id="firstLink"><a href="" class="scroll-link">Courses</a></li>
+                            <li class="active" id="firstLink"><a href="/courses" class="scroll-link">Courses</a></li>
                             <li><a href="/users" class="scroll-link">Users</a></li>
-                            <li><a href="/grades" class="scroll-link">Comments</a></li>
+                            <li><a href="/grades" class="scroll-link">Grades</a></li>
 
                             {{--Common section--}}
                             <li class="dropdown login">
@@ -129,6 +127,7 @@
                             <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                             <li><a href="/courses" class="scroll-link">Courses</a></li>
                             <li><a href="/users" class="scroll-link">Users</a></li>
+                            <li><a href="/grades" class="scroll-link">Comments</a></li>
                             <li><a href="/news" class="scroll-link">News</a></li>
                             <li><a href="/about" class="scroll-link">About</a></li>
                             <li><a href="/contacts" class="scroll-link">Contacts</a></li>

@@ -79,15 +79,31 @@
                                         <td class="font2 body center">{{$grade->getCourse->name}}</td>
                                         <td class="font2 body center">{{$grade->getCourse->getTeacher->name}}</td>
                                         <td class="font2 body center">{{$grade->grade}}</td>
-                                        <td class="font2 body center">{{$grade->comment}}</td>
-                                        <form action="/grades/{{$grade->id}}" method="post">
-                                            {{csrf_field()}}
-                                            {{method_field('DELETE')}}
+                                        @if($grade->comment !== null)
+                                            <td class="font2 body center">{{$grade->comment}}</td>
+                                        @else
+                                            <td class="font2 body center">N/A</td>
+                                        @endif
+                                        @if(Auth::User()->user_type == 2)
+                                            <form action="/grades/{{$grade->id}}" method="post">
+                                                {{csrf_field()}}
+                                                {{method_field('DELETE')}}
 
-                                            <td class="font2 body2 mytd">
-                                                <input class="btn" type="submit" value="Delete">
-                                            </td>
-                                        </form>
+                                                <td class="font2 body2 mytd">
+                                                    <input class="btn" type="submit" value="Delete Comment">
+                                                </td>
+                                            </form>
+                                        @endif
+                                        @if(Auth::User()->user_type == 3)
+                                            <form action="/grades/{{$grade->id}}" method="post">
+                                                {{csrf_field()}}
+                                                {{method_field('DELETE')}}
+
+                                                <td class="font2 body2 mytd">
+                                                    <input class="btn" type="submit" value="Delete Grade & Comment">
+                                                </td>
+                                            </form>
+                                        @endif
                                     </tr>
                                 </div>
                             @endforeach

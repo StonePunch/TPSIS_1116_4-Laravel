@@ -170,7 +170,28 @@
                                                 <td class="font2 body center">{{$usersTeacher->getCourse['name']}}</td>
                                             @endif
                                             <td class="font2 body center">{{$usersTeacher->getSchooling->description}}</td>
-                                            <td class="font2 body center">{{$usersTeacher->getUserType->name}}</td>
+                                            @php($count = 0)
+                                            @foreach($usersTeacher->getGrade as $grade)
+                                                @if($grade->course_id == Auth::User()->getCourse->id and $grade->grade !== null)
+                                                    @php($count = 1)
+                                                @endif
+                                            @endforeach
+                                            @if($count == 0)
+                                                <td class="font2 body center">N/A</td>
+                                                <div class="input-group">
+                                                    <form action="/grades" method="post">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('POST') }}
+                                                        <input type="hidden" name="user_id" value="{{$usersTeacher->id}}">
+                                                        <td class="font2 body2 center">
+                                                            <input style="color: black; width: 80%" type="number" name="grade" min="0" max="20">
+                                                            <input style="margin-top: 15%" class="btn" type="submit" value="Evaluate">
+                                                        </td>
+                                                    </form>
+                                                </div>
+                                            @else
+                                                <td class="font2 body center">{{$grade->grade}}</td>
+                                            @endif
                                         </tr>
                                     </div>
                                 @endif
@@ -270,7 +291,7 @@
                                                     <td class="font2 body center">{{$user->getSchooling->description}}</td>
                                                     @php($count = 0)
                                                     @foreach($user->getGrade as $grade)
-                                                        @if($grade->course_id == Auth::User()->getCourse->id)
+                                                        @if($grade->course_id == Auth::User()->getCourse->id and $grade->grade !== null)
                                                             @php($count = 1)
                                                         @endif
                                                     @endforeach

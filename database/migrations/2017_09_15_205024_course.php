@@ -20,6 +20,7 @@ class Course extends Migration
             $table->integer('duration');
             $table->date('start_date');
             $table->integer('teacher_id')->unsigned()->nullable();
+            $table->boolean('status');
             $table->timestamps();
         });
 

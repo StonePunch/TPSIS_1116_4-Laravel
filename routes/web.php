@@ -47,7 +47,7 @@ Route::any('/search',function(){
         $search = Input::get ( 'search' );
 
         /*gets all users from database that has the name started by what admin typed in search bar*/
-        $usersAdmin = User::where('name','LIKE',$search.'%')->get();
+        $usersAdmin = User::where([['name','LIKE',$search.'%'],['status','=',true]])->get();
         //if there is at least one user to show
         if (count($usersAdmin) > 0)
         {
@@ -68,6 +68,7 @@ Route::any('/search',function(){
             ['name', 'LIKE', $search .'%'],
             ['course_id', '=', $authCourse],
             ['id', '!=', $authId],
+            ['status','=',true]
         ])->get();
 
         //if there is at least one user show the user
