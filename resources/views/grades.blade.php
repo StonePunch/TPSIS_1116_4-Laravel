@@ -6,13 +6,13 @@
                 <br>
                 @auth
                     @if(Auth::User()->user_type === 1)
-                        <h2>My Grades</h2>
+                        <h2 style="font-family: 'Montserrat Light';">My Grades</h2>
                     @endif
                 @endauth
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <style>
+                        <style>
                         table {
                             font-family: arial, sans-serif;
                             border-collapse: collapse;
@@ -28,7 +28,42 @@
                         tr:nth-child(even) {
                             background-color: #e9e9e9;
                         }
+                        .mytd{
+                            border: none;
+                        }
+                        .button {
+                            display: inline-block;
+                            text-align: center;
+                            vertical-align: middle;
+                            padding: 7px 20px;
+                            border: 1px solid #000000;
+                            border-radius: 8px;
+                            background: #ffdd00;
+                            background: -webkit-gradient(linear, left top, left bottom, from(#ffdd00), to(#ffdd00));
+                            background: -moz-linear-gradient(top, #ffdd00, #ffdd00);
+                            background: linear-gradient(to bottom, #ffdd00, #ffdd00);
+                            font: normal normal normal 18px arial;
+                            color: #000000;
+                            text-decoration: none;
+                            margin-bottom: 2%;
+                        }
+                        .button:hover,
+                        .button:focus {
+                            background: #ffff00;
+                            background: -webkit-gradient(linear, left top, left bottom, from(#ffff00), to(#ffff00));
+                            background: -moz-linear-gradient(top, #ffff00, #ffff00);
+                            background: linear-gradient(to bottom, #ffff00, #ffff00);
+                            color: #000000;
+                            text-decoration: none;
+                        }
+                        .button:active {
+                            background: #998500;
+                            background: -webkit-gradient(linear, left top, left bottom, from(#998500), to(#ffdd00));
+                            background: -moz-linear-gradient(top, #998500, #ffdd00);
+                            background: linear-gradient(to bottom, #998500, #ffdd00);
+                        }
                     </style>
+
 
                     @if(count($grades) > 0)
                         <table>
@@ -53,11 +88,10 @@
                                             <form action="/grades/{{Auth::user()->id}}" method="post">
                                                 {{ csrf_field() }}
                                                 {{ method_field('PUT') }}
-
                                                 <input type="hidden" name="grade_id" value="{{$grade->id}}">
                                                 <td class="font2 body2 center">
                                                     <input style="color: black;" type="text" name="comment" value="">
-                                                    <input class="btn" type="submit" value="comment">
+                                                    <input style="margin-top: 5%;" class="btn" type="submit" value="Comment">
                                                 </td>
                                             </form>
                                         @else

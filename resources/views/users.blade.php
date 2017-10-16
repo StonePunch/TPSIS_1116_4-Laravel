@@ -1,6 +1,7 @@
 @extends('layout.master');
 @section('content')
     <section id="work" class="page-section page">
+        <br/>
         <div class="container text-center">
             <br/><br/><br/><br/>
             <!-- Search Bar Starts -->

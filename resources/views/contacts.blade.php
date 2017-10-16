@@ -1,4 +1,4 @@
-@extends('layout.master');
+@extends('layout.master')
 @section('content')
     <body class="row">
     <div class="col-md-12">
@@ -60,8 +60,6 @@
                         <div class="heading text-center">
                             <!-- Heading -->
                             <h2 style="color: black">Contact Us</h2>
-                            <p style="color: black">There are many variations of passages of Lorem Ipsum available,
-                                but the majority have suffered.</p>
                         </div>
                     </div>
                     <div class="row mrgn30">
@@ -103,5 +101,5 @@
             </div>
         </section>
     </div>
-    </div>
+    </body>
 @stop

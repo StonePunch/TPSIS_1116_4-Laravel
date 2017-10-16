@@ -84,6 +84,7 @@
             <div id="main-nav" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav" id="mainNav">
                     @guest
+                        @if(Request::is('/'))
                         {{--User not logged in--}}
                         <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                         <li><a href="/courses" class="scroll-link">Courses</a></li>
@@ -92,6 +93,7 @@
                         <li><a href="/contacts" class="scroll-link">Contacts</a></li>
                         <li class="login"><a href="{{ route('login') }}">Login</a></li>
                         <li class="login"><a href="{{ route('registry') }}">Register</a></li>
+                        @endif
                     @endguest
                     @auth
                         {{--User logged in--}}
@@ -103,11 +105,11 @@
 
                             {{--Common section--}}
                             <li class="dropdown login">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                <a style="position: absolute; margin-left: 40px; width: 120px; display: block" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-                                <ul class="dropdown-menu" role="menu">
+                                <ul style="margin-top: 80px; margin-left: 120px" class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/manage" class="scroll-link">Profile</a>
                                         <a href="{{ route('logout') }}"
@@ -122,7 +124,7 @@
                                 </ul>
                             </li>
                         @elseif(\Illuminate\Support\Facades\Auth::user()->user_type == 2)
-                            {{--Techer section--}}
+                            {{--Teacher section--}}
 
                             <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                             <li><a href="/courses" class="scroll-link">Courses</a></li>
@@ -134,11 +136,11 @@
 
                             {{--Common section--}}
                             <li class="dropdown login">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                <a style="position: absolute; margin-left: 40px; width: 120px; display: block" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-                                <ul class="dropdown-menu" role="menu">
+                                <ul style="margin-top: 80px; margin-left: 120px" class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/manage" class="scroll-link">Profile</a>
                                         <a href="{{ route('logout') }}"
@@ -163,11 +165,11 @@
 
                             {{--Common section--}}
                             <li class="dropdown login">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                <a style="position: absolute; margin-left: 40px; width: 120px; display: block;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-                                <ul class="dropdown-menu" role="menu">
+                                <ul style="margin-top: 80px; margin-left: 120px" class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/manage" class="scroll-link">Profile</a>
                                         <a href="{{ route('logout') }}"
