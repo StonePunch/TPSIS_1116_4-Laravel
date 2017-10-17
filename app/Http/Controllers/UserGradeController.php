@@ -26,8 +26,22 @@ class UserGradeController extends Controller
         }
         else if (Auth::User()->user_type === 3)
         {
-            /*gets all grades that have comment*/
-            $grades = Grade::where('grade', '<>', 'null')->get();
+            /*Gets all grades that have a comment and that belong to a student still in the course the grade pertains too*/
+            $grades_all = Grade::all();
+            $grades_notnull = $grades_all->where('grade', '<>', 'null');
+
+
+
+            foreach ($grades_notnull as $grade)
+            {
+                $user = User::find($grade->user_id);
+                if ($user->course_id == $grade->course_id)
+                {
+
+                }
+            }
+            $grades = Grade::where([['grade', '<>', 'null'],['course_id','=',User::where('id','=',)->course_id]])->get();
+            dd($grades);
             return view('comments')->with('grades', $grades);
         }
 
