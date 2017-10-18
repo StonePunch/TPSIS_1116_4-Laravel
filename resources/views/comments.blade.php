@@ -2,9 +2,15 @@
 @section('content')
     <section id="work" class="page-section page">
         <div class="container text-center">
-        <br/><br/>
+            <br/><br/>
             <div class="heading">
-                <h2 style="font-family: 'Montserrat Light'">All comments</h2>
+                <h2 style="font-family: 'Montserrat Light'">
+                    @if(Auth::User()->user_type === 3)
+                        All grades!
+                    @else
+                        All comments!
+                    @endif
+                </h2>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -65,9 +71,15 @@
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
 
-                                                <td class="font2 body2 mytd">
-                                                    <input class="btn" type="submit" value="Delete Grade & Comment">
-                                                </td>
+                                                @if($grade->comment !== null)
+                                                    <td class="font2 body2 mytd">
+                                                        <input class="btn" type="submit" value="Delete Grade & Comment">
+                                                    </td>
+                                                @else
+                                                    <td class="font2 body2 mytd">
+                                                        <input class="btn" type="submit" value="Delete Grade">
+                                                    </td>
+                                                @endif
                                             </form>
                                         @endif
                                     </tr>
@@ -75,7 +87,11 @@
                             @endforeach
                         </table>
                     @else
-                        There are no comments to show!
+                        @if(Auth::User()->user_type === 3)
+                            There are no grades to show!
+                        @else
+                            There are no comments to show!
+                        @endif
                     @endif
                 </div>
             </div>

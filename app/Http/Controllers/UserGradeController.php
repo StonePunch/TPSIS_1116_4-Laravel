@@ -26,22 +26,22 @@ class UserGradeController extends Controller
         }
         else if (Auth::User()->user_type === 3)
         {
-            /*Gets all grades that have a comment and that belong to a student still in the course the grade pertains too*/
-            $grades_all = Grade::all();
-            $grades_notnull = $grades_all->where('grade', '<>', 'null');
+            /*Gets all the grades that have a value*/
+            $grades_notnull = Grade::where('grade', '<>', 'null')->get();
 
+            /*Initializing the variable that will be passed to the view*/
+            $grades = array();
 
-
+            /*Filters through the grades to make sure the user, to which the grade belongs to, is still in the same course the grade pertains too*/
             foreach ($grades_notnull as $grade)
             {
                 $user = User::find($grade->user_id);
-                if ($user->course_id == $grade->course_id)
+                if ($user->course_id === $grade->course_id)
                 {
-
+                    array_push($grades,$grade);
                 }
             }
-            $grades = Grade::where([['grade', '<>', 'null'],['course_id','=',User::where('id','=',)->course_id]])->get();
-            dd($grades);
+            //$grades = Grade::where([['grade', '<>', 'null'],['course_id','=',User::where('id','=','user_id')->course_id]])->get(); TODO: Ask about this
             return view('comments')->with('grades', $grades);
         }
 
@@ -75,13 +75,11 @@ class UserGradeController extends Controller
             return redirect('users');
         }
 
+        /*Creates a new grade record and associates it with the student and the course*/
         $grade = new Grade();
-
         $grade->grade = $request->grade;
         $grade->user_id = $user->id;
         $grade->course_id = $user->course_id;
-
-        /*Creates a new record of grade for the student with the course and the teacher associated*/
         $grade->save();
 
         return redirect('users');
@@ -107,14 +105,14 @@ class UserGradeController extends Controller
     {
         /*Check if there is a logged user and if he is authorized*/
         if (Auth::User()->user_type == 3) {
-            /*If the the logged in user is the admin, he is requesting the deletion of the grade*/
+            /*If the the logged in user is the admin, he is requesting the deletion of the grade and the comment*/
 
             DB::table('grades')->where('id', '=', $id)->update(['grade' => null]);
             DB::table('grades')->where('id', '=', $id)->update(['comment' => null]);
 
             return redirect('grades');
         } else if (Auth::User()->user_type == 2) {
-            /*If the the logged in user is a teacher, he is requesting the deletion of a comment*/
+            /*If the the logged in user is a teacher, he is requesting the deletion of the comment*/
 
             $grade = Grade::find($id);
             $grade->comment = null;
