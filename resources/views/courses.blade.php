@@ -93,11 +93,10 @@
                                     <td class="font2 body center">{{$course->description}}</td>
                                     <td class="font2 body center">{{$course->duration . ' hours'}}</td>
                                     <td class="font2 body center">{{$course->start_date}}</td>
-                                    <td class="font2 body center">
                                     @if($course->teacher_id == null)
                                         <td class="font2 body center">N/A</td>
                                     @else
-                                        {{$course->getTeacher['name']}}
+                                        <td class="font2 body center">{{$course->getTeacher['name']}}</td>
                                     @endif
                                     @auth
                                         {{--Student--}}

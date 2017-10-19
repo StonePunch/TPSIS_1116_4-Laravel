@@ -85,23 +85,72 @@
                 <ul class="nav navbar-nav" id="mainNav">
                     @guest
                         {{--User not logged in--}}
-                        <li class="active" id="firstLink"><a
-                                    style="background-color: rgba(0, 0, 0, 0.75); background: transparent" href="/"
-                                    class="scroll-link">Home</a></li>
-                        <li><a href="/courses" class="scroll-link">Courses</a></li>
-                        <li><a href="/news" class="scroll-link">News</a></li>
-                        <li><a href="/about" class="scroll-link">About</a></li>
-                        <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                        <li class="login"><a style="color: #FFDF00" href="{{ route('login') }}">Login</a></li>
+                        @if(Request::is('/'))
+                            {{--Home nav icon selected--}}
+                            <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
+                            <li><a href="/courses" class="scroll-link">Courses</a></li>
+                            <li><a href="/news" class="scroll-link">News</a></li>
+                            <li><a href="/about" class="scroll-link">About</a></li>
+                            <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                        @endif
+                        @if(Request::is('courses'))
+                            {{--Courses nav icon selected--}}
+                            <li id="firstLink"><a href="/" class="scroll-link">Home</a></li>
+                            <li class="active"><a href="/courses" class="scroll-link">Courses</a></li>
+                            <li><a href="/news" class="scroll-link">News</a></li>
+                            <li><a href="/about" class="scroll-link">About</a></li>
+                            <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                        @endif
+                        @if(Request::is('news'))
+                            {{--News nav icon selected--}}
+                            <li id="firstLink"><a href="/" class="scroll-link">Home</a></li>
+                            <li><a href="/courses" class="scroll-link">Courses</a></li>
+                            <li class="active"><a href="/news" class="scroll-link">News</a></li>
+                            <li><a href="/about" class="scroll-link">About</a></li>
+                            <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                        @endif
+                        @if(Request::is('about'))
+                            {{--About nav icon selected--}}
+                            <li id="firstLink"><a href="/" class="scroll-link">Home</a></li>
+                            <li><a href="/courses" class="scroll-link">Courses</a></li>
+                            <li><a href="/news" class="scroll-link">News</a></li>
+                            <li class="active"><a href="/about" class="scroll-link">About</a></li>
+                            <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                        @endif
+                        @if(Request::is('contacts'))
+                            {{--Contacts nav icon selected--}}
+                            <li id="firstLink"><a href="/" class="scroll-link">Home</a></li>
+                            <li><a href="/courses" class="scroll-link">Courses</a></li>
+                            <li><a href="/news" class="scroll-link">News</a></li>
+                            <li><a href="/about" class="scroll-link">About</a></li>
+                            <li class="active"><a href="/contacts" class="scroll-link">Contacts</a></li>
+                        @endif
+                        <li class="login"><a href="{{ route('login') }}">Login</a></li>
                         <li class="login"><a href="{{ route('registry') }}">Register</a></li>
                     @endguest
                     @auth
                         {{--User logged in--}}
                         @if(\Illuminate\Support\Facades\Auth::user()->user_type == 3)
                             {{--Admin section--}}
-                            <li class="active" id="firstLink"><a href="/courses" class="scroll-link">Courses</a></li>
-                            <li><a href="/users" class="scroll-link">Users</a></li>
-                            <li><a href="/grades" class="scroll-link">Grades</a></li>
+                            @if(Request::is('courses'))
+                                {{--Courses nav icon selected--}}
+                                <li class="active" id="firstLink"><a href="/courses" class="scroll-link">Courses</a>
+                                </li>
+                                <li><a href="/users" class="scroll-link">Users</a></li>
+                                <li><a href="/grades" class="scroll-link">Grades</a></li>
+                            @endif
+                            @if(Request::is('users'))
+                                {{--Users nav icon selected--}}
+                                <li id="firstLink"><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li class="active"><a href="/users" class="scroll-link">Users</a></li>
+                                <li><a href="/grades" class="scroll-link">Grades</a></li>
+                            @endif
+                            @if(Request::is('grades'))
+                                {{--Grades nav icon selected--}}
+                                <li id="firstLink"><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/users" class="scroll-link">Users</a></li>
+                                <li class="active"><a href="/grades" class="scroll-link">Grades</a></li>
+                            @endif
 
                             {{--Common section--}}
                             <li class="dropdown login">
@@ -126,16 +175,76 @@
                             </li>
                         @elseif(\Illuminate\Support\Facades\Auth::user()->user_type == 2)
                             {{--Teacher section--}}
-
-                            <li class="active" id="firstLink"><a
-                                        style="background-color: rgba(0, 0, 0, 0.75); background: transparent" href="/"
-                                        class="scroll-link">Home</a></li>
-                            <li><a href="/courses" class="scroll-link">Courses</a></li>
-                            <li><a href="/users" class="scroll-link">Users</a></li>
-                            <li><a href="/grades" class="scroll-link">Comments</a></li>
-                            <li><a href="/news" class="scroll-link">News</a></li>
-                            <li><a href="/about" class="scroll-link">About</a></li>
-                            <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @if(Request::is('home'))
+                                {{--Home nav icon selected--}}
+                                <li class="active" id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/users" class="scroll-link">Users</a></li>
+                                <li><a href="/grades" class="scroll-link">Comments</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
+                            @if(Request::is('courses'))
+                                {{--Courses nav icon selected--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li class="active"><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/users" class="scroll-link">Users</a></li>
+                                <li><a href="/grades" class="scroll-link">Comments</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
+                            @if(Request::is('users'))
+                                {{--Users nav icon selected--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li class="active"><a href="/users" class="scroll-link">Users</a></li>
+                                <li><a href="/grades" class="scroll-link">Comments</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
+                            @if(Request::is('grades'))
+                                {{--Grades nav icon selected--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/users" class="scroll-link">Users</a></li>
+                                <li class="active"><a href="/grades" class="scroll-link">Comments</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
+                            @if(Request::is('news'))
+                                {{--News nav icon selected--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/users" class="scroll-link">Users</a></li>
+                                <li><a href="/grades" class="scroll-link">Comments</a></li>
+                                <li class="active"><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
+                            @if(Request::is('about'))
+                                {{--About nav icon selected--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/users" class="scroll-link">Users</a></li>
+                                <li><a href="/grades" class="scroll-link">Comments</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li class="active"><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
+                            @if(Request::is('contacts'))
+                                {{--Contacts nav icon selected--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/users" class="scroll-link">Users</a></li>
+                                <li><a href="/grades" class="scroll-link">Comments</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li class="active"><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
 
                             {{--Common section--}}
                             <li class="dropdown">
@@ -158,19 +267,64 @@
                                     </li>
                                 </ul>
                             </li>
-                        @else
-                            {{--Student section--}}
-                            <li class="active" id="firstLink"><a
-                                        style="background-color: rgba(0, 0, 0, 0.75); background: transparent" href="/"
-                                        class="scroll-link">Home</a></li>
-                            <li><a href="/courses" class="scroll-link">Courses</a></li>
-                            <li><a href="/grades" class="scroll-link">Grades</a></li>
-                            <li><a href="/news" class="scroll-link">News</a></li>
-                            <li><a href="/about" class="scroll-link">About</a></li>
-                            <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                        @elseif(\Illuminate\Support\Facades\Auth::user()->user_type == 1)
+                            {{--User section--}}
+                            @if(Request::is('home'))
+                                {{--Home nav icon selected--}}
+                                <li class="active" id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/grades" class="scroll-link">Grades</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
+                            @if(Request::is('courses'))
+                                {{--Courses nav icon selected--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li class="active"><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/grades" class="scroll-link">Grades</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
+                            @if(Request::is('grades'))
+                                {{--Grades nav icon selected--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li class="active"><a href="/grades" class="scroll-link">Grades</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
+                            @if(Request::is('news'))
+                                {{--News nav icon selected--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/grades" class="scroll-link">Grades</a></li>
+                                <li class="active"><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
+                            @if(Request::is('about'))
+                                {{--About nav icon selected--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/grades" class="scroll-link">Grades</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li class="active"><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
+                            @if(Request::is('contacts'))
+                                {{--Contacts nav icon selected--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/grades" class="scroll-link">Grades</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li class="active"><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @endif
 
-                            {{--Common section--}}
-
+                            {{--Profile & Logout--}}
                             <li class="dropdown login">
                                 <a style="position: absolute; margin-left: 40px; width: 150px; display: block; background: transparent; color: #FFDF00"
                                    href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"

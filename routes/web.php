@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Input;
 Auth::routes();
 
 /*PageController routes*/
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'PageController@home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/news', 'PageController@news');
 Route::get('/about', 'PageController@about');
 Route::get('/admin', 'PageController@admin');

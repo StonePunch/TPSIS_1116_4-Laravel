@@ -248,9 +248,6 @@
                                             @endif
                                             <td class="font2 body center">{{$user->getSchooling->description}}</td>
                                             <td class="font2 body center">{{$user->getUserType->name}}</td>
-                                            @if($user->user_type == 1 && Count(\App\Grade::where([['user_id','=',$user->id],['','!=',null]])->get()) == 0)
-                                                {{--TODO: finish this, edit grade--}}
-                                            @endif
                                             @if($user->user_type == 1 || $user->user_type == 2)
                                                 {{--Delete--}}
                                                 <form action="/users/{{$user->id}}" method="post">
@@ -337,8 +334,10 @@
                                 <br>
                                 @if($usersTeacher->count() > 0)
                                     <div>{{ $usersTeacher->links() }}</div>
+                                @elseif ($usersTeacher->count() == 0 and Auth::User()->getCourse == null)
+                                    <p>You are not teaching any course!</p>
                                 @else
-                                    <p>User doesn't exist!</p>
+                                    <p>There are no students applied to {{Auth::User()->getCourse->name}} course!</p>
                                 @endif
                             @elseif(!isset($details) and Auth::User()->user_type === 1)
                                 <script>window.location.href = "http://localhost:8000/users_no_permission_error";</script>
