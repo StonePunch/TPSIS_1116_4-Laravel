@@ -86,13 +86,33 @@
                                 </div>
                             @endforeach
                         </table>
+                        <table style="visibility: hidden">
+                            <tr style="height: 156px" class="table">
+                                <th class="font">Course</th>
+                                <th class="font">Duration</th>
+                                <th class="font">Starting Date</th>
+                                <th class="font">Teacher</th>
+                                <th class="font">Grade</th>
+                                <th class="font">Comment</th>
+                            </tr>
+                        </table>
                     @else
                         @if(Auth::User()->user_type === 3)
-                            There are no grades to show!
+                            <h3 style="font-family: 'Montserrat Light'; color: white; text-decoration: underline; text-decoration-color: #FFDF00">There are no grades to show!</h3>
                         @else
                             There are no comments to show!
                         @endif
                     @endif
+                    <table style="visibility: hidden">
+                        <tr style="height: 134px" class="table">
+                            <th class="font">Course</th>
+                            <th class="font">Duration</th>
+                            <th class="font">Starting Date</th>
+                            <th class="font">Teacher</th>
+                            <th class="font">Grade</th>
+                            <th class="font">Comment</th>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

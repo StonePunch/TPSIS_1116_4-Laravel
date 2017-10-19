@@ -163,14 +163,14 @@
                                 <li><a href="/grades" class="scroll-link">Grades</a></li>
                             @endif
 
-                            {{--Profile & Logout--}}
+                            {{--Common section--}}
                             <li class="dropdown login">
-                                <a style="position: absolute; margin-left: 40px; width: 120px; display: block" href="#"
-                                   class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                <a style="position: absolute; margin-left: 400px; width: 120px; display: block; background: transparent; color: #FFDF00"
+                                   href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-                                <ul style="margin-top: 80px; margin-left: 120px" class="dropdown-menu" role="menu">
+                                <ul style="margin-top: 80px; margin-left: 400px" class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/manage" class="scroll-link">Profile</a>
                                         <a href="{{ route('logout') }}"
@@ -269,14 +269,14 @@
                                 <li><a href="/contacts" class="scroll-link">Contacts</a></li>
                             @endif
 
-                            {{--Profile & Logout--}}
-                            <li class="dropdown login">
-                                <a style="position: absolute; margin-left: 40px; width: 120px; display: block" href="#"
-                                   class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            {{--Common section--}}
+                            <li class="dropdown">
+                                <a style="position: absolute; margin-left: 380px; width: 150px; display: block; background: transparent; color: #FFDF00"
+                                   href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-                                <ul style="margin-top: 80px; margin-left: 120px" class="dropdown-menu" role="menu">
+                                <ul style="margin-top: 80px; margin-left: 380px;" class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/manage" class="scroll-link">Profile</a>
                                         <a href="{{ route('logout') }}"
@@ -352,12 +352,13 @@
 
                             {{--Profile & Logout--}}
                             <li class="dropdown login">
-                                <a style="position: absolute; margin-left: 40px; width: 120px; display: block;" href="#"
-                                   class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                <a style="position: absolute; margin-left: 40px; width: 150px; display: block; background: transparent; color: #FFDF00"
+                                   href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-                                <ul style="margin-top: 80px; margin-left: 120px" class="dropdown-menu" role="menu">
+
+                                <ul style="margin-top: 80px; margin-left: 40px;" class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/manage" class="scroll-link">Profile</a>
                                         <a href="{{ route('logout') }}"
@@ -378,6 +379,7 @@
         </nav>
     </div>
 </header>
+
 @section('content')
     {{--Page content goes here--}}
 @show
@@ -400,13 +402,12 @@
             <div class="col-md-3">
                 <div class="col">
                     <h4 style="color: white">Newsletter</h4>
-                    <p style="color: white">Subscribe to our newsletter to stay up to date with information regarding
-                        new courses!</p>
-                    <form class="form-inline">
+                    <p style="color: white">Subscreva à nossa newsletter para ficar a par das nossas novidades!</p>
+                    <form class="form-inline" action="mailto:klumpman7@gmail.com" method="post" enctype="text/plain" >
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="email...">
                             <span class="input-group-btn">
-                                    <button class="btn" type="button">Validate</button>
+                                    <button class="btn" type="submit">Validate</button>
                                 </span>
                         </div>
                     </form>
@@ -414,7 +415,7 @@
             </div>
             <div class="col-md-3">
                 <div class="col col-social-icons">
-                    <h4 style="color: white">Siga-nos</h4>
+                    <h4 style="color: white">Follow us:</h4>
                     <a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
                     <a href="https://plus.google.com"><i class="fa fa-google-plus"></i></a>
                     <a href="https://youtube.com"><i class="fa fa-youtube-play"></i></a>
@@ -425,6 +426,7 @@
                     <a href="https://pinterest.com"><i class="fa fa-pinterest"></i></a>
                 </div>
             </div>
+
             <div class="col-md-3">
                 <div class="col">
                     <h4 style="color: white">Latest News</h4>
@@ -448,7 +450,7 @@
         <!-- / .row -->
     </div>
 </section>
-<a href="#top" class="topHome"><i class="fa fa-chevron-up fa-2x"></i></a>
+<a href="#top" class="topHome"><i style="color: #FFDF00; text-shadow: 2px 2px black" class="fa fa-chevron-up fa-2x"></i></a>
 <!--[if lte IE 8]>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><![endif]-->
 <script src="/public/js/modernizr-latest.js"></script>

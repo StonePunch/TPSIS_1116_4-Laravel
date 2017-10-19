@@ -116,6 +116,7 @@ class RegisterController extends Controller
             'schooling' => $data['schooling'],
             'sex' => $data['sex'],
             'user_type' => '1',
+            /*'status' => true, TODO: Ask about this*/
             'picture' => $pic_name
         ]);
     }

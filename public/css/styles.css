@@ -403,6 +403,10 @@ a:hover {
 .logo:hover {
 	color: #5A5A5A;
 }
+.home{
+	text-decoration: underline;
+	text-decoration-color: yellow; !important;
+}
 .header .navbar {
 	margin: 0;
 	background: rgba(0, 0, 0, 0.75);
@@ -439,7 +443,7 @@ a:hover {
 	font-weight: 400;
 }
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-	color: #FFDF00;
+
 	background: none;
 	border-bottom: 2px solid #FFDF00;
 	border-radius: 0px;
@@ -479,7 +483,7 @@ a:hover {
 	background: #000;
 }
 .darkBg .fa {
-	color: #FFDF00;
+	color: #FFDF00; !important;
 }
 /*--- Banner ----*/
 .banner-container {

@@ -1,6 +1,8 @@
-<head><link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<head>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/btn.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="css/register.css"/></head>
+    <link rel="stylesheet" href="css/register.css"/>
+</head>
 @auth
     <div class="container">
         <div class="heading text-center">
@@ -90,7 +92,8 @@
                         </div>
                     </div>
 
-                    <input style="background-color: gold; color: black; margin-top: 1%; width: 100px; font-size: 16px" class="btn button" type="submit" value="Update">
+                    <input style="background-color: gold; color: black; margin-top: 1%; width: 100px; font-size: 16px"
+                           class="btn button" type="submit" value="Update">
                 </form>
                 @else
                     {{--"course" does not exist, ence this is a creation of a new course--}}
@@ -115,7 +118,8 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label style="color: black" for="description" class="col-md-4 control-label">Description</label>
+                            <label style="color: black" for="description"
+                                   class="col-md-4 control-label">Description</label>
 
                             <div class="col-md-6">
                                 <input id="description" type="text" class="form-control" name="description">
@@ -143,7 +147,8 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
-                            <label style="color: black" for="start_date" class="col-md-4 control-label">Start Date</label>
+                            <label style="color: black" for="start_date" class="col-md-4 control-label">Start
+                                Date</label>
 
                             <div class="col-md-6">
                                 <input id="start_date" type="date" class="form-control" name="start_date">
@@ -172,7 +177,8 @@
                                 @endif
                             </div>
                         </div>
-                        <input style="background-color: gold; color: black; margin-top: 1%; width: 100px; font-size: 16px" class="btn button" type="submit" value="Create">
+                        <input style="background-color: gold; color: black; margin-top: 1%; width: 100px; font-size: 16px"
+                               class="btn button" type="submit" value="Create">
                     </form>
                     </body>
                 @endif
