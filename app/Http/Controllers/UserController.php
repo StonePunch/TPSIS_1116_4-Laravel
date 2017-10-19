@@ -23,7 +23,13 @@ class UserController extends Controller
         } //checks if user is teacher to return a view with only users that are applied in the course that the logged on teacher is teaching
         else if (Auth::User()->user_type === 2)
         {
-            $userAuthCourseId = Auth::User()->getCourse->id;
+            $userAuthCourseId = 0;
+
+            if(Auth::User()->getCourse != null)
+            {
+                $userAuthCourseId = Auth::User()->getCourse->id;
+            }
+
             $course = Course::where('teacher_id', '=', Auth::User()->id)->get();
             $teacher_id = $course[0]['teacher_id'];
 

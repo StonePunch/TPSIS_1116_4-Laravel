@@ -98,7 +98,6 @@ class CourseController extends Controller
             'description' => 'required|max:400',
             'duration' => 'required|numeric|between:10,999',
             'start_date' => 'required|date' . $validator_date_unique . '|after:' . $validator_date_min . '|before:' . $validator_date_min->addYear(2),
-            'teacher' => 'required'
         ));
 
         $old_teacher_id = $course->teacher_id;
