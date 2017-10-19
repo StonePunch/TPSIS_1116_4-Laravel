@@ -183,6 +183,7 @@
                                                     <form action="/grades" method="post">
                                                         {{ csrf_field() }}
                                                         {{ method_field('POST') }}
+
                                                         <input type="hidden" name="user_id" value="{{$usersTeacher->id}}">
                                                         <td class="font2 body2 center">
                                                             <input style="color: black; width: 80%" type="number" name="grade" min="0" max="20">
