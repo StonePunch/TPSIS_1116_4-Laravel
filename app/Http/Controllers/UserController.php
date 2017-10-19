@@ -29,13 +29,13 @@ class UserController extends Controller
 
             $grades = Grade::where('course_id', '=', $userAuthCourseId)->get();
             /*Returns all the users that are related to this course, except for the teacher*/
-            $usersTeacher = User::where('course_id', '=', $userAuthCourseId)->where('id', '!=', $teacher_id)->orderBy('name','asc')->paginate(10);
+            $usersTeacher = User::where([['course_id', '=', $userAuthCourseId],['id', '!=', $teacher_id],['status','=',true]])->orderBy('name','asc')->paginate(10);
 
             return view('users')->with('usersTeacher', $usersTeacher)->with('grades', $grades);
         }
         else
         {
-            $usersAdmin = App\User::orderBy('user_type','desc')->orderBy('name','asc')->paginate(10);
+            $usersAdmin = App\User::where('status','=',true)->orderBy('user_type','desc')->orderBy('name','asc')->paginate(10);
             //return view with all the users
             return view('users')->with('usersAdmin', $usersAdmin);
         }
@@ -118,6 +118,7 @@ class UserController extends Controller
         $teacher->sex = $request->sex;
         $teacher->user_type = '2';
         $teacher->picture = $pic_name;
+        $teacher->status = true;
 
         $teacher->save();
 
@@ -247,17 +248,17 @@ class UserController extends Controller
             Course::where('teacher_id', '=', $id)->update(['teacher_id' => null]);
 
             /*Deleting the user*/
-            DB::table('users')->where('id','=',$id)->delete();
+            DB::table('users')->where('id','=',$id)->update(['status' => false]);
 
             return redirect('users');
         }
         else if (User::find($id)->user_type == 1)
         {
             /*Deleting grades pertaining to the student*/
-            DB::table('grades')->where('user_id','=', $id)->delete();
+            DB::table('grades')->where('user_id','=', $id)->update(['status' => false]);
 
             /*Deleting the user*/
-            DB::table('users')->where('id','=',$id)->delete();
+            DB::table('users')->where('id','=',$id)->update(['status' => false]);
 
             return redirect('users');
         }

@@ -16,7 +16,7 @@ class CourseController extends Controller
     public function index()
     {
         /*Retrieves all the courses and sends in to a view*/
-        $courses = Course::orderBy('start_date','asc')->get();
+        $courses = Course::where('status','=',true)->orderBy('start_date','asc')->get();
         return view('courses', compact('courses'));
     }
 
@@ -60,6 +60,7 @@ class CourseController extends Controller
         $course->duration = $request->duration;
         $course->start_date = date('Y-m-d', strtotime($request->start_date)); //"strtotime" converts the string into a date
         $course->teacher_id = $request->teacher;
+        $course->status = true;
 
         $course->save();
 
@@ -165,10 +166,10 @@ class CourseController extends Controller
         User::where('course_id', '=', $id)->update(['course_id' => null]);
 
         /*Dissociating grades on that course*/
-        Grade::where('course_id', '=', $id)->delete();
+        //Grade::where('course_id', '=', $id)->update(['status' => false]);
 
         /*Deleting the course*/
-        DB::table('courses')->where('id', '=', $id)->delete();
+        DB::table('courses')->where('id', '=', $id)->update(['status' => false]);
 
         return redirect('courses');
     }
