@@ -1,6 +1,6 @@
 <html>
 <head>
-    <meta http-equiv="refresh" content="5;url=http://localhost:8000/home" />
+    <meta http-equiv="refresh" content="5;url=http://localhost:8000/home"/>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body style="background-color: lightgrey">

@@ -32,17 +32,13 @@ class PageController extends Controller
     function admin()
     {
         /*Check if user is logged in*/
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             /*Check if logged user is admin*/
-            if (Auth::user()->user_type != 3)
-            {
+            if (Auth::user()->user_type != 3) {
                 return redirect('users_no_permission_error');
             }
             return redirect('courses');
-        }
-        else
-        {
+        } else {
             return redirect('users_no_permission_error');
         }
     }
@@ -50,8 +46,7 @@ class PageController extends Controller
     function register()
     {
         /*Check if user is logged in*/
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             return redirect('users_no_permission_error');
         }
 
@@ -64,8 +59,7 @@ class PageController extends Controller
     function manage()
     {
         //if user not logged in goes to error page
-        if(Auth::guest())
-        {
+        if (Auth::guest()) {
             return view('users_no_permission_error');
         }
 
@@ -77,5 +71,22 @@ class PageController extends Controller
     function user_no_permission_error()
     {
         return view('users_no_permission_error');
+    }
+
+    function navcolor($number)
+    {
+        $string = "";
+        if($number == "boas")
+        {
+            $string = "<li class=\"active\" id=\"firstLink\"><a style=\"background-color: rgba(0, 0, 0, 0.75); background: transparent\" href=\"/\" class=\"scroll-link\">Home</a></li>
+                        <li><a href=\"/courses\" class=\"scroll-link\">Courses</a></li>
+                        <li><a href=\"/news\" class=\"scroll-link\">News</a></li>
+                        <li><a href=\"/about\" class=\"scroll-link\">About</a></li>
+                        <li><a href=\"/contacts\" class=\"scroll-link\">Contacts</a></li>
+                        <li class=\"login\"><a style=\"color: #FFDF00\" href=\"{{ route('login') }}\">Login</a></li>
+                        <li class=\"login\"><a href=\"{{ route('registry') }}\">Register</a></li>";
+        }
+
+        return view('layout.master', compact('string'));
     }
 }

@@ -12,7 +12,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                        <style>
+                    <style>
                         table {
                             font-family: arial, sans-serif;
                             border-collapse: collapse;
@@ -27,40 +27,6 @@
 
                         tr:nth-child(even) {
                             background-color: #e9e9e9;
-                        }
-                        .mytd{
-                            border: none;
-                        }
-                        .button {
-                            display: inline-block;
-                            text-align: center;
-                            vertical-align: middle;
-                            padding: 7px 20px;
-                            border: 1px solid #000000;
-                            border-radius: 8px;
-                            background: #ffdd00;
-                            background: -webkit-gradient(linear, left top, left bottom, from(#ffdd00), to(#ffdd00));
-                            background: -moz-linear-gradient(top, #ffdd00, #ffdd00);
-                            background: linear-gradient(to bottom, #ffdd00, #ffdd00);
-                            font: normal normal normal 18px arial;
-                            color: #000000;
-                            text-decoration: none;
-                            margin-bottom: 2%;
-                        }
-                        .button:hover,
-                        .button:focus {
-                            background: #ffff00;
-                            background: -webkit-gradient(linear, left top, left bottom, from(#ffff00), to(#ffff00));
-                            background: -moz-linear-gradient(top, #ffff00, #ffff00);
-                            background: linear-gradient(to bottom, #ffff00, #ffff00);
-                            color: #000000;
-                            text-decoration: none;
-                        }
-                        .button:active {
-                            background: #998500;
-                            background: -webkit-gradient(linear, left top, left bottom, from(#998500), to(#ffdd00));
-                            background: -moz-linear-gradient(top, #998500, #ffdd00);
-                            background: linear-gradient(to bottom, #998500, #ffdd00);
                         }
                     </style>
 
@@ -91,7 +57,8 @@
                                                 <input type="hidden" name="grade_id" value="{{$grade->id}}">
                                                 <td class="font2 body2 center">
                                                     <input style="color: black;" type="text" name="comment" value="">
-                                                    <input style="margin-top: 5%;" class="btn" type="submit" value="Comment">
+                                                    <input style="margin-top: 5%;" class="btn" type="submit"
+                                                           value="Comment">
                                                 </td>
                                             </form>
                                         @else
@@ -101,9 +68,31 @@
                                 </div>
                             @endforeach
                         </table>
+                        <table style="visibility: hidden">
+                            <tr style="height: 156px" class="table">
+                                <th class="font">Course</th>
+                                <th class="font">Duration</th>
+                                <th class="font">Starting Date</th>
+                                <th class="font">Teacher</th>
+                                <th class="font">Grade</th>
+                                <th class="font">Comment</th>
+                            </tr>
+                        </table>
                     @else
-                        There are no grades to show!
+                        <h3 style="font-family: 'Montserrat Light'; color: white; text-decoration: underline; text-decoration-color: #FFDF00">
+                            There are no grades to show!</h3>
+                        <table style="visibility: hidden">
+                            <tr style="height: 156px" class="table">
+                                <th class="font">Course</th>
+                                <th class="font">Duration</th>
+                                <th class="font">Starting Date</th>
+                                <th class="font">Teacher</th>
+                                <th class="font">Grade</th>
+                                <th class="font">Comment</th>
+                            </tr>
+                        </table>
                     @endif
+
                 </div>
             </div>
         </div>

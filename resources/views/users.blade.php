@@ -57,9 +57,11 @@
                         tr:nth-child(even) {
                             background-color: #e9e9e9;
                         }
-                        .mytd{
+
+                        .mytd {
                             border: none;
                         }
+
                         .button {
                             display: inline-block;
                             text-align: center;
@@ -76,6 +78,7 @@
                             text-decoration: none;
                             margin-bottom: 2%;
                         }
+
                         .button:hover,
                         .button:focus {
                             background: #ffff00;
@@ -85,6 +88,7 @@
                             color: #000000;
                             text-decoration: none;
                         }
+
                         .button:active {
                             background: #998500;
                             background: -webkit-gradient(linear, left top, left bottom, from(#998500), to(#ffdd00));
@@ -115,7 +119,8 @@
                             @foreach($details as $usersAdmin)
                                 <div id="portfolio">
                                     <tr class="table">
-                                        <td class="font2 body center"><img src="{{'uploads/' . $usersAdmin->picture}}" alt=""
+                                        <td class="font2 body center"><img src="{{'uploads/' . $usersAdmin->picture}}"
+                                                                           alt=""
                                                                            border=3 height=100 width=100></td>
                                         <td class="font2 body center">{{$usersAdmin->name}}</td>
                                         <td class="font2 body center">{{$usersAdmin->email}}</td>
@@ -160,7 +165,9 @@
                                 @if ($usersTeacher->course_id === Auth::User()->getCourse->id and $usersTeacher->user_type === 1)
                                     <div id="portfolio">
                                         <tr class="table">
-                                            <td class="font2 body center"><img src="{{'uploads/' . $usersTeacher->picture}}" alt="" border=3 height=100 width=100></img></td>
+                                            <td class="font2 body center"><img
+                                                        src="{{'uploads/' . $usersTeacher->picture}}" alt="" border=3
+                                                        height=100 width=100></img></td>
                                             <td class="font2 body center">{{$usersTeacher->name}}</td>
                                             <td class="font2 body center">{{$usersTeacher->email}}</td>
                                             <td class="font2 body center">{{$usersTeacher->birth_date}}</td>
@@ -183,10 +190,13 @@
                                                     <form action="/grades" method="post">
                                                         {{ csrf_field() }}
                                                         {{ method_field('POST') }}
-                                                        <input type="hidden" name="user_id" value="{{$usersTeacher->id}}">
+                                                        <input type="hidden" name="user_id"
+                                                               value="{{$usersTeacher->id}}">
                                                         <td class="font2 body2 center">
-                                                            <input style="color: black; width: 80%" type="number" name="grade" min="0" max="20">
-                                                            <input style="margin-top: 15%" class="btn" type="submit" value="Evaluate">
+                                                            <input style="color: black; width: 80%" type="number"
+                                                                   name="grade" min="0" max="20">
+                                                            <input style="margin-top: 15%" class="btn" type="submit"
+                                                                   value="Evaluate">
                                                         </td>
                                                     </form>
                                                 </div>
@@ -224,7 +234,9 @@
                                 @foreach($usersAdmin as $user)
                                     <div id="portfolio">
                                         <tr>
-                                            <td class="font2 body center"><img class="img" src="{{'uploads/' . $user->picture}}" alt=""></td>
+                                            <td class="font2 body center"><img class="img"
+                                                                               src="{{'uploads/' . $user->picture}}"
+                                                                               alt=""></td>
                                             <td class="font2 body center">{{$user->name}}</td>
                                             <td class="font2 body center">{{$user->email}}</td>
                                             <td class="font2 body center">{{$user->birth_date}}</td>
@@ -279,7 +291,9 @@
                                         @if ($user->course_id === Auth::User()->getCourse->id and $user->user_type === 1)
                                             <div id="portfolio">
                                                 <tr class="table">
-                                                    <td class="font2 body center"><img src="{{'uploads/' . $user->picture}}" alt="" border=3 height="100" width="100"></img></td>
+                                                    <td class="font2 body center"><img
+                                                                src="{{'uploads/' . $user->picture}}" alt="" border=3
+                                                                height="100" width="100"></img></td>
                                                     <td class="font2 body center">{{$user->name}}</td>
                                                     <td class="font2 body center">{{$user->email}}</td>
                                                     <td class="font2 body center">{{$user->birth_date}}</td>
@@ -302,10 +316,13 @@
                                                             <form action="/grades" method="post">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('POST') }}
-                                                                <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                                <input type="hidden" name="user_id"
+                                                                       value="{{$user->id}}">
                                                                 <td class="font2 body2 center">
-                                                                    <input style="color: black; width: 80%" type="number" name="grade" min="0" max="20">
-                                                                    <input style="margin-top: 15%" class="btn" type="submit" value="Evaluate">
+                                                                    <input style="color: black; width: 80%"
+                                                                           type="number" name="grade" min="0" max="20">
+                                                                    <input style="margin-top: 15%" class="btn"
+                                                                           type="submit" value="Evaluate">
                                                                 </td>
                                                             </form>
                                                         </div>
