@@ -22,6 +22,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         /*If admin logs in redirects him to admin page*/
