@@ -32,9 +32,7 @@
                 </p>
             </div>
             <div class="col-md-3">
-                <a style="margin-top: 26%" class="btn btn-apply" href="#"><i class="fa fa-play-circle"></i>Escolha
-                    um
-                    curso!</a>
+                <a style="margin-top: 26%" class="btn btn-apply" href="#"><i class="fa fa-play-circle"></i>Choose a Course!</a>
             </div>
         </div>
         </div>

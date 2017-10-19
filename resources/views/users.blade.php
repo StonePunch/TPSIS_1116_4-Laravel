@@ -335,9 +335,9 @@
                                 @if($usersTeacher->count() > 0)
                                     <div>{{ $usersTeacher->links() }}</div>
                                 @elseif ($usersTeacher->count() == 0 and Auth::User()->getCourse == null)
-                                    <p>You are not teaching any course!</p>
+                                    <p style="font-family: 'Montserrat Light'; color: white; text-decoration: underline; text-decoration-color: #FFDF00">You are not teaching any course!</p>
                                 @else
-                                    <p>There are no students applied to {{Auth::User()->getCourse->name}} course!</p>
+                                    <p style="font-family: 'Montserrat Light'; color: white; text-decoration: underline; text-decoration-color: #FFDF00">There are no students applied to {{Auth::User()->getCourse->name}} course!</p>
                                 @endif
                             @elseif(!isset($details) and Auth::User()->user_type === 1)
                                 <script>window.location.href = "http://localhost:8000/users_no_permission_error";</script>

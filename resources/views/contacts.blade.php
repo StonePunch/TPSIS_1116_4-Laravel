@@ -6,13 +6,13 @@
                     <div style="margin-top: 6.5%" class="row">
                         <div class="heading text-center">
                             <!-- Heading -->
-                            <h2 style="color: white">Contact Us</h2>
+                            <h2 style="color: white">Contact Us!</h2>
                         </div>
                     </div>
                     <div class="row mrgn30">
                         <!--NOTE: Update your email Id in "contact_me.php" file in order to receive emails from your contact form-->
                         <form name="sentMessage" id="contactForm" novalidate>
-                            <h3 style="color: white">Contact Form</h3>
+                            <h3 style="font-family: 'Montserrat Light'; color: white; text-decoration: underline; text-decoration-color: #FFDF00">Contact Form</h3>
                             <div class="control-group">
                                 <div class="controls">
                                     <input type="text" class="form-control"

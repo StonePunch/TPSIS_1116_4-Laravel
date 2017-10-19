@@ -4,7 +4,7 @@
         <div class="container text-center">
             <div class="heading">
                 <h2 style="margin-top: 6.5%">NEWS</h2>
-                <p>Check B-School Latest News!</p>
+                <p style="font-family: 'Montserrat Light'; color: white; text-decoration: underline; text-decoration-color: #FFDF00">Check B-School Latest News!</p>
             </div>
             <div class="row">
                 <div class="col-md-12">

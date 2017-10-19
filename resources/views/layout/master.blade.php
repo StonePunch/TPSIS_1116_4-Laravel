@@ -125,7 +125,7 @@
                             <li><a href="/about" class="scroll-link">About</a></li>
                             <li class="active"><a href="/contacts" class="scroll-link">Contacts</a></li>
                         @endif
-                        <li class="login"><a href="{{ route('login') }}">Login</a></li>
+                        <li class="login"><a style="color: #FFDF00" href="{{ route('login') }}">Login</a></li>
                         <li class="login"><a href="{{ route('registry') }}">Register</a></li>
                     @endguest
                     @auth
@@ -376,7 +376,8 @@
             <div class="col-md-3">
                 <div class="col">
                     <h4 style="color: white">Newsletter</h4>
-                    <p style="color: white">Subscreva à nossa newsletter para ficar a par das nossas novidades!</p>
+                    <p style="color: white">Subscribe to our newsletter to stay up to date with information regarding
+                        new courses!</p>
                     <form class="form-inline" action="mailto:klumpman7@gmail.com" method="post" enctype="text/plain" >
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="email...">

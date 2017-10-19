@@ -100,7 +100,7 @@
                         @if(Auth::User()->user_type === 3)
                             <h3 style="font-family: 'Montserrat Light'; color: white; text-decoration: underline; text-decoration-color: #FFDF00">There are no grades to show!</h3>
                         @else
-                            There are no comments to show!
+                            <h3 style="font-family: 'Montserrat Light'; color: white; text-decoration: underline; text-decoration-color: #FFDF00">There are no comments to show!</h3>
                         @endif
                     @endif
                     <table style="visibility: hidden">

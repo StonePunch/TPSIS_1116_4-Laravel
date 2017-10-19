@@ -8,7 +8,7 @@
             </div>
             <div class="row feature design">
                 <div class="area1 columns left">
-                    <h3 style="color: white">B-School tells about quality</h3>
+                    <h3 style="font-family: 'Montserrat Light'; color: white; text-decoration: underline; text-decoration-color: #FFDF00">B-School tells about quality</h3>
                     <p style="color: white">B-School, a Training Academy, is a project idealized and promoted by
                         experienced people and a large group of interested parties, which materialized in December 2003
                         as a Training
@@ -22,7 +22,7 @@
                         according to Order No. 11 707/2006. </p>
                     <a style="color: black" href="/contacts" class="btn">Send a Message!</a>
                 </div>
-                <div class="area2 columns feature-media right"><img src="images/about-img.jpg" alt="" width="100%">
+                <div class="area2 columns feature-media right"><img style="border: 4px solid black; border-radius: 30px;" src="images/about-img.jpg" alt="" width="100%">
                 </div>
             </div>
             <div class="row dataTxt">
