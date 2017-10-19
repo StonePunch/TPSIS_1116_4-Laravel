@@ -92,38 +92,41 @@
                             <li><a href="/news" class="scroll-link">News</a></li>
                             <li><a href="/about" class="scroll-link">About</a></li>
                             <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                        @endif
-                        @if(Request::is('courses'))
+                        @elseif(Request::is('courses'))
                             {{--Courses nav icon selected--}}
                             <li id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                             <li class="active"><a href="/courses" class="scroll-link">Courses</a></li>
                             <li><a href="/news" class="scroll-link">News</a></li>
                             <li><a href="/about" class="scroll-link">About</a></li>
                             <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                        @endif
-                        @if(Request::is('news'))
+                        @elseif(Request::is('news'))
                             {{--News nav icon selected--}}
                             <li id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                             <li><a href="/courses" class="scroll-link">Courses</a></li>
                             <li class="active"><a href="/news" class="scroll-link">News</a></li>
                             <li><a href="/about" class="scroll-link">About</a></li>
                             <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                        @endif
-                        @if(Request::is('about'))
+                        @elseif(Request::is('about'))
                             {{--About nav icon selected--}}
                             <li id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                             <li><a href="/courses" class="scroll-link">Courses</a></li>
                             <li><a href="/news" class="scroll-link">News</a></li>
                             <li class="active"><a href="/about" class="scroll-link">About</a></li>
                             <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                        @endif
-                        @if(Request::is('contacts'))
+                        @elseif(Request::is('contacts'))
                             {{--Contacts nav icon selected--}}
                             <li id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                             <li><a href="/courses" class="scroll-link">Courses</a></li>
                             <li><a href="/news" class="scroll-link">News</a></li>
                             <li><a href="/about" class="scroll-link">About</a></li>
                             <li class="active"><a href="/contacts" class="scroll-link">Contacts</a></li>
+                        @else
+                            {{--For when the user is in some other menu--}}
+                            <li id="firstLink"><a href="/" class="scroll-link">Home</a></li>
+                            <li><a href="/courses" class="scroll-link">Courses</a></li>
+                            <li><a href="/news" class="scroll-link">News</a></li>
+                            <li><a href="/about" class="scroll-link">About</a></li>
+                            <li><a href="/contacts" class="scroll-link">Contacts</a></li>
                         @endif
                         <li class="login"><a style="color: #FFDF00" href="{{ route('login') }}">Login</a></li>
                         <li class="login"><a href="{{ route('registry') }}">Register</a></li>
@@ -138,18 +141,26 @@
                                 </li>
                                 <li><a href="/users" class="scroll-link">Users</a></li>
                                 <li><a href="/grades" class="scroll-link">Grades</a></li>
-                            @endif
-                            @if(Request::is('users'))
+                            @elseif(Request::is('users'))
                                 {{--Users nav icon selected--}}
                                 <li id="firstLink"><a href="/courses" class="scroll-link">Courses</a></li>
                                 <li class="active"><a href="/users" class="scroll-link">Users</a></li>
                                 <li><a href="/grades" class="scroll-link">Grades</a></li>
-                            @endif
-                            @if(Request::is('grades'))
+                            @elseif(Request::is('grades'))
                                 {{--Grades nav icon selected--}}
                                 <li id="firstLink"><a href="/courses" class="scroll-link">Courses</a></li>
                                 <li><a href="/users" class="scroll-link">Users</a></li>
                                 <li class="active"><a href="/grades" class="scroll-link">Grades</a></li>
+                            @elseif(Request::is('search'))
+                                {{--For when the admin does a search--}}
+                                <li id="firstLink"><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li class="active"><a href="/users" class="scroll-link">Users</a></li>
+                                <li><a href="/grades" class="scroll-link">Grades</a></li>
+                            @else
+                                {{--For when the admin is in some other menu--}}
+                                <li id="firstLink"><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/users" class="scroll-link">Users</a></li>
+                                <li><a href="/grades" class="scroll-link">Grades</a></li>
                             @endif
 
                             {{--Common section--}}
@@ -184,8 +195,7 @@
                                 <li><a href="/news" class="scroll-link">News</a></li>
                                 <li><a href="/about" class="scroll-link">About</a></li>
                                 <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                            @endif
-                            @if(Request::is('courses'))
+                            @elseif(Request::is('courses'))
                                 {{--Courses nav icon selected--}}
                                 <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
                                 <li class="active"><a href="/courses" class="scroll-link">Courses</a></li>
@@ -194,8 +204,7 @@
                                 <li><a href="/news" class="scroll-link">News</a></li>
                                 <li><a href="/about" class="scroll-link">About</a></li>
                                 <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                            @endif
-                            @if(Request::is('users'))
+                            @elseif(Request::is('users'))
                                 {{--Users nav icon selected--}}
                                 <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
                                 <li><a href="/courses" class="scroll-link">Courses</a></li>
@@ -204,8 +213,7 @@
                                 <li><a href="/news" class="scroll-link">News</a></li>
                                 <li><a href="/about" class="scroll-link">About</a></li>
                                 <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                            @endif
-                            @if(Request::is('grades'))
+                            @elseif(Request::is('grades'))
                                 {{--Grades nav icon selected--}}
                                 <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
                                 <li><a href="/courses" class="scroll-link">Courses</a></li>
@@ -214,8 +222,7 @@
                                 <li><a href="/news" class="scroll-link">News</a></li>
                                 <li><a href="/about" class="scroll-link">About</a></li>
                                 <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                            @endif
-                            @if(Request::is('news'))
+                            @elseif(Request::is('news'))
                                 {{--News nav icon selected--}}
                                 <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
                                 <li><a href="/courses" class="scroll-link">Courses</a></li>
@@ -224,8 +231,7 @@
                                 <li class="active"><a href="/news" class="scroll-link">News</a></li>
                                 <li><a href="/about" class="scroll-link">About</a></li>
                                 <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                            @endif
-                            @if(Request::is('about'))
+                            @elseif(Request::is('about'))
                                 {{--About nav icon selected--}}
                                 <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
                                 <li><a href="/courses" class="scroll-link">Courses</a></li>
@@ -234,8 +240,7 @@
                                 <li><a href="/news" class="scroll-link">News</a></li>
                                 <li class="active"><a href="/about" class="scroll-link">About</a></li>
                                 <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                            @endif
-                            @if(Request::is('contacts'))
+                            @elseif(Request::is('contacts'))
                                 {{--Contacts nav icon selected--}}
                                 <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
                                 <li><a href="/courses" class="scroll-link">Courses</a></li>
@@ -244,6 +249,24 @@
                                 <li><a href="/news" class="scroll-link">News</a></li>
                                 <li><a href="/about" class="scroll-link">About</a></li>
                                 <li class="active"><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @elseif(Request::is('search'))
+                                {{--For when the teacher does a search--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li class="active"><a href="/users" class="scroll-link">Users</a></li>
+                                <li><a href="/grades" class="scroll-link">Comments</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @else
+                                {{--For when the teacher is in some other menu--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/users" class="scroll-link">Users</a></li>
+                                <li><a href="/grades" class="scroll-link">Comments</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
                             @endif
 
                             {{--Common section--}}
@@ -277,8 +300,7 @@
                                 <li><a href="/news" class="scroll-link">News</a></li>
                                 <li><a href="/about" class="scroll-link">About</a></li>
                                 <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                            @endif
-                            @if(Request::is('courses'))
+                            @elseif(Request::is('courses'))
                                 {{--Courses nav icon selected--}}
                                 <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
                                 <li class="active"><a href="/courses" class="scroll-link">Courses</a></li>
@@ -286,8 +308,7 @@
                                 <li><a href="/news" class="scroll-link">News</a></li>
                                 <li><a href="/about" class="scroll-link">About</a></li>
                                 <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                            @endif
-                            @if(Request::is('grades'))
+                            @elseif(Request::is('grades'))
                                 {{--Grades nav icon selected--}}
                                 <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
                                 <li><a href="/courses" class="scroll-link">Courses</a></li>
@@ -295,8 +316,7 @@
                                 <li><a href="/news" class="scroll-link">News</a></li>
                                 <li><a href="/about" class="scroll-link">About</a></li>
                                 <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                            @endif
-                            @if(Request::is('news'))
+                            @elseif(Request::is('news'))
                                 {{--News nav icon selected--}}
                                 <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
                                 <li><a href="/courses" class="scroll-link">Courses</a></li>
@@ -304,8 +324,7 @@
                                 <li class="active"><a href="/news" class="scroll-link">News</a></li>
                                 <li><a href="/about" class="scroll-link">About</a></li>
                                 <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                            @endif
-                            @if(Request::is('about'))
+                            @elseif(Request::is('about'))
                                 {{--About nav icon selected--}}
                                 <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
                                 <li><a href="/courses" class="scroll-link">Courses</a></li>
@@ -313,8 +332,7 @@
                                 <li><a href="/news" class="scroll-link">News</a></li>
                                 <li class="active"><a href="/about" class="scroll-link">About</a></li>
                                 <li><a href="/contacts" class="scroll-link">Contacts</a></li>
-                            @endif
-                            @if(Request::is('contacts'))
+                            @elseif(Request::is('contacts'))
                                 {{--Contacts nav icon selected--}}
                                 <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
                                 <li><a href="/courses" class="scroll-link">Courses</a></li>
@@ -322,6 +340,14 @@
                                 <li><a href="/news" class="scroll-link">News</a></li>
                                 <li><a href="/about" class="scroll-link">About</a></li>
                                 <li class="active"><a href="/contacts" class="scroll-link">Contacts</a></li>
+                            @else
+                                {{--For when the user is in some other menu--}}
+                                <li id="firstLink"><a href="/home" class="scroll-link">Home</a></li>
+                                <li><a href="/courses" class="scroll-link">Courses</a></li>
+                                <li><a href="/grades" class="scroll-link">Grades</a></li>
+                                <li><a href="/news" class="scroll-link">News</a></li>
+                                <li><a href="/about" class="scroll-link">About</a></li>
+                                <li><a href="/contacts" class="scroll-link">Contacts</a></li>
                             @endif
 
                             {{--Profile & Logout--}}
