@@ -44,7 +44,7 @@
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                     </button>
-                    <a href="/home" class="navbar-brand scroll-top logo animated bounceInLeft">
+                    <a href="/" class="navbar-brand scroll-top logo animated bounceInLeft">
                         <b>
                             <i><img src="images/logo.png"/></i>
                         </b>
@@ -60,7 +60,7 @@
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                         </button>
-                        <a href="/courses" class="navbar-brand scroll-top logo animated bounceInLeft">
+                        <a href="/home" class="navbar-brand scroll-top logo animated bounceInLeft">
                             <b>
                                 <i><img src="images/logo.png"/></i>
                             </b>
@@ -86,7 +86,6 @@
             <div id="main-nav" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav" id="mainNav">
                     @guest
-                        @if(Request::is('/'))
                         {{--User not logged in--}}
                         <li class="active" id="firstLink"><a href="/" class="scroll-link">Home</a></li>
                         <li><a href="/courses" class="scroll-link">Courses</a></li>
@@ -95,7 +94,6 @@
                         <li><a href="/contacts" class="scroll-link">Contacts</a></li>
                         <li class="login"><a href="{{ route('login') }}">Login</a></li>
                         <li class="login"><a href="{{ route('registry') }}">Register</a></li>
-                        @endif
                     @endguest
                     @auth
                         {{--User logged in--}}
