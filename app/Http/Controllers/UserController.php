@@ -261,7 +261,7 @@ class UserController extends Controller
         else if (User::find($id)->user_type == 1)
         {
             /*Deleting grades pertaining to the student*/
-            DB::table('grades')->where('user_id','=', $id)->update(['status' => false]);
+            DB::table('grades')->where('user_id','=', $id)->delete();
 
             /*Deleting the user*/
             DB::table('users')->where('id','=',$id)->update(['status' => false]);
