@@ -1,0 +1,13 @@
+.login {
+    position: fixed;
+    left: 115%;
+    font-size: 16px;
+}
+.mynav {
+    background-color: #343434;
+    color: white;
+}
+.registry{
+    top: 60px;
+    width: 62%;
+}
